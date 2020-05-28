@@ -11,10 +11,7 @@ class DiceRoll(object):
         roll = roll.split("+")
         for die in roll:
             if "d" in die:
-                try:
-                    self.dice.append(list(map(int, die.split("d"))))
-                except TypeError:
-                    print(f"A type error has occurred: {roll}")
+                self.dice.append(list(map(int, die.split("d"))))
             else:
                 self.dice_modifier += int(die)
 
