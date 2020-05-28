@@ -15,9 +15,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    server_members = message.guild.members
     if message.author == client.user:
         return
+    server_members = message.guild.members
     if message.content.startswith('!'):
         message_start = message.content[0:3].lower()
         message_content = message.content[3:]
@@ -28,7 +28,7 @@ async def on_message(message):
                     if role.name == "DM":
                         await member.send(f"{result}\n"
                                           f"Details: {message_content} {dice_rolls}")
-                        break
+                        return
             else:
                 await message.channel.send("There is nobody who has a rank of 'DM' on your server")
         elif "pr" in message_start:
