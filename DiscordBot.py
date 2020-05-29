@@ -2,9 +2,9 @@ import discord
 import os
 from Roller import DiceRoll
 
+link = "https://github.com/miki4920/discord-roller/blob/master/README.md"
 client = discord.Client()
 roller = DiceRoll()
-
 token = os.getenv("TOKEN")
 
 
@@ -21,6 +21,8 @@ async def on_message(message):
     if message.content.startswith('!'):
         message_start = message.content[0:3].lower()
         message_content = message.content[3:]
+        if "h" in message_start:
+            await message.author.send(f"The manual is located here: {link}")
         result, dice_rolls = roller.roll_dice(message_content)
         if "gr" in message_start:
             for member in server_members:
