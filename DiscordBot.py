@@ -2,7 +2,7 @@ import discord
 import os
 from Roller import DiceRoll
 
-link = "https://github.com/miki4920/discord-roller/blob/master/README.md"
+link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
 token = os.getenv("TOKEN")
