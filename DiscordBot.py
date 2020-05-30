@@ -23,24 +23,22 @@ async def on_message(message):
         message_content = message.content[3:]
         if "h" in message_start:
             await message.author.send(f"The manual is located here: {link}")
-        result, dice_rolls = roller.roll_dice(message_content)
-        if "gr" in message_start:
-            for member in server_members:
-                for role in member.roles:
-                    if role.name == "DM":
-                        await member.send(f"{result}\n"
+        if any(["gr", "pr", "r"]) in message_start:
+            result, dice_rolls = roller.roll_dice(message_content)
+            if "gr" in message_start:
+                for member in server_members:
+                    for role in member.roles:
+                        if role.name == "DM":
+                            await member.send(f"{result}\n"
+                                              f"Details: {message_content} {dice_rolls}")
+                            return
+                else:
+                    await message.channel.send("There is nobody who has a rank of 'DM' on your server")
+            elif "pr" in message_start:
+                await message.author.send(f"{result}\n"
                                           f"Details: {message_content} {dice_rolls}")
-                        return
-            else:
-                await message.channel.send("There is nobody who has a rank of 'DM' on your server")
-        elif "pr" in message_start:
-            await message.author.send(f"{result}\n"
-                                      f"Details: {message_content} {dice_rolls}")
-        elif "r" in message_start:
-            await message.channel.send(f"{result}\n"
-                                       f"Details: {message_content} {dice_rolls}")
-        elif "h" in message_start:
-            await message.channel.send("Help is in progress!")
-
+            elif "r" in message_start:
+                await message.channel.send(f"{result}\n"
+                                           f"Details: {message_content} {dice_rolls}")
 
 client.run(token)

@@ -21,6 +21,5 @@ class DiceRoll(object):
         self.handle_roll(roll)
         result = ()
         for die in self.dice:
-            for rolls in range(0, int(die[0])):
-                result += tuple([randint(1, int(die[1]))])
-        return sum(result) + self.dice_modifier, result
+            result += tuple([randint(1, int(die[1])) for _ in range(0, int(die[0]))])
+        return sum([sum(rolls) for rolls in result]) + self.dice_modifier, result
