@@ -15,11 +15,20 @@ class DiceRoll(object):
             else:
                 self.dice_modifier += int(die)
 
+    @staticmethod
+    def dice_to_string(dice):
+        formatted_string = ""
+        for dice_result in dice:
+            dice_result = list(map(str, dice_result))
+            formatted_string += "(" + " + ".join(dice_result) + ") + "
+        return formatted_string[0:len(formatted_string)-3]
+
     def roll_dice(self, roll):
         self.dice = []
         self.dice_modifier = 0
         self.handle_roll(roll)
-        result = ()
+        result = []
         for die in self.dice:
-            result += tuple([randint(1, int(die[1])) for _ in range(0, int(die[0]))])
-        return sum([sum(rolls) for rolls in result]) + self.dice_modifier, result
+            result.append(tuple([randint(1, int(die[1])) for _ in range(0, int(die[0]))]))
+        formatted_result = self.dice_to_string(result)
+        return sum([sum(rolls) for rolls in result]) + self.dice_modifier, formatted_result
