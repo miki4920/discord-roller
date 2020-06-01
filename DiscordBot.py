@@ -5,7 +5,7 @@ from Roller import DiceRoll
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
-token= os.getenv("TOKEN")
+token = os.getenv("TOKEN")
 code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
