@@ -1,65 +1,42 @@
 from random import randint
-import re
+from ShuntingYard import shunting_yard_algorithm, tokenizer
 
 
 class Roll(object):
-    def __init__(self, roll, sign):
-        self.roll = roll
-        self.type = self.determine_type()
-        self.sign = sign
+    def __init__(self, roll):
+        self.roll = self.roll_dice(roll)
 
-    def determine_type(self):
-        if "d" in self.roll:
-            self.roll = self.roll.split("d")
-            return 0
-        return 1
+    @staticmethod
+    def roll_dice(roll):
+        roll = list(map(int, roll.split("d")))
+        roll = [randint(1, roll[1]) for _ in range(0, roll[0])]
+        return roll
 
     def __int__(self):
-        if self.type == 1:
-            return int(self.sign + self.roll)
+        return sum(self.roll)
+
+    def __str__(self):
+        return "(" + " + ".join(map(str, self.roll)) + ")"
 
 
 class DiceRoll(object):
     def __init__(self):
-        self.dice = []
-        self.dice_modifier = []
+        pass
 
-    def handle_roll(self, roll):
-        type_dictionary = {0: [],
-                           1: []}
-        roll = "+" + roll.replace(" ", "").lower()
-        # Splits command string by + and -, then determines sign for each one
-        for die in re.split("[+\-]", roll):
-            roll_index = roll.find(die)
-            if roll[roll_index - 1] == "+":
-                die = Roll(die, "+")
-                type_dictionary[die.type].append(die)
-            elif roll[roll_index - 1] == "-":
-                die = Roll(die, "-")
-                type_dictionary[die.type].append(die)
-        self.dice = type_dictionary[0]
-        self.dice_modifier = map(int, type_dictionary[1])
+    @staticmethod
+    def dice_to_classes(tokenized_expression):
+        for index in range(0, len(tokenized_expression)):
+            if "d" in tokenized_expression[index]:
+                tokenized_expression[index] = Roll(tokenized_expression[index])
+        return tokenized_expression
 
-    def dice_to_string(self, dice):
-        formatted_string = ""
-        for index in range(0, len(self.dice)):
-            dice_result = list(map(str, dice[index]))
-            if self.dice[index].sign == "+":
-                formatted_string += " + (" + " + ".join(dice_result) + ")"
-            elif self.dice[index].sign == "-":
-                formatted_string += " - (" + " + ".join(dice_result) + ")"
-        return formatted_string[3:]
+    @staticmethod
+    def dice_to_string(tokenized_expression):
+        return " ".join(map(str, tokenized_expression))
 
     def roll_dice(self, roll):
-        self.handle_roll(roll)
-        result = []
-        dice_result = 0
-        for die in self.dice:
-            result.append(tuple([randint(1, int(die.roll[1])) for _ in range(0, int(die.roll[0]))]))
-        for index in range(0, len(self.dice)):
-            if self.dice[index].sign == "+":
-                dice_result += sum(result[index])
-            elif self.dice[index].sign == "-":
-                dice_result -= sum(result[index])
-        formatted_result = self.dice_to_string(result)
-        return dice_result + sum(self.dice_modifier), formatted_result
+        tokenized_expression = tokenizer(roll)
+        tokenized_expression = self.dice_to_classes(tokenized_expression)
+        resulting_roll = shunting_yard_algorithm(tokenized_expression)
+        string_roll = self.dice_to_string(tokenized_expression)
+        return resulting_roll, string_roll

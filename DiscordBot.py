@@ -22,7 +22,8 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith('!'):
-        message_start = message.content[1:3].replace(" ", "").lower()
+        message.content = message.content.lower()
+        message_start = message.content[1:3].replace(" ", "")
         try:
             message_code = code_dictionary[message_start]
         except KeyError:
