@@ -1,16 +1,41 @@
 from random import randint
 from ShuntingYard import shunting_yard_algorithm, tokenizer
+import re
 
 
 class Roll(object):
     def __init__(self, roll):
-        self.roll = self.roll_dice(roll)
+        self.roll = self.handle_dice(roll)
 
     @staticmethod
-    def roll_dice(roll):
-        roll = list(map(int, roll.split("d")))
-        roll = [randint(1, roll[1]) for _ in range(0, roll[0])]
-        return roll
+    def standard_roll(roll):
+        return [randint(1, roll[1]) for _ in range(0, roll[0])]
+
+    def recursive_roll(self, roll):
+        value_roll = randint(1, roll)
+        if value_roll == roll:
+            return [roll] + self.recursive_roll(roll)
+        return [value_roll]
+
+    def exploding_roll(self, roll):
+        results = []
+        for _ in range(0, roll[0]):
+            results += self.recursive_roll(roll[1])
+        return results
+
+    def handle_dice(self, roll):
+        roll = re.findall("[!]|\d+", roll)
+        roll_modifiers = []
+        if len(roll) > 2:
+            roll_modifiers = roll[2:]
+            roll = roll[0:2]
+        roll = list(map(int, roll))
+        for modifier in roll_modifiers:
+            if modifier == "!":
+                if roll[1] <= 1:
+                    raise ValueError
+                return self.exploding_roll(roll)
+        return self.standard_roll(roll)
 
     def __int__(self):
         return sum(self.roll)
