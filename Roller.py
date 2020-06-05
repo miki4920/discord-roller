@@ -17,24 +17,33 @@ class Roll(object):
             return [roll] + self.recursive_roll(roll)
         return [value_roll]
 
-    def exploding_roll(self, roll):
+    def recursive_roll_shadowrun(self, roll):
+        value_roll = randint(1, roll)
+        if value_roll == roll:
+            return [sum([roll] + self.recursive_roll(roll))]
+        return [value_roll]
+
+    def exploding_roll(self, roll, modifier):
         results = []
         for _ in range(0, roll[0]):
-            results += self.recursive_roll(roll[1])
+            if modifier == "!":
+                results += self.recursive_roll(roll[1])
+            elif modifier == "!!":
+                results += self.recursive_roll_shadowrun(roll[1])
         return results
 
     def handle_dice(self, roll):
-        roll = re.findall("[!]|\d+", roll)
+        roll = re.findall("!!|!|\d+", roll)
         roll_modifiers = []
         if len(roll) > 2:
             roll_modifiers = roll[2:]
             roll = roll[0:2]
         roll = list(map(int, roll))
         for modifier in roll_modifiers:
-            if modifier == "!":
+            if modifier in ["!", "!!"]:
                 if roll[1] <= 1:
                     raise ValueError
-                return self.exploding_roll(roll)
+                return self.exploding_roll(roll, modifier)
         return self.standard_roll(roll)
 
     def __int__(self):
