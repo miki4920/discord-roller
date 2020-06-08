@@ -30,9 +30,10 @@ def apply_operator(operants, values):
 
 def tokenizer(expression):
     tokens = []
+    expression = list(expression)
     number_string = ""
-    for token in list(expression):
-        if not is_number(token):
+    for token in expression:
+        if not is_number(token) and expression.index(token) != 0:
             if len(number_string) > 0:
                 tokens.append(number_string)
             number_string = ""
