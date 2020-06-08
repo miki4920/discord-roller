@@ -2,7 +2,7 @@ import operator
 
 
 def is_number(token):
-    if token not in ["+", "-", "*", "/", "(", ")"]:
+    if token not in ["+", "-", "*", "/", "(", ")", "%"]:
         return True
     return False
 
@@ -12,7 +12,7 @@ def peek(stack):
 
 
 def greater_precedence(op1, op2):
-    precedences = {'+': 0, '-': 0, '*': 1, '/': 1}
+    precedences = {'+': 0, '-': 0, '*': 1, '/': 1, "%": 1}
     return precedences[op1] > precedences[op2]
 
 
@@ -20,7 +20,8 @@ def apply_operator(operants, values):
     operators = {"+": operator.add,
                  "-": operator.sub,
                  "*": operator.mul,
-                 "/": operator.truediv}
+                 "/": operator.truediv,
+                 "%": operator.mod}
     operation = operators[operants.pop()]
     right = values.pop()
     left = values.pop()
