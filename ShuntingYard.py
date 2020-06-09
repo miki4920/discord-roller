@@ -32,14 +32,17 @@ def tokenizer(expression):
     tokens = []
     expression = list(expression)
     number_string = ""
-    for index in range(0, len(expression)):
-        if not is_number(expression[index]):
+    operator_before = True
+    for token in expression:
+        if not is_number(token) and not operator_before:
+            operator_before = True
             if len(number_string) > 0:
                 tokens.append(number_string)
             number_string = ""
-            tokens.append(expression[index])
+            tokens.append(token)
         else:
-            number_string += expression[index]
+            operator_before = False
+            number_string += token
     if len(number_string) != 0:
         tokens.append(number_string)
     return tokens

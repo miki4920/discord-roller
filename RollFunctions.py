@@ -5,6 +5,9 @@ from ErrorHandler import DieTooLowForExplosion, DropKeepModifierTooHigh, RollNot
 
 class Roll(object):
     def __init__(self, roll):
+        self.negative = False
+        if roll[0] == "-":
+            self.negative = True
         self.roll = self.handle_dice(roll)
 
     def __int__(self):
@@ -96,4 +99,6 @@ class Roll(object):
                     raise DropKeepModifierTooHigh(len(result), modifier_number)
                 result = self.drop_keep(result, modifier, modifier_number)
                 break
+        if self.negative:
+            return [-i for i in result]
         return result
