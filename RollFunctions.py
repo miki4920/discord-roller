@@ -14,6 +14,8 @@ class Roll(object):
         return sum(self.roll)
 
     def __str__(self):
+        if self.negative:
+            return "(" + "".join(map(str, self.roll)) + ")"
         return "(" + " + ".join(map(str, self.roll)) + ")"
 
     @staticmethod

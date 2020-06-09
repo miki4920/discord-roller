@@ -49,3 +49,14 @@ class RollNotInteger(Exception):
 
     def __str__(self):
         return f"{self.message} Details: {self.roll}"
+
+
+class TooManyOperators(Exception):
+    def __init__(self, roll, message="You used too many operators and too few values.\nPlease refer to !h for more "
+                                     "information."):
+        self.roll = " ".join(map(str, roll))
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message} Details: {self.roll}"

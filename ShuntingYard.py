@@ -1,4 +1,5 @@
 import operator
+from ErrorHandler import TooManyOperators
 
 
 def is_number(token):
@@ -16,15 +17,18 @@ def greater_precedence(op1, op2):
     return precedences[op1] > precedences[op2]
 
 
-def apply_operator(operants, values):
+def apply_operator(operants, values, tokenized_expression):
     operators = {"+": operator.add,
                  "-": operator.sub,
                  "*": operator.mul,
                  "/": operator.truediv,
                  "%": operator.mod}
-    operation = operators[operants.pop()]
-    right = values.pop()
-    left = values.pop()
+    try:
+        operation = operators[operants.pop()]
+        right = values.pop()
+        left = values.pop()
+    except IndexError:
+        raise TooManyOperators(tokenized_expression)
     values.append(operation(left, right))
 
 
@@ -60,16 +64,16 @@ def shunting_yard_algorithm(tokenized_expression):
         elif token == ')':
             top = peek(operators)
             while top is not None and top != '(':
-                apply_operator(operators, values)
+                apply_operator(operators, values, tokenized_expression)
                 top = peek(operators)
             operators.pop()
         else:
             top = peek(operators)
             while top is not None and top not in "()" and greater_precedence(top, token):
-                apply_operator(operators, values)
+                apply_operator(operators, values, tokenized_expression)
                 top = peek(operators)
             operators.append(token)
     while peek(operators) is not None:
-        apply_operator(operators, values)
+        apply_operator(operators, values, tokenized_expression)
     return values[0]
 
