@@ -1,4 +1,4 @@
-import operator
+from OperationTree.Operators import *
 from ErrorHandler import TooManyOperators
 
 
@@ -13,16 +13,19 @@ def peek(stack):
 
 
 def greater_precedence(op1, op2):
-    precedences = {'+': 0, '-': 0, '*': 1, '/': 1, "%": 1}
+    precedences = {'>': 0, '<': 0, '+': 1, '-': 1, '*': 2, '/': 2, '//': 2, "%": 2}
     return precedences[op1] > precedences[op2]
 
 
 def apply_operator(operants, values, tokenized_expression):
-    operators = {"+": operator.add,
-                 "-": operator.sub,
-                 "*": operator.mul,
-                 "/": operator.truediv,
-                 "%": operator.mod}
+    operators = {">": bigger_than,
+                 "<": smaller_than,
+                 "+": add,
+                 "-": sub,
+                 "*": mul,
+                 "/": true_div,
+                 "//": floor_div,
+                 "%": mod}
     try:
         operation = operators[operants.pop()]
         right = values.pop()
@@ -76,4 +79,3 @@ def shunting_yard_algorithm(tokenized_expression):
     while peek(operators) is not None:
         apply_operator(operators, values, tokenized_expression)
     return values[0]
-
