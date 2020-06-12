@@ -13,6 +13,8 @@ def handle_dice(roll):
     negative = roll[0] == "-"
     roll = re.findall("kl|dh|d|k|!p|!!|!|\d+", roll)
     roll_modifiers = roll[3:] if len(roll) > 3 else []
+    if len(roll) == 2:
+        roll.insert(0, "1")
     roll = [roll[0], roll[2]]
     try:
         roll = list(map(int, roll))
