@@ -51,9 +51,20 @@ class RollNotInteger(Exception):
         return f"{self.message} Details: {self.roll}"
 
 
+class TooManyDice(Exception):
+    def __init__(self, roll, message="You have used too many dice.\nThis bot has a limit of 2000 characters.\nThat is "
+                                     "approximately 400d20."):
+        self.roll = roll
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message} Details: {self.roll}"
+
+
 class TooManyOperators(Exception):
-    def __init__(self, roll, message="You used too many operators and too few values.\nPlease refer to !h for more "
-                                     "information."):
+    def __init__(self, roll, message="You have used too many operators and too few values.\nPlease refer to !h for "
+                                     "more information."):
         self.roll = " ".join(map(str, roll))
         self.message = message
         super().__init__(self.message)

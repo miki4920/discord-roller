@@ -1,6 +1,6 @@
 import discord
 import os
-from ErrorHandler import CommandNotExisting, NoDungeonMaster
+from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from Roller import DiceRoll
 
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
@@ -33,6 +33,8 @@ async def on_message(message):
                 await message.author.send(f"The instruction manual is located here: {link}")
             if message_code > 0:
                 result, dice_rolls = roller.roll_dice(message.content[3:])
+                if len(str(result)+dice_rolls) >= 2000:
+                    raise TooManyDice(message.content)
                 return_message = f"{result}\nDetails: {message.content[3:]}\n{dice_rolls}"
                 if message_code == 1:
                     await message.channel.send(return_message)
