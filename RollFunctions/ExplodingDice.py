@@ -2,36 +2,44 @@ from RollFunctions.StandardRoll import single_die_roll
 from ErrorHandler import DieTooLowForExplosion
 
 
-def recursive_roll(roll):
-    value_roll = single_die_roll(roll)
-    if value_roll == roll:
-        return [roll] + recursive_roll(roll)
-    return [value_roll]
+def recursive_roll(die, roll):
+    lower_bound = roll[1]
+    upper_bound = roll[2]
+    if die == upper_bound:
+        new_die = single_die_roll(lower_bound, upper_bound)
+        return [die] + recursive_roll(new_die, roll)
+    return [die]
 
 
-def recursive_roll_shadowrun(roll):
-    value_roll = single_die_roll(roll)
-    if value_roll == roll:
-        return [sum([roll] + recursive_roll(roll))]
-    return [value_roll]
+def recursive_roll_shadowrun(die, roll):
+    lower_bound = roll[1]
+    upper_bound = roll[2]
+    if die == upper_bound:
+        new_die = single_die_roll(lower_bound, upper_bound)
+        return [sum([die] + recursive_roll_shadowrun(new_die, roll))]
+    return [die]
 
 
-def recursive_roll_penetrating(roll, exploded=False):
-    value_roll = single_die_roll(roll)
+def recursive_roll_penetrating(die, roll, exploded=False):
+    lower_bound = roll[1]
+    upper_bound = roll[2]
     if exploded:
-        value_roll -= 1
-    if value_roll == (roll - 1 if exploded else roll):
-        return [value_roll] + recursive_roll_penetrating(roll, exploded=True)
-    return [value_roll]
+        die -= 1
+    if die == upper_bound - 1 if exploded else upper_bound:
+        new_die = single_die_roll(lower_bound, upper_bound)
+        return [die] + recursive_roll_penetrating(new_die, roll, exploded=True)
+    return [die]
 
 
-def exploding_roll(roll, modifier):
-    if roll[1] <= 1:
+def exploding_roll(result, roll, modifier):
+    lower_bound = roll[1]
+    upper_bound = roll[2]
+    if upper_bound-lower_bound <= 0:
         raise DieTooLowForExplosion(roll[1])
     results = []
     function_dictionary = {"!": recursive_roll,
                            "!!": recursive_roll_shadowrun,
                            "!p": recursive_roll_penetrating}
-    for _ in range(0, roll[0]):
-        results += function_dictionary[modifier](roll[1])
+    for die in result:
+        results += function_dictionary[modifier](die, roll)
     return results
