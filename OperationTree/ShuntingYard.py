@@ -1,9 +1,10 @@
 from OperationTree.Operators import *
 from ErrorHandler import TooManyOperators
+import re
 
 
 def is_number(token):
-    if token not in ["+", "-", "*", "/", "(", ")", "%"]:
+    if token not in ["+", "-", "*", "/", "//", "(", ")", "%", ">", "<", "<=", ">="]:
         return True
     return False
 
@@ -13,13 +14,15 @@ def peek(stack):
 
 
 def greater_precedence(op1, op2):
-    precedences = {'>': 0, '<': 0, '+': 1, '-': 1, '*': 2, '/': 2, '//': 2, "%": 2}
+    precedences = {'>': 0, '<': 0, '>=': 0, '<=': 0, '+': 1, '-': 1, '*': 2, '/': 2, '//': 2, "%": 2}
     return precedences[op1] > precedences[op2]
 
 
 def apply_operator(operants, values, tokenized_expression):
     operators = {">": bigger_than,
                  "<": smaller_than,
+                 ">=": bigger_equal_than,
+                 "<=": smaller_equal_than,
                  "+": add,
                  "-": sub,
                  "*": mul,
@@ -37,21 +40,24 @@ def apply_operator(operants, values, tokenized_expression):
 
 def tokenizer(expression):
     tokens = []
-    expression = list(expression)
-    number_string = ""
+    expression = expression.replace(" ", "")
+    expression = re.findall("[^<=|>=|<|>|%|//|/|\*|\-|\+]+|<=|>=|<|>|%|//|/|\*|-|\+", expression)
+    print(expression)
     operator_before = True
+    operator_string = ""
     for token in expression:
-        if not is_number(token) and not operator_before:
-            operator_before = True
-            if len(number_string) > 0:
-                tokens.append(number_string)
-            number_string = ""
-            tokens.append(token)
-        else:
+        if is_number(token):
+            operator_string += token
+            tokens.append(operator_string)
+            operator_string = ""
             operator_before = False
-            number_string += token
-    if len(number_string) != 0:
-        tokens.append(number_string)
+        elif operator_before and token == "-":
+            operator_string += token
+        elif operator_before and token != "-":
+            raise TooManyOperators("".join(expression))
+        elif not is_number(token):
+            tokens.append(token)
+            operator_before = True
     return tokens
 
 
@@ -61,7 +67,7 @@ def shunting_yard_algorithm(tokenized_expression):
     operators = []
     for token in tokens:
         if is_number(token):
-            values.append(int(token))
+            values.append(token)
         elif token == '(':
             operators.append(token)
         elif token == ')':
@@ -78,4 +84,4 @@ def shunting_yard_algorithm(tokenized_expression):
             operators.append(token)
     while peek(operators) is not None:
         apply_operator(operators, values, tokenized_expression)
-    return values[0]
+    return int(values[0])
