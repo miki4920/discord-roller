@@ -27,7 +27,8 @@ Discord Roller supports following operations:
 * Addition: "+"
 * Substrations: "-"
 * Multiplication: "*"
-* Division: "*"
+* Division: "/"
+* Rounded Division: "//" - Automatically rounds down
 * Modulus: "%"
 
 
@@ -49,11 +50,15 @@ For example, you might roll 8 d100 dice and only be allowed to keep the top 4 ro
 
 The d and k commands are shortcuts for the full dl and kh commands. If you need to drop the highest dice use dh and if you need to keep the lowest dice use kl. For example !r 8d100dh3 would drop the highest three rolls and keep the lowest 5 and !r 8d100kl3 would keep the lowest three rolls and drop the highest 5.
 
+### Target Number (Successes)
+Normally when you perform a roll, DiscordRoller reports back the total value of all the dice rolled, plus any modifiers. Some game systems, though, work by rolling a set of dice versus a target number, and then adding up the total number of successes instead. DiscordRoller uses the greater-than symbol > to indicate when the roll is greater-than or equal-to >= the target number. The less-than symbol < is used to indicate when the roll is less-than or equal-to <= the target number.
 
+For example, you might be performing an action that requires a target number of 3, and you get to roll 3 d6's to see how many successes you have. In DiscordRoller, you would do !r 3d6>3. Note the inclusion of the greater-than symbol to indicate that this is a target roll versus 3. DiscordRoller will show you each dice that was rolled, and then tell you the number of dice with a value of 3 or greater (note that ties with the target number count as a success!). You can also roll less-than target numbers, for example !r 10d6<4, which would give you a success for each dice rolled that is equal to 4 or less.
 
+### Fate Dice
+DiscordRoller also supports FATE dice (used for FATE, FUDGE, and other systems). DiscordRoller accurately simulates FATE dice as 6-sided dice in which two sides are 0, two sides are +1, and two sides are -1.
 
-
-
+To roll 4 FATE dice, just do !r 4dF. DiscordRoller will show you the result of each individual FATE dice roll, then give you the total of all the dice rolls added up together. You can also add a modifier onto the total, with !r 4dF+1.
 
 
 
