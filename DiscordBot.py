@@ -21,25 +21,34 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    # Prevents Bot's Recursion
     if message.author == client.user:
         return
     if message.content.startswith('!'):
         message.content = message.content.lower()
         try:
+            # Checks the code dictionary for the role type
             message_code = code_dictionary.get(message.content[1:3].replace(" ", ""))
             if message_code is None:
                 raise CommandNotExisting(message.content)
+            # Sends Manual
             if message_code == 0:
                 await message.author.send(f"The instruction manual is located here: {link}")
+            # Part for dice handling
             if message_code > 0:
+                # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
                 result, dice_rolls = roller.roll_dice(message.content[3:])
                 if len(str(result)+dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
+                # Determines the message to be sent, cuts out the command
                 return_message = f"{result}\nDetails: {message.content[3:]}\n{dice_rolls}"
+                # Normal Roll
                 if message_code == 1:
                     await message.channel.send(return_message)
+                # Private Roll, sends the message to author
                 elif message_code == 2:
                     await message.author.send(return_message)
+                # DM roll, sends the message to someone with "DM" role
                 elif message_code == 3:
                     server_members = message.guild.members
                     for member in server_members:
@@ -48,8 +57,10 @@ async def on_message(message):
                                 await member.send(return_message)
                                 return
                     else:
+                        # If no DM in the server, sends an error message
                         raise NoDungeonMaster()
         except Exception as e:
+            # Handles all errors
             await message.channel.send(str(e))
 
 
