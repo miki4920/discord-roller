@@ -5,6 +5,9 @@ class Roll(object):
     def __int__(self):
         return sum(self.roll)
 
+    def __float__(self):
+        return float(sum(self.roll))
+
     def __str__(self):
         string = ""
         for number in self.roll:

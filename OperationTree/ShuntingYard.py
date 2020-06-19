@@ -41,23 +41,24 @@ def apply_operator(operants, values, tokenized_expression):
 def tokenizer(expression):
     tokens = []
     expression = expression.replace(" ", "")
-    expression = re.findall("[^<=|>=|<|>|%|//|/|\*|\-|\+]+|<=|>=|<|>|%|//|/|\*|-|\+", expression)
-    print(expression)
+    expression = re.findall("[^<=|>=|<|>|%|//|/|\*|\-|\+|\(|\)]+|<=|>=|<|>|%|//|/|\*|-|\+|\(|\)", expression)
     operator_before = True
     operator_string = ""
     for token in expression:
-        if is_number(token):
+        if is_number(token) and token:
             operator_string += token
             tokens.append(operator_string)
             operator_string = ""
             operator_before = False
         elif operator_before and token == "-":
             operator_string += token
-        elif operator_before and token != "-":
+        elif operator_before and token not in ("(", ")", "-"):
             raise TooManyOperators("".join(expression))
-        elif not is_number(token):
+        elif not is_number(token) and token not in ("(", ")"):
             tokens.append(token)
             operator_before = True
+        else:
+            tokens.append(token)
     return tokens
 
 
@@ -84,4 +85,4 @@ def shunting_yard_algorithm(tokenized_expression):
             operators.append(token)
     while peek(operators) is not None:
         apply_operator(operators, values, tokenized_expression)
-    return int(values[0])
+    return int(values[0]) if values[0].is_integer() else float(values[0])

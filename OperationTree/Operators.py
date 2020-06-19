@@ -1,54 +1,54 @@
 def add(value_one, value_two):
-    return int(value_one) + int(value_two)
+    return float(value_one) + float(value_two)
 
 
 def sub(value_one, value_two):
-    return int(value_one) - int(value_two)
+    return float(value_one) - float(value_two)
 
 
 def mul(value_one, value_two):
-    return int(value_one) * int(value_two)
+    return float(value_one) * float(value_two)
 
 
 def true_div(value_one, value_two):
-    return int(value_one) / int(value_two)
+    return float(value_one) / float(value_two)
 
 
 def floor_div(value_one, value_two):
-    return int(value_one) // int(value_two)
+    return float(value_one) // float(value_two)
 
 
 def mod(value_one, value_two):
-    return int(value_one) % int(value_two)
+    return float(value_one) % float(value_two)
 
 
 def bigger_than(value_one, value_two):
-    value_two = int(value_two)
+    value_two = float(value_two)
     if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll > value_two for roll in value_one])
-    return int(value_one) > value_two
+    return float(value_one) > value_two
 
 
 def smaller_than(value_one, value_two):
-    value_two = int(value_two)
+    value_two = float(value_two)
     if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll < value_two for roll in value_one])
-    return int(value_one) < value_two
+    return float(value_one) < value_two
 
 
 def bigger_equal_than(value_one, value_two):
-    value_two = int(value_two)
+    value_two = float(value_two)
     if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll >= value_two for roll in value_one])
-    return int(value_one) >= value_two
+    return float(value_one) >= value_two
 
 
 def smaller_equal_than(value_one, value_two):
-    value_two = int(value_two)
+    value_two = float(value_two)
     if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll <= value_two for roll in value_one])
-    return int(value_one) <= value_two
+    return float(value_one) <= value_two
