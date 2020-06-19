@@ -1,3 +1,5 @@
+
+
 class Roll(object):
     def __init__(self, roll):
         self.roll = roll
@@ -17,3 +19,7 @@ class Roll(object):
                 string += " - " + str(abs(number))
         string = string[3:] if string[0:3] == " + " else string[1:]
         return "(" + string + ")"
+
+    @staticmethod
+    def is_integer():
+        return True
