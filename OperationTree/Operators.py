@@ -24,8 +24,7 @@ def mod(value_one, value_two):
 
 def bigger_than(value_one, value_two):
     value_two = int(value_two)
-    print(value_one)
-    if type(value_one) != int:
+    if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll > value_two for roll in value_one])
     return int(value_one) > value_two
@@ -33,7 +32,7 @@ def bigger_than(value_one, value_two):
 
 def smaller_than(value_one, value_two):
     value_two = int(value_two)
-    if type(value_one) != int:
+    if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll < value_two for roll in value_one])
     return int(value_one) < value_two
@@ -41,8 +40,7 @@ def smaller_than(value_one, value_two):
 
 def bigger_equal_than(value_one, value_two):
     value_two = int(value_two)
-    print(value_one)
-    if type(value_one) != int:
+    if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll >= value_two for roll in value_one])
     return int(value_one) >= value_two
@@ -50,7 +48,7 @@ def bigger_equal_than(value_one, value_two):
 
 def smaller_equal_than(value_one, value_two):
     value_two = int(value_two)
-    if type(value_one) != int:
+    if type(value_one) != int and type(value_one) != float:
         value_one = value_one.roll
         return sum([roll <= value_two for roll in value_one])
     return int(value_one) <= value_two
