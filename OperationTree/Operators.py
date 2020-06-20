@@ -22,6 +22,8 @@ def mod(value_one, value_two):
     return float(value_one) % float(value_two)
 
 
+# Operators below are used to compare whether dice have certain value. If the condition is true, return 1,
+# else return 0.
 def bigger_than(value_one, value_two):
     value_two = float(value_two)
     if type(value_one) != int and type(value_one) != float:

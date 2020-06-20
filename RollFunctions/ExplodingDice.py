@@ -3,6 +3,7 @@ from ErrorHandler import DieTooLowForExplosion
 
 
 def recursive_roll(die, roll):
+    # Rolls a die between 2 values, if a die is equal to the upper bound, it rolls again and adds the die to the list
     lower_bound = roll[1]
     upper_bound = roll[2]
     if die == upper_bound:
@@ -12,6 +13,8 @@ def recursive_roll(die, roll):
 
 
 def recursive_roll_shadowrun(die, roll):
+    # Rolls a die between 2 values, if a die is equal to the upper bound, it rolls again and adds the die to the
+    # previous one
     lower_bound = roll[1]
     upper_bound = roll[2]
     if die == upper_bound:
@@ -21,6 +24,8 @@ def recursive_roll_shadowrun(die, roll):
 
 
 def recursive_roll_penetrating(die, roll, exploded=False):
+    # Rolls a die between 2 values, if a die is equal to the upper bound, it rolls again and adds it to the list.
+    # The maximum value of exploded dice is always lower by 1
     lower_bound = roll[1]
     upper_bound = roll[2]
     if exploded:
@@ -32,11 +37,14 @@ def recursive_roll_penetrating(die, roll, exploded=False):
 
 
 def exploding_roll(result, roll, modifier):
+    # Handles exploding dice
     lower_bound = roll[1]
     upper_bound = roll[2]
+    # Checks if the die difference is bigger than 1 (Prevents infinite explosion)
     if upper_bound-lower_bound <= 0:
         raise DieTooLowForExplosion(roll[1])
     results = []
+    # Contains all exploding functions, easily expandable
     function_dictionary = {"!": recursive_roll,
                            "!!": recursive_roll_shadowrun,
                            "!p": recursive_roll_penetrating}

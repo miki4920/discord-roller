@@ -10,6 +10,7 @@ class Roll(object):
     def __float__(self):
         return float(sum(self.roll))
 
+    # Makes the printed string positive/negative, depending on a modifier.
     def __str__(self):
         string = ""
         for number in self.roll:
