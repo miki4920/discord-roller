@@ -1,5 +1,5 @@
 from OperationTree.Operators import *
-from ErrorHandler import TooManyOperators
+from ErrorHandler import TooManyOperators, RollNotInteger
 import re
 
 
@@ -85,4 +85,7 @@ def shunting_yard_algorithm(tokenized_expression):
             operators.append(token)
     while peek(operators) is not None:
         apply_operator(operators, values, tokenized_expression)
-    return int(values[0]) if values[0].is_integer() else float(values[0])
+    try:
+        return int(values[0]) if values[0].is_integer() else float(values[0])
+    except AttributeError:
+        raise RollNotInteger("".join(tokenized_expression))

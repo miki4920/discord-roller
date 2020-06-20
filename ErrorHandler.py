@@ -19,6 +19,17 @@ class DieTooLowForExplosion(Exception):
         return f"{self.message} Current die: d{self.die}"
 
 
+class DivisionByZeroError(Exception):
+    def __init__(self, roll, message="At one point, you tried to divide by 0. Please make sure your roll is "
+                                     "mathematically correct."):
+        self.roll = roll
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message} Details: {self.roll}"
+
+
 class DropKeepModifierTooHigh(Exception):
     def __init__(self, dice_number, modifier, message="You cannot drop/keep more dice than you roll."):
         self.dice_number = dice_number
@@ -38,6 +49,17 @@ class NoDungeonMaster(Exception):
 
     def __str__(self):
         return f"{self.message}"
+
+
+class RollIsZero(Exception):
+    def __init__(self, roll, message="You cannot roll a d0.\nPlease refer to !h for more "
+                                     "information."):
+        self.roll = roll
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message} Details: {self.roll}"
 
 
 class RollNotInteger(Exception):
