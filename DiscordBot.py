@@ -2,7 +2,7 @@ import discord
 import os
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from Roller import DiceRoll
-
+# Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
