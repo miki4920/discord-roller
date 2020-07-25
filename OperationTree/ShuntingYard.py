@@ -35,7 +35,10 @@ def apply_operator(operants, values, tokenized_expression):
         left = values.pop()
     except IndexError:
         raise TooManyOperators(tokenized_expression)
-    values.append(operation(left, right))
+    try:
+        values.append(operation(left, right))
+    except ValueError:
+        raise RollNotInteger(tokenized_expression)
 
 
 def tokenizer(expression):

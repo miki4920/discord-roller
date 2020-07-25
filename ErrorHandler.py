@@ -65,7 +65,7 @@ class RollIsZero(Exception):
 class RollNotInteger(Exception):
     def __init__(self, roll, message="One of the rolls is in wrong format.\nPlease refer to !h for more "
                                      "information."):
-        self.roll = roll
+        self.roll = " ".join(map(str, roll))
         self.message = message
         super().__init__(self.message)
 

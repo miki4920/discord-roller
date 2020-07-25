@@ -1,4 +1,6 @@
 from ErrorHandler import DivisionByZeroError
+
+
 def add(value_one, value_two):
     return float(value_one) + float(value_two)
 
