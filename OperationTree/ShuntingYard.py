@@ -79,7 +79,11 @@ def shunting_yard_algorithm(tokenized_expression):
             while top is not None and top != '(':
                 apply_operator(operators, values, tokenized_expression)
                 top = peek(operators)
-            operators.pop()
+            try:
+                operators.pop()
+            except IndexError:
+                raise TooManyOperators(tokenized_expression)
+
         else:
             top = peek(operators)
             while top is not None and top not in "()" and greater_precedence(top, token):
