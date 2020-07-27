@@ -85,8 +85,8 @@ class TooManyDice(Exception):
 
 
 class TooManyOperators(Exception):
-    def __init__(self, roll, message="You have used too many operators and too few values.\nPlease refer to !h for "
-                                     "more information."):
+    def __init__(self, roll, message="You have either used too many operators and brackets or too few values.\nPlease "
+                                     "refer to !h for more information."):
         self.roll = " ".join(map(str, roll))
         self.message = message
         super().__init__(self.message)

@@ -33,7 +33,7 @@ def apply_operator(operants, values, tokenized_expression):
         operation = operators[operants.pop()]
         right = values.pop()
         left = values.pop()
-    except IndexError:
+    except (IndexError, KeyError) as e:
         raise TooManyOperators(tokenized_expression)
     try:
         values.append(operation(left, right))
