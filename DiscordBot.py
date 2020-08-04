@@ -2,11 +2,12 @@ import discord
 import os
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from Roller import DiceRoll
+
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
-token=os.getenv("TOKEN")
+token = os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
                    "r": 1,
@@ -39,7 +40,7 @@ async def on_message(message):
             if message_code in [1, 2, 3]:
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
                 result, dice_rolls = roller.roll_dice(message.content[3:])
-                if len(str(result)+dice_rolls) >= 1900:
+                if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
                 return_message = f"{result}\nDetails: {message.content[3:]}\n{dice_rolls}"
@@ -59,7 +60,8 @@ async def on_message(message):
                             if role.name == "DM":
                                 await member.send(f"The message was sent by {str(message.nick).split('#')[0]}:\n"
                                                   + return_message)
-                                await message.author.send("Your roll has been sent:\n" + return_message)
+                                if role not in message.author.roles:
+                                    await message.author.send("Your roll has been sent:\n" + return_message)
                                 return
                     else:
                         # If no DM in the server, sends an error message

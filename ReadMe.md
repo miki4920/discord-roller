@@ -4,7 +4,7 @@ Discord-Roller is a bot which allows you to roll dice through simple commands. A
 
 ## Installing / Getting started
 
-To install the bot, just click: https://discord.com/api/oauth2/authorize?client_id=713734351648587776&permissions=67584&scope=bot
+To install the bot, just click: https://discord.com/oauth2/authorize?client_id=713734351648587776&permissions=206848&scope=bot
 Then select the server you want to use.
 Congratulations, you are ready to go!
 
