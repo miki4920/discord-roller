@@ -58,7 +58,7 @@ async def on_message(message):
                     for member in server_members:
                         for role in member.roles:
                             if role.name == "DM":
-                                await member.send(f"The message was sent by {str(message.nick).split('#')[0]}:\n"
+                                await member.send(f"The message was sent by {str(message.author.nick).split('#')[0]}:\n"
                                                   + return_message)
                                 if role not in message.author.roles:
                                     await message.author.send("Your roll has been sent:\n" + return_message)
