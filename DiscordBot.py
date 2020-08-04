@@ -12,7 +12,7 @@ code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
                    "gr": 3,
-                   "start": 4}
+                   "dt": 4}
 
 
 @client.event
@@ -36,7 +36,7 @@ async def on_message(message):
             if message_code == 0:
                 await message.author.send(f"The instruction manual is located here: {link}")
             # Part for dice handling
-            if message_code > 0:
+            if message_code in [1, 2, 3]:
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
                 result, dice_rolls = roller.roll_dice(message.content[3:])
                 if len(str(result)+dice_rolls) >= 1900:
@@ -49,6 +49,7 @@ async def on_message(message):
                 # Private Roll, sends the message to author
                 elif message_code == 2:
                     await message.author.send(return_message)
+                    await message.delete()
                 # DM roll, sends the message to someone with "DM" role
                 elif message_code == 3:
                     server_members = message.guild.members
@@ -56,10 +57,19 @@ async def on_message(message):
                         for role in member.roles:
                             if role.name == "DM":
                                 await member.send(return_message)
+                                await message.author.send(return_message)
+                                await message.delete()
                                 return
                     else:
                         # If no DM in the server, sends an error message
                         raise NoDungeonMaster()
+            if message_code == 4:
+                day = message.content[3:]
+                if day == "":
+                    await message.delete()
+                else:
+                    await message.channel.send()
+                await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
             await message.channel.send(str(e))
