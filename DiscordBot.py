@@ -9,7 +9,7 @@ link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
-token = os.getenv("TOKEN")
+token="NzEzNzM0MzUxNjQ4NTg3Nzc2.XtofEA.hrDuqFRUsCi49JF8XB4ImQrjaak"
 
 code_dictionary = {"h": 0,
                    "r": 1,
