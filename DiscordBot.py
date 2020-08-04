@@ -6,7 +6,7 @@ from Roller import DiceRoll
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
-token = os.getenv("TOKEN")
+token=os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
                    "r": 1,
@@ -53,12 +53,13 @@ async def on_message(message):
                 # DM roll, sends the message to someone with "DM" role
                 elif message_code == 3:
                     server_members = message.guild.members
+                    await message.delete()
                     for member in server_members:
                         for role in member.roles:
                             if role.name == "DM":
-                                await member.send(return_message)
-                                await message.author.send(return_message)
-                                await message.delete()
+                                await member.send(f"The message was sent by {str(message.nick).split('#')[0]}:\n"
+                                                  + return_message)
+                                await message.author.send("Your roll has been sent:\n" + return_message)
                                 return
                     else:
                         # If no DM in the server, sends an error message
@@ -69,7 +70,6 @@ async def on_message(message):
                     await message.delete()
                 else:
                     await message.channel.send()
-                await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
             await message.channel.send(str(e))
