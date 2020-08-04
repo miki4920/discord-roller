@@ -2,11 +2,13 @@ import discord
 import os
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from Roller import DiceRoll
+from DowntimeHandler import DowntimeScheduler
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
+downtime = DowntimeScheduler()
 token = os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
@@ -58,20 +60,18 @@ async def on_message(message):
                     for member in server_members:
                         for role in member.roles:
                             if role.name == "DM":
-                                await member.send(f"The message was sent by {str(message.author.nick).split('#')[0]}:\n"
-                                                  + return_message)
+                                await message.author.send("Your roll:\n" + return_message)
                                 if role not in message.author.roles:
-                                    await message.author.send("Your roll has been sent:\n" + return_message)
+                                    await member.send(
+                                        f"The message was sent by {str(message.author.nick).split('#')[0]}:\n"
+                                        + return_message)
                                 return
                     else:
                         # If no DM in the server, sends an error message
                         raise NoDungeonMaster()
             if message_code == 4:
-                day = message.content[3:]
-                if day == "":
-                    await message.delete()
-                else:
-                    await message.channel.send()
+                result_message = downtime.schedule(message)
+                await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors
             await message.channel.send(str(e))
