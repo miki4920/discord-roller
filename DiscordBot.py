@@ -70,7 +70,7 @@ async def on_message(message):
                         # If no DM in the server, sends an error message
                         raise NoDungeonMaster()
             if message_code == 4:
-                result_message = downtime.schedule(message)
+                result_message = downtime.schedule_function(message)
                 await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors

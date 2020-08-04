@@ -51,6 +51,16 @@ class NoDungeonMaster(Exception):
         return f"{self.message}"
 
 
+class NoScheduledDay(Exception):
+    def __init__(self, message="You haven't set up schedule day yet, please use \"!dt schedule [SCHEDULE_DAY]\" to "
+                               "schedule your day."):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message}"
+
+
 class RollIsZero(Exception):
     def __init__(self, roll, message="You cannot roll a d0.\nPlease refer to !h for more "
                                      "information."):
