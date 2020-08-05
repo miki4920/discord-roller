@@ -48,6 +48,8 @@ async def on_message(message):
                 if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
+                if message_code in [2, 3]:
+                    await message.delete()
                 return_message = f"{result}\nDetails: {message.content[3:]}\n{dice_rolls}"
                 # Normal Roll
                 if message_code == 1:
@@ -55,11 +57,9 @@ async def on_message(message):
                 # Private Roll, sends the message to author
                 elif message_code == 2:
                     await message.author.send(return_message)
-                    await message.delete()
                 # DM roll, sends the message to someone with "DM" role
                 elif message_code == 3:
                     server_members = message.guild.members
-                    await message.delete()
                     for member in server_members:
                         for role in member.roles:
                             if role.name == "DM":
