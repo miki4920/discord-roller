@@ -11,7 +11,7 @@ client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
-token = os.getenv("TOKEN")
+token=os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
                    "r": 1,
@@ -77,7 +77,7 @@ async def on_message(message):
                 await message.channel.send(result_message)
             if message_code == 5:
                 result_roll = roller.roll_dice("1d100")[0]
-                result_message = wildmagic.determine_wild_magic(result_roll)
+                result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors
