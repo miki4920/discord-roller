@@ -3,19 +3,22 @@ import os
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from Roller import DiceRoll
 from DowntimeHandler import DowntimeScheduler
+from WildMagicHandler import WildMagic
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
+wildmagic = WildMagic()
 token = os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
                    "gr": 3,
-                   "dt": 4}
+                   "dt": 4,
+                   "w": 5}
 
 
 @client.event
@@ -71,6 +74,10 @@ async def on_message(message):
                         raise NoDungeonMaster()
             if message_code == 4:
                 result_message = downtime.schedule_function(message)
+                await message.channel.send(result_message)
+            if message_code == 5:
+                result_roll = roller.roll_dice("1d100")[0]
+                result_message = wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors
