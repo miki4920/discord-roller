@@ -11,7 +11,7 @@ client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
-token=os.getenv("TOKEN")
+token = os.getenv("TOKEN")
 
 code_dictionary = {"h": 0,
                    "r": 1,

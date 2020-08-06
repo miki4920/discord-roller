@@ -1,37 +1,75 @@
-import datetime
+from FileHandler import write_file, read_file, check_dir_existence, make_dir
 
 
 class DowntimeScheduler(object):
     def __init__(self):
-        self.schedule = {"Monday": None,
-                         "Tuesday": None,
-                         "Wednesday": None,
-                         "Thursday": None,
-                         "Friday": None,
-                         "Saturday": None,
-                         "Sunday": None}
-        self.scheduled_day = None
-        self.next_session = None
+        self.default_schedule = {"Days": {"Monday": None,
+                                          "Tuesday": None,
+                                          "Wednesday": None,
+                                          "Thursday": None,
+                                          "Friday": None,
+                                          "Saturday": None,
+                                          "Sunday": None},
+                                 "Reset Day": None}
+        self.dir_path = "FileStorage/ServerSchedules/"
+        self.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+    def load_schedule(self, message):
+        path = self.dir_path + str(hash(message.guild))
+        if check_dir_existence(path):
+            schedule = read_file(path + "/schedule.pickle")
+            return schedule
+        else:
+            make_dir(path)
+            write_file(path + "/schedule.pickle", self.default_schedule)
+            return self.default_schedule
+
+    def save_schedule(self, message, schedule):
+        path = self.dir_path + str(hash(message.guild))
+        if check_dir_existence(path):
+            write_file(path + "/schedule.pickle", schedule)
+        else:
+            make_dir(path)
+            write_file(path + "/schedule.pickle", schedule)
 
     def find_days(self, message):
-        message = message.split(" ")
-        message = [word.lower().capitalize() for word in message]
-        days = [day for day in message if day in self.schedule]
-        return [days[0] if len(days) > 0 else None][0]
+        message = [word.lower() for word in message]
+        days = [day for day in message if day in self.days]
+        return days[0].lower().capitalize() if len(days) > 0 else None
+
+    @staticmethod
+    def dictionary_to_string(dictionary):
+        schedule = dictionary["Days"]
+        return_string = ""
+        for day in schedule:
+            return_string += f"{day}: {schedule[day] if schedule[day] is not None else 'Free'}\n"
+        return return_string
 
     def schedule_function(self, message):
-        message_content = message.content[3:]
+        schedule = self.load_schedule(message)
+        message_content = message.content.replace("!", "").split(" ")
         day = self.find_days(message_content)
-        if "schedule" in message_content.split(" "):
-            self.scheduled_day = day
-            if self.scheduled_day in self.schedule:
-                return "Your scheduled day has been set to: " + self.scheduled_day
+        if message_content[0] == "dt" and len(message_content) == 1:
+            return self.dictionary_to_string(schedule)
+        elif day is not None and len(message_content) == 2:
+            schedule_day = schedule["Days"][day]
+            if schedule_day is None:
+                schedule["Days"][day] = message.author.nick
+                self.save_schedule(message, schedule)
+                return f"Your day has been set to {day}"
             else:
-                return "Your scheduled day is not a day of the week, please use full day names."
-        elif self.scheduled_day is None:
-            return "You haven't set up schedule day yet, please use \"!dt schedule\" to schedule your day."
-        elif len(message_content) == 0:
-            return self.schedule
-        else:
-            self.schedule[day] = str(message.author.nick).split('#')[0]
-            return f"Your day has been set to {day}"
+                return f"The day has been already taken by {schedule_day}"
+        elif len(message_content) > 1 and message_content[1] == "clear":
+            if len(message_content) == 2:
+                for role in message.author.roles:
+                    if role.name == "DM":
+                        self.save_schedule(message, self.default_schedule)
+                        return "Schedule has been cleared"
+                else:
+                    return "You don't have sufficient permission to clear the schedule"
+            elif day is not None:
+                if message.author.nick == schedule["Days"][day] or schedule["Days"][day] is None:
+                    schedule["Days"][day] = None
+                    self.save_schedule(message, schedule)
+                    return "The day has been cleared"
+                return "You cannot delete a slot which doesn't belong to you"
