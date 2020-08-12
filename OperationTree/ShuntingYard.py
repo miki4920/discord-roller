@@ -1,5 +1,5 @@
 from OperationTree.Operators import *
-from ErrorHandler import TooManyOperators, RollNotInteger
+from ErrorHandler import TooManyOperators, WrongCommandFormat
 import re
 
 
@@ -38,7 +38,7 @@ def apply_operator(operants, values, tokenized_expression):
     try:
         values.append(operation(left, right))
     except ValueError:
-        raise RollNotInteger(tokenized_expression)
+        raise WrongCommandFormat(tokenized_expression)
 
 
 def tokenizer(expression):
@@ -95,4 +95,4 @@ def shunting_yard_algorithm(tokenized_expression):
     try:
         return int(values[0]) if values[0].is_integer() else float(values[0])
     except AttributeError:
-        raise RollNotInteger("".join(tokenized_expression))
+        raise WrongCommandFormat("".join(tokenized_expression))

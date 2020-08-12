@@ -1,6 +1,6 @@
 from OperationTree.ShuntingYard import shunting_yard_algorithm, tokenizer
 import re
-from ErrorHandler import RollNotInteger, RollIsZero
+from ErrorHandler import WrongCommandFormat, RollIsZero
 from RollFunctions.ExplodingDice import exploding_roll
 from RollFunctions.StandardRoll import multi_die_roll
 from RollFunctions.DropKeepDice import drop_keep
@@ -22,14 +22,14 @@ def handle_dice(roll):
     try:
         roll = [roll[0], 1, roll[2]]
     except IndexError:
-        raise RollNotInteger(roll_original)
+        raise WrongCommandFormat(roll_original)
     # Checks if a die is a fate die
     if roll[2] == "f":
         roll = [roll[0], -1, 1]
     try:
         roll = list(map(int, roll))
     except ValueError:
-        raise RollNotInteger(roll_original)
+        raise WrongCommandFormat(roll_original)
     if any([die == 0 for die in roll]):
         raise RollIsZero(roll_original)
     # Rolls dice and applies modifiers

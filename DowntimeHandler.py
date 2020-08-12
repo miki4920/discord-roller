@@ -1,4 +1,5 @@
 from FileHandler import write_file, read_file, check_dir_existence, make_dir
+from ErrorHandler import WrongCommandFormat
 
 
 class DowntimeScheduler(object):
@@ -76,7 +77,7 @@ class DowntimeScheduler(object):
         elif day is not None and "clear" not in message_content:
             schedule_day = schedule["Days"][day]
             booked_already = self.slot_booked(schedule["Days"], message)
-            if schedule_day is None and not booked_already:
+            if schedule_day is None and (not booked_already or self.check_permission(message)):
                 schedule["Days"][day] = message.author.id
                 self.save_schedule(message, schedule)
                 return f"Your day has been set to {day}"
@@ -98,3 +99,4 @@ class DowntimeScheduler(object):
                     self.save_schedule(message, schedule)
                     return "The day has been cleared"
                 return "You cannot delete a slot which doesn't belong to you"
+        raise WrongCommandFormat(message_content)
