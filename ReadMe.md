@@ -1,6 +1,7 @@
 # Discord-Roller
 
 Discord-Roller is a bot which allows you to roll dice through simple commands. As the name suggests, the bot is dedicated for Discord.
+It also has additional features such as an ability to roll wild magic for d&d 5th edition or booking solo-sessions.
 
 ## Installing / Getting started
 
@@ -16,6 +17,8 @@ At the current moment, bot is able to conduct following commands:
 * pr - Private Roll. Rolls Dice and sends a message to the author of the command.
 * gr - Game Master Roll. Rolls Dice and sends a message to the Game Master (A person with "DM" role).
 * h - Returns a Link to this ReadMe.
+* w - Rolls a random wild magic effect.
+* dt - Used for scheduling.
 
 
 ## Mathematical Operations
