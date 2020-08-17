@@ -29,7 +29,7 @@ def handle_dice(roll):
     try:
         roll = list(map(int, roll))
     except ValueError:
-        raise WrongCommandFormat(roll_original)
+        raise WrongCommandFormat(" ".join(roll_original))
     if any([die == 0 for die in roll]):
         raise RollIsZero(roll_original)
     # Rolls dice and applies modifiers

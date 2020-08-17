@@ -87,7 +87,7 @@ class TooManyOperators(Exception):
 class WrongCommandFormat(Exception):
     def __init__(self, command, message="Your command is in wrong format.\nPlease refer to !h for more "
                                         "information."):
-        self.command = " ".join(map(str, command))
+        self.command = "".join(map(str, command))
         self.message = message
         super().__init__(self.message)
 

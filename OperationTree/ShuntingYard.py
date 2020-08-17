@@ -95,4 +95,4 @@ def shunting_yard_algorithm(tokenized_expression):
     try:
         return int(values[0]) if values[0].is_integer() else float(values[0])
     except AttributeError:
-        raise WrongCommandFormat("".join(tokenized_expression))
+        raise WrongCommandFormat("".join(map(str, tokenized_expression)))
