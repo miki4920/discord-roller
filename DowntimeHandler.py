@@ -1,4 +1,4 @@
-from FileHandler import write_file, read_file, check_dir_existence, make_dir
+from FileHandler import write_pickle, read_pickle, check_dir_existence, make_dir
 from ErrorHandler import WrongCommandFormat
 
 
@@ -18,20 +18,20 @@ class DowntimeScheduler(object):
     def load_schedule(self, message):
         path = self.dir_path + str(hash(message.guild))
         if check_dir_existence(path):
-            schedule = read_file(path + "/schedule.pickle")
+            schedule = read_pickle(path + "/schedule.pickle")
             return schedule
         else:
             make_dir(path)
-            write_file(path + "/schedule.pickle", self.default_schedule)
+            write_pickle(path + "/schedule.pickle", self.default_schedule)
             return self.default_schedule
 
     def save_schedule(self, message, schedule):
         path = self.dir_path + str(hash(message.guild))
         if check_dir_existence(path):
-            write_file(path + "/schedule.pickle", schedule)
+            write_pickle(path + "/schedule.pickle", schedule)
         else:
             make_dir(path)
-            write_file(path + "/schedule.pickle", schedule)
+            write_pickle(path + "/schedule.pickle", schedule)
 
     def find_days(self, message):
         message = [word.lower() for word in message]
