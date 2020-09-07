@@ -14,7 +14,7 @@ roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler(api)
-token="NzEzNzM0MzUxNjQ4NTg3Nzc2.Xska6Q.388qGhkn6h42iPi8BrbXVgM5x_I"
+token = os.getenv("TOKEN")
 
 
 code_dictionary = {"h": 0,
