@@ -13,6 +13,11 @@ class ReferenceHandler(object):
         item_name = " ".join(message.split(" ")[1:])
         if item_name in item_list:
             return item_name
+        for item_part in item_name.split(" "):
+            for item in item_list:
+                if item_part in item:
+                    return item
+
         closest_item_names = get_close_matches(item_name, item_list, cutoff=0.1)
         if len(closest_item_names) == 0:
             return False
