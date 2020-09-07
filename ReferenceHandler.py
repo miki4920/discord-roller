@@ -18,7 +18,7 @@ class ReferenceHandler(object):
                 if item_part in item:
                     return item
 
-        closest_item_names = get_close_matches(item_name, item_list, cutoff=0.1)
+        closest_item_names = get_close_matches(item_name, item_list, cutoff=0.6)
         if len(closest_item_names) == 0:
             return False
         return closest_item_names[0]
