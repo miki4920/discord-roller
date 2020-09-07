@@ -4,7 +4,7 @@ import requests
 import json
 
 
-def import_json(api, item):
+def read_json(api, item):
     url = api + item
     response = requests.get(url)
     data = json.loads(response.text)

@@ -85,7 +85,7 @@ async def on_message(message):
             result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
             await message.channel.send(result_message)
         if message_code == 6:
-            result_message = reference.reference_spell(message)
+            result_message = reference.reference_spell(message.content)
             if type(result_message) == tuple:
                 embeded_spell = discord.Embed(title=result_message[0], description=result_message[1])
                 await message.channel.send(embed=embeded_spell)
