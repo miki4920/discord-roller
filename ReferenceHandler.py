@@ -15,7 +15,7 @@ class ReferenceHandler(object):
             return item_name
         for item_part in item_name.split(" "):
             for item in item_list:
-                if item_part in item.lower().split(" ")[0]:
+                if item_part == item.lower().split(" ")[0]:
                     return item
         for item_part in item_name.split(" "):
             for item in item_list:
