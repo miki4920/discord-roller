@@ -17,12 +17,14 @@ class ReferenceHandler(object):
             return item_name
         for item_part in item_name.split(" "):
             for item in item_list:
-                for piece in item:
+                for piece in item.split(" "):
                     if item_part == piece:
-                        if distance(item_name, item)/len(item_name) < 0.3:
+                        if len(item_name.split(" ")) > 1:
+                            if distance(item_name, item)/len(item_name) < 0.3:
+                                return item
+                        else:
                             return item
         closest_item_names = get_close_matches(item_name, item_list, cutoff=0.6)
-        print(1)
         if len(closest_item_names) == 0:
             return False
         return closest_item_names[0]
