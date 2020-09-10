@@ -42,7 +42,8 @@ class DropKeepModifierTooHigh(Exception):
 
 
 class NoDungeonMaster(Exception):
-    def __init__(self, message="There is no person on your server with a rank: DM.\nPlease refer to !h for more "
+    def __init__(self, message="There is no person on your server with any of those ranks: GM, DM, Game Master, "
+                               "Dungeon Master.\nPlease refer to !h for more "
                                "information."):
         self.message = message
         super().__init__(self.message)

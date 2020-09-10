@@ -17,7 +17,6 @@ reference = ReferenceHandler(api)
 token=os.getenv("TOKEN")
 
 
-
 code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
@@ -25,6 +24,7 @@ code_dictionary = {"h": 0,
                    "w": 4,
                    "spell": 5}
 
+dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
 @client.event
 async def on_ready():
@@ -55,7 +55,7 @@ async def on_message(message):
                 if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
-                result_message = f"@{message.author.nick}\n**Roll**: {message.content[3:]}\n**Total: **{result}\n**Results**: {dice_rolls}"
+                result_message = f"{message.author.mention}\n**Roll**: {message.content[3:]}\n**Total: **{result}\n**Results**: {dice_rolls}"
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
@@ -67,7 +67,7 @@ async def on_message(message):
                     server_members = message.guild.members
                     for member in server_members:
                         for role in member.roles:
-                            if role.name == "DM":
+                            if role.name in dm_roles:
                                 await message.author.send(result_message)
                                 if role not in message.author.roles:
                                     await member.send(
