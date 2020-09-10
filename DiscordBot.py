@@ -14,7 +14,8 @@ roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler(api)
-token = os.getenv("TOKEN")
+token=os.getenv("TOKEN")
+
 
 
 code_dictionary = {"h": 0,
@@ -54,7 +55,7 @@ async def on_message(message):
                 if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
-                result_message = f"**Total: **{result}\n**Roll**: {message.content[3:]}\n**Results**:{dice_rolls}"
+                result_message = f"@{message.author.nick}\n**Roll**: {message.content[3:]}\n**Total: **{result}\n**Results**: {dice_rolls}"
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
@@ -67,7 +68,7 @@ async def on_message(message):
                     for member in server_members:
                         for role in member.roles:
                             if role.name == "DM":
-                                await message.author.send("Your roll:\n" + result_message)
+                                await message.author.send(result_message)
                                 if role not in message.author.roles:
                                     await member.send(
                                         f"The message was sent by {str(message.author.nick).split('#')[0]}:\n"
