@@ -1,5 +1,6 @@
 from FileHandler import read_json, read_pickle
 from difflib import get_close_matches
+from Levenshtein import distance
 
 
 class ReferenceHandler(object):
@@ -10,17 +11,18 @@ class ReferenceHandler(object):
     @staticmethod
     def get_item_name(message, item_list):
         item_list = read_pickle(item_list)
-        item_name = " ".join(message.split(" ")[1:])
+        item_name = message.split(" ")[1:]
+        item_name = " ".join([word.capitalize() for word in item_name])
         if item_name in item_list:
             return item_name
+        if len(item_name.split(" ")) == 1:
+            return False
         for item_part in item_name.split(" "):
             for item in item_list:
-                if item_part == item.lower().split(" ")[0]:
-                    return item
-        for item_part in item_name.split(" "):
-            for item in item_list:
-                if item_part in item.lower():
-                    return item
+                for piece in item:
+                    if item_part == piece:
+                        if distance(item_name, item)/len(item_name) < 0.5:
+                            return item
         closest_item_names = get_close_matches(item_name, item_list, cutoff=0.6)
         if len(closest_item_names) == 0:
             return False
