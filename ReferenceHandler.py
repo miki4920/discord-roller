@@ -24,7 +24,8 @@ class ReferenceHandler(object):
                                 return item
                         else:
                             return item
-        closest_item_names = get_close_matches(item_name, item_list, cutoff=0.6)
+        closest_item_names = get_close_matches(item_name, item_list, cutoff=0.1)
+        closest_item_names = [name for name in closest_item_names if item_name in name]
         if len(closest_item_names) == 0:
             return False
         return closest_item_names[0]
