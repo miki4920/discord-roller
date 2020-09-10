@@ -31,7 +31,7 @@ class ReferenceHandler(object):
 
     @staticmethod
     def get_item_index(item_name, category):
-        item_index = item_name.lower().replace(" ", "-")
+        item_index = item_name.lower().replace(" ", "-").replace("'", "")
         item_index = f"{category}/{item_index}"
         return item_index
 
