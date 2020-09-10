@@ -54,7 +54,7 @@ async def on_message(message):
                 if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
-                result_message = f"{result}\nDetails: {message.content[3:]}\n{dice_rolls}"
+                result_message = f"**Total: **{result}\n**Roll**: {message.content[3:]}\n**Results**:{dice_rolls}"
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
