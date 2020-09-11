@@ -22,7 +22,8 @@ code_dictionary = {"h": 0,
                    "pr": 2,
                    "gr": 3,
                    "w": 4,
-                   "spell": 5}
+                   "spell": 5,
+                   "monster": 6}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -86,6 +87,13 @@ async def on_message(message):
                 if type(result_message) == tuple:
                     embeded_spell = discord.Embed(title=result_message[0], description=result_message[1])
                     await message.channel.send(embed=embeded_spell)
+                else:
+                    await message.channel.send(result_message)
+            if message_code == 6:
+                result = reference.reference_monster(message.content)
+                if type(result_message) == tuple:
+                    embeded_monster = discord.Embed(title=result_message[0], description=result_message[1])
+                    await message.channel.send(embed=embeded_monster)
                 else:
                     await message.channel.send(result_message)
         except Exception as e:
