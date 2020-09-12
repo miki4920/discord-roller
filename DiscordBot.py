@@ -90,7 +90,7 @@ async def on_message(message):
                 else:
                     await message.channel.send(result_message)
             if message_code == 6:
-                result = reference.reference_monster(message.content)
+                result_message = reference.reference_monster(message.content)
                 if type(result_message) == tuple:
                     embeded_monster = discord.Embed(title=result_message[0], description=result_message[1])
                     await message.channel.send(embed=embeded_monster)

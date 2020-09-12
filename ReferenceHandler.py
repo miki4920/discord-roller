@@ -7,6 +7,7 @@ class ReferenceHandler(object):
     def __init__(self, api):
         self.api = api
         self.spell_list = "FileStorage/SpellList.pickle"
+        self.monster_list = "FileStorage/MonsterList.pickle"
 
     @staticmethod
     def get_item_name(message, item_list):
@@ -53,7 +54,7 @@ class ReferenceHandler(object):
     def reference_spell(self, message):
         valid_spell_name = self.get_item_name(message, self.spell_list)
         if not valid_spell_name:
-            return "The Spell Does Not exist"
+            return "The Spell Does Not Exist"
         valid_spell_index = self.get_item_index(valid_spell_name, "spells")
         spell_json = read_json(self.api, valid_spell_index)
         name = spell_json.get("name") + "\n"
@@ -80,3 +81,12 @@ class ReferenceHandler(object):
         if subclasses:
             return_string += "; " + subclasses
         return name, return_string
+
+    def reference_monster(self, message):
+        valid_monster_name = self.get_item_name(message, self.monster_list)
+        if not valid_monster_name:
+            return "This Monster Does Not Exist"
+        valid_monster_index = self.get_item_index(valid_monster_name, "monsters")
+        monster_json = read_json(self.api, valid_monster_index)
+        name = monster_json.get("name") + "\n"
+        return name, name
