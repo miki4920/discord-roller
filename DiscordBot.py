@@ -1,10 +1,9 @@
 import discord
-import os
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
-from Roller import DiceRoll
+from DiceOperations.Roller import DiceRoll
 from DowntimeHandler import DowntimeScheduler
 from WildMagicHandler import WildMagic
-from ReferenceHandler import ReferenceHandler
+from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
@@ -14,7 +13,7 @@ roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler(api)
-token=os.getenv("TOKEN")
+token="NzEzNzM0MzUxNjQ4NTg3Nzc2.Xska6Q.WUujAvVSdJcCoaqlWOsyT_3hxRs"
 
 
 code_dictionary = {"h": 0,
@@ -82,18 +81,11 @@ async def on_message(message):
                 result_roll = roller.roll_dice("1d100")[0]
                 result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
-            if message_code == 5:
-                result_message = reference.reference_spell(message.content)
+            if message_code in [5, 6]:
+                result_message = reference.reference_item(message.content)
                 if type(result_message) == tuple:
                     embeded_spell = discord.Embed(title=result_message[0], description=result_message[1])
                     await message.channel.send(embed=embeded_spell)
-                else:
-                    await message.channel.send(result_message)
-            if message_code == 6:
-                result_message = reference.reference_monster(message.content)
-                if type(result_message) == tuple:
-                    embeded_monster = discord.Embed(title=result_message[0], description=result_message[1])
-                    await message.channel.send(embed=embeded_monster)
                 else:
                     await message.channel.send(result_message)
         except Exception as e:

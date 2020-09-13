@@ -1,10 +1,10 @@
-from OperationTree.ShuntingYard import shunting_yard_algorithm, tokenizer
+from DiceOperations.ShuntingYard import shunting_yard_algorithm, tokenizer
 import re
 from ErrorHandler import WrongCommandFormat, RollIsZero
-from RollFunctions.ExplodingDice import exploding_roll
-from RollFunctions.StandardRoll import multi_die_roll
-from RollFunctions.DropKeepDice import drop_keep
-from RollClass import Roll
+from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
+from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
+from DiceOperations.RollFunctions.DropKeepDice import drop_keep
+from DiceOperations.RollClass import Roll
 
 
 def handle_dice(roll):

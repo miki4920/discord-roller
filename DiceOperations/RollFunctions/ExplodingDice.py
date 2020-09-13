@@ -1,4 +1,4 @@
-from RollFunctions.StandardRoll import single_die_roll
+from DiceOperations.RollFunctions.StandardRoll import single_die_roll
 from ErrorHandler import DieTooLowForExplosion
 
 

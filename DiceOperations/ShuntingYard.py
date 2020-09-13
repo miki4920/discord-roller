@@ -1,4 +1,4 @@
-from OperationTree.Operators import *
+from DiceOperations.Operators import *
 from ErrorHandler import TooManyOperators, WrongCommandFormat
 import re
 
