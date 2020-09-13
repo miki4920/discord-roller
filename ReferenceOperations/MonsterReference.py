@@ -1,5 +1,9 @@
-def convert_stat_to_bonus(stat):
-    pass
+from math import floor
+
+
+def stat_conversion(ability_score):
+    ability_score = floor(int(ability_score) / 2) - 5
+    return ability_score
 
 
 def monster_reference(monster_json):
