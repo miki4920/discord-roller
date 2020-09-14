@@ -1,5 +1,5 @@
 
-def get_meta_string(level, school, ritual):
+def get_spell_meta(level, school, ritual):
     string_dictionary = {0: f"{school} cantrip",
                          1: f"1st-level {school}",
                          2: f"2nd-level {school}",
@@ -16,8 +16,8 @@ def get_meta_string(level, school, ritual):
 def spell_reference(spell_json):
     name = spell_json.get("name") + "\n"
     description = spell_json.get("desc")[0]
-    level_school = get_meta_string(spell_json.get("level"), spell_json.get("school")["name"],
-                                        spell_json.get("ritual"))
+    level_school = get_spell_meta(spell_json.get("level"), spell_json.get("school")["name"],
+                                  spell_json.get("ritual"))
     higher_level = spell_json.get("higher_level")
     spell_range = spell_json.get("range")
     components = " ".join(spell_json.get("components"))
