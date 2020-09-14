@@ -2,12 +2,15 @@ from math import floor
 
 
 def ability_conversion(ability_score):
-    ability_score = floor(int(ability_score) / 2) - 5
+    ability_score = str(floor(int(ability_score) / 2) - 5)
+    if int(ability_score) > 0:
+        ability_score = "+" + ability_score
+
     return ability_score
 
 
 def get_hit_points_calculation(hit_dice, constitution):
-    constitution_modifier = ability_conversion(constitution)
+    constitution_modifier = int(ability_conversion(constitution))
     hit_points_modifier = constitution_modifier * int(hit_dice.split("d")[0])
     return f"{hit_dice} + {hit_points_modifier}"
 
@@ -20,7 +23,7 @@ def get_speed(speed):
         else:
             return_string += f"{speed_type} {speed[speed_type]}"
         return_string += ", "
-    return return_string[:-2]
+    return return_string[:-2] + "\n"
 
 
 def get_ability_scores(monster_json):
@@ -32,26 +35,39 @@ def get_ability_scores(monster_json):
         ability_scores_list.append(ability_string)
     ability_scores_list.insert(3, "\n")
     ability_scores_list = " ".join(ability_scores_list)
-    return ability_scores_list
+    return ability_scores_list + "\n"
 
 
 def get_proficiencies(proficiencies):
-    pass
+    saving_throws = []
+    skills = []
+    for proficiency in proficiencies:
+        if "Saving Throw" in proficiency["name"]:
+            value = proficiency['value']
+            if value > 0:
+                value = "+" + str(value)
+            saving_throws.append(f"{proficiency['name'][-3:]}: {proficiency['value']}")
+    print(saving_throws)
+    return "Saving Throws: " + " ".join(saving_throws) + "\n"
 
 
 def monster_reference(monster_json):
     name = monster_json.get("name") + "\n"
     size = monster_json.get("size")
     monster_type = monster_json.get("type")
-    alignment = monster_json.get("alignment")
-    armor_class = monster_json.get("armor_class")
-    hit_points_average = monster_json.get("hit_points")
-    hit_points_calculations = get_hit_points_calculation(monster_json.get("hit_dice"), monster_json.get("constitution"))
+    alignment = monster_json.get("alignment") + "*\n\n"
+    armor_class = str(monster_json.get("armor_class")) + "\n"
+    hit_points_average = str(monster_json.get("hit_points"))
+    hit_points_calculations = "(" + str(get_hit_points_calculation(monster_json.get("hit_dice"), monster_json.get("constitution"))) + ")\n"
     speed = get_speed(monster_json.get("speed"))
     ability_scores_string = get_ability_scores(monster_json)
-    return_string = f"*{size} {monster_type}, {alignment}*\n\n" \
-                    f"Armor Class: {armor_class}\n" \
-                    f"Hit Points: {hit_points_average} ({hit_points_calculations})\n" \
-                    f"Speed: {speed}\n" \
-                    f"{ability_scores_string}"
+    proficiencies = monster_json.get("proficiencies")
+    if proficiencies:
+        proficiencies = get_proficiencies(proficiencies) + "\n"
+    return_string = f"*{size} {monster_type}, {alignment}" \
+                    f"Armor Class: {armor_class}" \
+                    f"Hit Points: {hit_points_average} {hit_points_calculations}" \
+                    f"Speed: {speed}" \
+                    f"{ability_scores_string}" \
+                    f"{proficiencies}"
     return name, return_string
