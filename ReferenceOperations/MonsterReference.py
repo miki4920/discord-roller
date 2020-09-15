@@ -47,7 +47,6 @@ def get_proficiencies(proficiencies):
             if value > 0:
                 value = "+" + str(value)
             saving_throws.append(f"{proficiency['name'][-3:]}: {proficiency['value']}")
-    print(saving_throws)
     return "Saving Throws: " + " ".join(saving_throws) + "\n"
 
 
@@ -64,6 +63,7 @@ def monster_reference(monster_json):
     proficiencies = monster_json.get("proficiencies")
     if proficiencies:
         proficiencies = get_proficiencies(proficiencies) + "\n"
+    # TODO Add Proficiencies in Skills
     return_string = f"*{size} {monster_type}, {alignment}" \
                     f"Armor Class: {armor_class}" \
                     f"Hit Points: {hit_points_average} {hit_points_calculations}" \
