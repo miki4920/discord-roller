@@ -41,13 +41,20 @@ def get_ability_scores(monster_json):
 def get_proficiencies(proficiencies):
     saving_throws = []
     skills = []
+    return_string = ""
     for proficiency in proficiencies:
+        value = proficiency['value']
+        if value > 0:
+            value = "+" + str(value)
         if "Saving Throw" in proficiency["name"]:
-            value = proficiency['value']
-            if value > 0:
-                value = "+" + str(value)
-            saving_throws.append(f"{proficiency['name'][-3:]}: {proficiency['value']}")
-    return "Saving Throws: " + " ".join(saving_throws) + "\n"
+            saving_throws.append(f"{proficiency['name'][-3:]}: {value}")
+        else:
+            skills.append(f"{proficiency['name'][7:]}: {value}")
+    if saving_throws:
+        return_string += "**Saving Throws:** " + " ".join(saving_throws) + "\n"
+    if skills:
+        return_string += "**Skills:** " + " ".join(skills) + "\n"
+    return return_string
 
 
 def monster_reference(monster_json):
@@ -61,13 +68,12 @@ def monster_reference(monster_json):
     speed = get_speed(monster_json.get("speed"))
     ability_scores_string = get_ability_scores(monster_json)
     proficiencies = monster_json.get("proficiencies")
-    if proficiencies:
-        proficiencies = get_proficiencies(proficiencies) + "\n"
+    proficiencies = get_proficiencies(proficiencies)
     # TODO Add Proficiencies in Skills
     return_string = f"*{size} {monster_type}, {alignment}" \
-                    f"Armor Class: {armor_class}" \
-                    f"Hit Points: {hit_points_average} {hit_points_calculations}" \
-                    f"Speed: {speed}" \
+                    f"**AC**: {armor_class}" \
+                    f"**HP**: {hit_points_average} {hit_points_calculations}" \
+                    f"**Speed**: {speed}" \
                     f"{ability_scores_string}" \
                     f"{proficiencies}"
     return name, return_string
