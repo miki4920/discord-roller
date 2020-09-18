@@ -30,3 +30,11 @@ def check_dir_existence(dir_path):
 
 def make_dir(dir_path):
     mkdir(dir_path)
+
+
+def make_ordinal(n):
+    n = int(n)
+    suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    return str(n) + suffix

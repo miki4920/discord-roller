@@ -1,4 +1,4 @@
-from FileHandler import write_pickle, read_pickle, check_dir_existence, make_dir
+from UtilityHandler import write_pickle, read_pickle, check_dir_existence, make_dir
 from ErrorHandler import WrongCommandFormat
 
 

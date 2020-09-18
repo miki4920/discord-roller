@@ -1,4 +1,4 @@
-from FileHandler import read_json, read_pickle
+from UtilityHandler import read_json, read_pickle
 from difflib import get_close_matches
 from Levenshtein import distance
 from ReferenceOperations.SpellReference import spell_reference

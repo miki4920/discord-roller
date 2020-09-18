@@ -1,4 +1,4 @@
-from FileHandler import read_pickle
+from UtilityHandler import read_pickle
 
 
 class WildMagic(object):
