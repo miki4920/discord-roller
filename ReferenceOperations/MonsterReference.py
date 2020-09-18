@@ -105,32 +105,59 @@ def get_special_abilities(special_abilities):
     return return_string
 
 
-def monster_reference(monster_json):
+def get_stat_block(monster_json):
     name = monster_json.get("name") + "\n"
     size = monster_json.get("size")
     monster_type = monster_json.get("type")
     alignment = monster_json.get("alignment") + "*\n\n"
     armor_class = str(monster_json.get("armor_class")) + "\n"
     hit_points_average = str(monster_json.get("hit_points"))
-    hit_points_calculations = "(" + str(get_hit_points_calculation(monster_json.get("hit_dice"), monster_json.get("constitution"))) + ")\n"
+    hit_points_calculations = "(" + str(
+        get_hit_points_calculation(monster_json.get("hit_dice"), monster_json.get("constitution"))) + ")\n"
     speed = get_speed(monster_json.get("speed"))
     ability_scores_string = get_ability_scores(monster_json)
     proficiencies = get_proficiencies(monster_json.get("proficiencies"))
     senses = get_senses(monster_json.get("senses"))
-    damage_conditions = get_damage_conditions((monster_json.get("damage_vulnerabilities"), monster_json.get("damage_resistances"), monster_json.get("damage_immunities"), monster_json.get("condition_immunities")))
+    damage_conditions = get_damage_conditions((monster_json.get("damage_vulnerabilities"),
+                                               monster_json.get("damage_resistances"),
+                                               monster_json.get("damage_immunities"),
+                                               monster_json.get("condition_immunities")))
     languages = get_languages(monster_json.get("languages"))
     xp = get_xp(monster_json.get("challenge_rating"))
     special_abilities = get_special_abilities(monster_json.get("special_abilities"))
-    return_string = f"*{size} {monster_type}, {alignment}" \
-                    f"**AC**: {armor_class}" \
-                    f"**HP**: {hit_points_average} {hit_points_calculations}" \
-                    f"**Speed**: {speed}" \
-                    f"{ability_scores_string}" \
-                    f"{proficiencies}" \
-                    f"{senses}" \
-                    f"{damage_conditions}" \
-                    f"{languages}" \
-                    f"{xp}" \
-                    f"{special_abilities}"
+    stat_block = f"*{size} {monster_type}, {alignment}" \
+                 f"**AC**: {armor_class}" \
+                 f"**HP**: {hit_points_average} {hit_points_calculations}" \
+                 f"**Speed**: {speed}" \
+                 f"{ability_scores_string}" \
+                 f"{proficiencies}" \
+                 f"{senses}" \
+                 f"{damage_conditions}" \
+                 f"{languages}" \
+                 f"{xp}" \
+                 f"{special_abilities}"
+    return name, stat_block
 
-    return name, return_string
+
+def get_action_block(name, actions):
+    action_block = ""
+    action_block_two = ""
+    too_large = False
+    for action in actions:
+        if len(action_block + f"**{action['name']}**\n{action['desc']}\n\n") > 2000:
+            too_large = True
+        if not too_large:
+            action_block += f"**{action['name']}**\n{action['desc']}\n\n"
+        else:
+            action_block_two += f"**{action['name']}**\n{action['desc']}\n\n"
+    messages = [(name, action_block)]
+    if too_large:
+        messages.append(("", action_block_two))
+    return messages
+
+
+def monster_reference(monster_json):
+    messages = [get_stat_block(monster_json)]
+    messages.extend(get_action_block("Actions", monster_json.get("actions")))
+    messages.extend(get_action_block("Legendary Actions", monster_json.get("legendary_actions")))
+    return messages

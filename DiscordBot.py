@@ -86,11 +86,9 @@ async def on_message(message):
                 await message.channel.send(result_message)
             if message_code in [5, 6]:
                 result_message = reference.reference_item(message.content)
-                if type(result_message) == tuple:
-                    embeded_spell = discord.Embed(title=result_message[0], description=result_message[1])
-                    await message.channel.send(embed=embeded_spell)
-                else:
-                    await message.channel.send(result_message)
+                for return_message in result_message:
+                    embedded_message = discord.Embed(title=return_message[0], description=return_message[1])
+                    await message.channel.send(embed=embedded_message)
         except Exception as e:
             # Handles all errors
             await message.channel.send(str(e))

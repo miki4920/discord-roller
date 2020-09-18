@@ -46,7 +46,7 @@ class ReferenceHandler(object):
         item_tuple = self.item_list_dictionary[item_name]
         valid_item_name = self.get_item_name(message, item_tuple[0])
         if not valid_item_name:
-            return f"The {item_name.capitalize()} Does Not Exist"
+            return [("Error", f"The {item_name.capitalize()} Does Not Exist in SRD.")]
         valid_item_index = self.get_item_index(valid_item_name, item_name+"s")
         item_json = read_json(self.api, valid_item_index)
         return item_tuple[1](item_json)

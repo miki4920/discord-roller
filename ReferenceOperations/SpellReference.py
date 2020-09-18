@@ -14,6 +14,7 @@ def get_spell_meta(level, school, ritual):
 
 
 def spell_reference(spell_json):
+    messages = []
     name = spell_json.get("name") + "\n"
     description = spell_json.get("desc")[0]
     level_school = get_spell_meta(spell_json.get("level"), spell_json.get("school")["name"],
@@ -39,4 +40,5 @@ def spell_reference(spell_json):
     return_string += f"**Spell Lists.** {classes}"
     if subclasses:
         return_string += "; " + subclasses
-    return name, return_string
+    messages.append((name, return_string))
+    return messages
