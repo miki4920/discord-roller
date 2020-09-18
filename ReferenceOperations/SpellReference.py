@@ -30,7 +30,7 @@ def spell_reference(spell_json):
     subclasses = ", ".join([subclass_name["name"] for subclass_name in spell_json.get("subclasses")])
     return_string = f"_{level_school}_\n\n" \
                     f"**Casting Time:** {casting_time}\n" \
-                    f"**Range:** {spell_range}\n\n" \
+                    f"**Range:** {spell_range}\n" \
                     f"**Components:** {components} {material_component if material_component else ''}\n" \
                     f"**Duration:** {duration}\n\n" \
                     f"**Description**\n" \
