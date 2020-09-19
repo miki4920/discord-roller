@@ -6,16 +6,25 @@ def get_ability_score_increase(race_json):
     return ""
 
 
+def get_traits(race_json):
+    traits = race_json.get("traits")
+    return traits
+
+
 def race_reference(race_json):
     messages = []
-    name = race_json.get("name")
+    name = race_json.get("name") + "\n"
     ability_score_increase = get_ability_score_increase(race_json)
-    age = race_json.get("age")
-    size = race_json.get("size_description")
-    speed = race_json.get("speed_description")
+    age = race_json.get("age") + "\n"
+    size = race_json.get("size_description") + "\n"
+    speed = race_json.get("speed_description") + "\n"
+    traits = get_traits(race_json)
+    languages = race_json.get("language_desc")
     race_block = f"**Ability Score Increase.** {ability_score_increase}" \
                  f"**Age.** {age}" \
                  f"**Size.** {size}" \
-                 f"**Speed** {speed}"
+                 f"**Speed** {speed}" \
+                 f"**Traits** {traits}" \
+                 f"**Languages** {languages}"
     messages.append((name, race_block))
     return messages
