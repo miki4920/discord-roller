@@ -3,6 +3,7 @@ from difflib import get_close_matches
 from Levenshtein import distance
 from ReferenceOperations.SpellReference import spell_reference
 from ReferenceOperations.MonsterReference import monster_reference
+from ReferenceOperations.RaceReference import race_reference
 
 
 class ReferenceHandler(object):
@@ -10,8 +11,10 @@ class ReferenceHandler(object):
         self.api = api
         self.spell_list = "FileStorage/SpellList.pickle"
         self.monster_list = "FileStorage/MonsterList.pickle"
+        self.race_list = "FileStorage/RaceList.pickle"
         self.item_list_dictionary = {"spell": (self.spell_list, spell_reference),
-                                     "monster": (self.monster_list, monster_reference)}
+                                     "monster": (self.monster_list, monster_reference),
+                                     "race": (self.race_list, race_reference)}
 
     @staticmethod
     def get_item_name(message, item_list):

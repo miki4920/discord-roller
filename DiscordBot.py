@@ -25,7 +25,8 @@ code_dictionary = {"h": 0,
                    "gr": 3,
                    "w": 4,
                    "spell": 5,
-                   "monster": 6}
+                   "monster": 6,
+                   "race": 7}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -84,7 +85,7 @@ async def on_message(message):
                 result_roll = roller.roll_dice("1d100")[0]
                 result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
-            if message_code in [5, 6]:
+            if message_code in [5, 6, 7]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1])

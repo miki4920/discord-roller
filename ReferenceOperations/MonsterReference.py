@@ -6,7 +6,6 @@ def ability_conversion(ability_score):
     ability_score = str(floor(int(ability_score) / 2) - 5)
     if int(ability_score) > -1:
         ability_score = "+" + ability_score
-
     return ability_score
 
 
