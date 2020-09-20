@@ -3,7 +3,8 @@ from os import path, mkdir
 import json
 
 
-def read_json(api, item_type, item):
+def read_json(item_type, item):
+    api = "FileStorage/SRDJson/"
     file_path = api + item_type + ".json"
     with open(file_path) as json_file:
         data = json.load(json_file)

@@ -10,12 +10,11 @@ from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
-api = "FileStorage/SRDJson/"
 client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
-reference = ReferenceHandler(api)
+reference = ReferenceHandler()
 token = os.getenv("TOKEN")
 
 
