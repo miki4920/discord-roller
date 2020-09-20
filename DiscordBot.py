@@ -87,7 +87,7 @@ async def on_message(message):
             if message_code in [5, 6, 7]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
-                    embedded_message = discord.Embed(title=return_message[0], description=return_message[1])
+                    embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
             # Handles all errors

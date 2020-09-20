@@ -23,8 +23,8 @@ def race_reference(race_json):
     race_block = f"**Ability Score Increase.** {ability_score_increase}" \
                  f"**Age.** {age}" \
                  f"**Size.** {size}" \
-                 f"**Speed** {speed}" \
+                 f"**Speed.** {speed}" \
                  f"{traits}" \
-                 f"**Languages** {languages}"
+                 f"**Languages.** {languages}"
     messages.append((name, race_block))
     return messages
