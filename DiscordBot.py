@@ -10,7 +10,7 @@ from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
-client = discord.Client()
+client = discord.Client(activity=discord.CustomActivity("**Roleplaying D&D** | **!help**"))
 roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
