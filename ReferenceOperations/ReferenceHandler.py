@@ -19,16 +19,10 @@ class ReferenceHandler(object):
         item_list = read_pickle(item_list)
         item_name = message.split(" ")[1:]
         item_name = " ".join([word.capitalize() for word in item_name])
-        if item_name in item_list:
-            return item_name
-        for item_part in item_name.split(" "):
-            for item in item_list:
-                if item_part in item:
-                    if len(item_name.split(" ")) > 1:
-                        if distance(item_name, item)/max(len(item_name), len(item)) < cutout_point or item_name in item:
-                            return item
-                    else:
-                        return item
+        for item in item_list:
+            if distance(item_name, item) / max(len(item_name),
+                                               len(item)) < cutout_point or item_name in item or item in item_name:
+                return item
         return False
 
     @staticmethod
@@ -46,5 +40,3 @@ class ReferenceHandler(object):
         valid_item_index = self.get_item_index(valid_item_name)
         item_json = read_json(item_name, valid_item_index)
         return item_tuple[1](item_json)
-
-
