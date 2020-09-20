@@ -33,7 +33,7 @@ dm_roles = ["dm", "gm", "game master", "dungeon master"]
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    await client.change_presence(activity=discord.Game(name='**D&D | !help**'))
+    await client.change_presence(activity=discord.Game(name='D&D | !help'))
 
 
 @client.event
