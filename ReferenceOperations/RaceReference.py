@@ -11,6 +11,21 @@ def get_traits(race_json):
     return formatted_traits
 
 
+def get_subraces(race_json):
+    subraces = []
+    race_json = race_json.get("subraces")
+    for subrace in race_json:
+        subrace_json = read_json("subrace", subrace["index"])
+        name = subrace_json.get("name")
+        ability_score_increase = subrace_json.get("ability_bonus_desc") + "\n\n"
+        traits = get_traits(subrace_json)
+        subrace_block = f"**Ability Score Increase.** {ability_score_increase}" \
+                        f"{traits}"
+        subraces.append((name, subrace_block))
+    return subraces
+
+
+
 def race_reference(race_json):
     messages = []
     name = race_json.get("name") + "\n"
@@ -27,4 +42,6 @@ def race_reference(race_json):
                  f"{traits}" \
                  f"**Languages.** {languages}"
     messages.append((name, race_block))
+    if race_json.get("subraces"):
+        messages.extend(get_subraces(race_json))
     return messages

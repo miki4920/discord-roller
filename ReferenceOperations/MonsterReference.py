@@ -158,5 +158,6 @@ def get_action_block(name, actions):
 def monster_reference(monster_json):
     messages = [get_stat_block(monster_json)]
     messages.extend(get_action_block("Actions", monster_json.get("actions")))
-    messages.extend(get_action_block("Legendary Actions", monster_json.get("legendary_actions")))
+    if monster_json.get("legendary_actions"):
+        messages.extend(get_action_block("Legendary Actions", monster_json.get("legendary_actions")))
     return messages

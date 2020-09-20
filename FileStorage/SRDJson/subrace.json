@@ -22,14 +22,14 @@
     "starting_proficiency_options": {},
     "languages": [],
     "language_options": {},
-    "racial_traits": [
+    "traits": [
       {
         "index": "dwarven-toughness",
         "name": "Dwarven Toughness",
         "url": "/api/traits/dwarven-toughness"
       }
     ],
-    "racial_trait_options": {},
+    "trait_options": {},
     "url": "/api/subraces/hill-dwarf"
   },
   {
@@ -151,8 +151,24 @@
       ],
       "type": "language"
     },
-    "racial_traits": [],
-    "racial_trait_options": {
+    "traits": [
+      {
+        "index": "elf-weapon-training",
+        "name": "Elf Weapon Training",
+        "url": "/api/traits/elf-weapon-training"
+      },
+      {
+        "index": "high-elf-cantrip",
+        "name": "High Elf Cantrip",
+        "url": "/api/traits/high-elf-cantrip"
+      },
+      {
+        "index": "extra-language",
+        "name": "Extra Language",
+        "url": "/api/traits/extra-language"
+      }
+    ],
+    "trait_options": {
       "choose": 1,
       "from": [
         {
@@ -253,7 +269,7 @@
       }
     ],
     "language_options": {},
-    "racial_traits": [
+    "traits": [
       {
         "index": "artificers-lore",
         "name": "Artificer's Lore",
@@ -265,7 +281,7 @@
         "url": "/api/traits/tinker"
       }
     ],
-    "racial_trait_options": {},
+    "trait_options": {},
     "url": "/api/subraces/rock-gnome"
   },
   {
@@ -291,14 +307,14 @@
     "starting_proficiency_options": {},
     "languages": [],
     "language_options": {},
-    "racial_traits": [
+    "traits": [
       {
         "index": "naturally-stealthy",
         "name": "Naturally Stealthy",
         "url": "/api/traits/naturally-stealthy"
       }
     ],
-    "racial_trait_options": {},
+    "trait_options": {},
     "url": "/api/subraces/lightfoot-halfling"
   }
 ]

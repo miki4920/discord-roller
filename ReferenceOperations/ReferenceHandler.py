@@ -27,7 +27,7 @@ class ReferenceHandler(object):
                 for piece in item.split(" "):
                     if item_part == piece:
                         if len(item_name.split(" ")) > 1:
-                            if distance(item_name, item)/len(item_name) < 0.3:
+                            if distance(item_name, item)/len(item_name) < 0.7:
                                 return item
                         else:
                             return item
