@@ -16,7 +16,8 @@ downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler()
 token = os.getenv("TOKEN")
-
+test_mode = True
+test_server_id = 740700782323826799
 
 code_dictionary = {"h": 0,
                    "r": 1,
@@ -41,6 +42,10 @@ async def on_message(message):
         return
     if message.content.startswith('!'):
         message.content = message.content.lower()
+        if test_mode and message.guild.id != 740700782323826799:
+            return
+        elif not test_mode and message.guild.id == 740700782323826799:
+            return
         try:
             # Checks the code dictionary for the role type
             message_code = code_dictionary.get(message.content.split(" ")[0][1:])
