@@ -18,7 +18,6 @@ reference = ReferenceHandler()
 token = os.getenv("TOKEN")
 
 
-
 code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
