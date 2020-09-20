@@ -17,7 +17,7 @@ downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler(api)
 token = os.getenv("TOKEN")
-token="NzEzNzM0MzUxNjQ4NTg3Nzc2.Xska6Q.zBNdfNL4QvJ1QsoDMfERHWIbBRI"
+
 
 
 code_dictionary = {"h": 0,

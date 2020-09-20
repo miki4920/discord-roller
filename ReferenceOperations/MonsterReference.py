@@ -86,7 +86,7 @@ def get_languages(languages):
 
 
 def get_xp(challenge_rating):
-    xp = read_pickle("FileStorage/XPList.pickle")[str(challenge_rating)]
+    xp = read_pickle("FileStorage/ReferenceLists/XPList.pickle")[str(challenge_rating)]
     return f"**CR**: {challenge_rating} ({xp} XP)" + "\n\n"
 
 

@@ -5,9 +5,11 @@ import json
 
 def read_json(api, item_type, item):
     file_path = api + item_type + ".json"
-    data = json.load(file_path)
-    print(data[item])
-    return data
+    with open(file_path) as json_file:
+        data = json.load(json_file)
+        for json_item in data:
+            if json_item["index"] == item:
+                return json_item
 
 
 def read_pickle(file_name):
