@@ -10,6 +10,9 @@ class ReferenceHandler(object):
         self.spell_list = "FileStorage/ReferenceLists/SpellList.pickle"
         self.monster_list = "FileStorage/ReferenceLists/MonsterList.pickle"
         self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
+        self.abbreviations_dictionary = {"s": "spell",
+                                         "m": "monster",
+                                         "r": "race"}
         self.item_list_dictionary = {"spell": (self.spell_list, spell_reference, 0.3),
                                      "monster": (self.monster_list, monster_reference, 0.3),
                                      "race": (self.race_list, race_reference, 0.7)}
@@ -33,6 +36,7 @@ class ReferenceHandler(object):
 
     def reference_item(self, message):
         item_name = message.split(" ")[0][1:]
+        item_name = self.abbreviations_dictionary[item_name] if self.abbreviations_dictionary.get(item_name) else item_name
         item_tuple = self.item_list_dictionary[item_name]
         valid_item_name = self.get_item_name(message, item_tuple[0], item_tuple[2])
         if not valid_item_name:
