@@ -16,7 +16,7 @@ downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler()
 token = os.getenv("TOKEN")
-test_mode = True
+test_mode = False
 test_server_id = 740700782323826799
 
 code_dictionary = {"h": 0,
