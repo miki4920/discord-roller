@@ -19,14 +19,14 @@ token = os.getenv("TOKEN")
 test_mode = False
 test_server_id = 740700782323826799
 
-code_dictionary = {"h": 0,
-                   "r": 1,
-                   "pr": 2,
-                   "gr": 3,
-                   "w": 4,
-                   "spell": 5,
-                   "monster": 6,
-                   "race": 7}
+code_dictionary = {("help", "h"): 0,
+                   ("roll", "r"): 1,
+                   ("proll", "pr"): 2,
+                   ("gmroll", "gr"): 3,
+                   ("wild", "w"): 4,
+                   ("spell", "s"): 5,
+                   ("monster", "m"): 6,
+                   ("race", "r"): 7}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -49,7 +49,14 @@ async def on_message(message):
             return
         try:
             # Checks the code dictionary for the role type
-            message_code = code_dictionary.get(message.content.split(" ")[0][1:])
+            message_code = message.content.split(" ")[0][1:]
+
+            for list_of_keys in code_dictionary:
+                if message_code in list_of_keys:
+                    message_code = code_dictionary[list_of_keys]
+                    break
+            else:
+                message_code = None
             if message_code is None:
                 raise CommandNotExisting(message.content)
             # Sends Manual
@@ -60,11 +67,12 @@ async def on_message(message):
                 if message_code in [2, 3]:
                     await message.delete()
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
-                result, dice_rolls = roller.roll_dice(message.content[3:])
+                roll_message = " ".join(message.content.split(" ")[1:])
+                result, dice_rolls = roller.roll_dice(roll_message)
                 if len(str(result) + dice_rolls) >= 1900:
                     raise TooManyDice(message.content)
                 # Determines the message to be sent, cuts out the command
-                result_message = f"{message.author.mention}\n**Roll**: {message.content[3:]}\n**Total: **{result}\n**Results**: {dice_rolls}"
+                result_message = f"{message.author.mention}\n**Roll**: {roll_message}\n**Total: **{result}\n**Results**: {dice_rolls}"
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
