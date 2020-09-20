@@ -9,9 +9,9 @@ from ReferenceOperations.RaceReference import race_reference
 class ReferenceHandler(object):
     def __init__(self, api):
         self.api = api
-        self.spell_list = "FileStorage/SpellList.pickle"
-        self.monster_list = "FileStorage/MonsterList.pickle"
-        self.race_list = "FileStorage/RaceList.pickle"
+        self.spell_list = "FileStorage/ReferenceLists/SpellList.pickle"
+        self.monster_list = "FileStorage/ReferenceLists/MonsterList.pickle"
+        self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
         self.item_list_dictionary = {"spell": (self.spell_list, spell_reference),
                                      "monster": (self.monster_list, monster_reference),
                                      "race": (self.race_list, race_reference)}
@@ -51,7 +51,7 @@ class ReferenceHandler(object):
         if not valid_item_name:
             return [("Error", f"The {item_name.capitalize()} Does Not Exist in SRD.")]
         valid_item_index = self.get_item_index(valid_item_name, item_name+"s")
-        item_json = read_json(self.api, valid_item_index)
+        item_json = read_json(self.api, valid_item_index+".json")
         return item_tuple[1](item_json)
 
 

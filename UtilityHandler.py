@@ -1,13 +1,10 @@
 import pickle
 from os import path, mkdir
-import requests
 import json
 
 
 def read_json(api, item):
-    url = api + item
-    response = requests.get(url)
-    data = json.loads(response.text)
+    data = json.loads(api + item)
     return data
 
 

@@ -10,13 +10,14 @@ from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
 # Instruction/Manual
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
-api = "https://www.dnd5eapi.co/api/"
+api = "FileStorage/SRDJson/"
 client = discord.Client()
 roller = DiceRoll()
 downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler(api)
 token = os.getenv("TOKEN")
+token="NzEzNzM0MzUxNjQ4NTg3Nzc2.Xska6Q.zBNdfNL4QvJ1QsoDMfERHWIbBRI"
 
 
 code_dictionary = {"h": 0,
