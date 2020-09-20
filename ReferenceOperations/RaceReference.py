@@ -6,7 +6,7 @@ def get_traits(race_json):
     traits = race_json.get("traits")
     for trait in traits:
         trait = read_json("trait", trait["index"])
-        formatted_traits += f"**{trait['name']}**" + "\n"
+        formatted_traits += f"**{trait['name']}. **"
         formatted_traits += trait["desc"][0] + "\n\n"
     return formatted_traits
 
