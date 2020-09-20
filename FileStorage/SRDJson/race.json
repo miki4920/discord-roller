@@ -1,8 +1,126 @@
 [
   {
+    "index": "dragonborn",
+    "name": "Dragonborn",
+    "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
+    "ability_bonuses": [
+      {
+        "index": "str",
+        "name": "STR",
+        "bonus": 2,
+        "url": "/api/ability-scores/str"
+      },
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 1,
+        "url": "/api/ability-scores/cha"
+      }
+    ],
+    "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Strength score increases by 2, and your Charisma score increases by 1.",
+    "alignment": " Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil. Most dragonborn are good, but those who side with evil can be terrible villains.",
+    "age": "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+    "size": "Medium",
+    "size_desc": "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
+    "starting_proficiencies": [],
+    "starting_proficiency_options": {},
+    "languages": [
+      {
+        "index": "common",
+        "name": "Common",
+        "url": "/api/languages/common"
+      },
+      {
+        "index": "draconic",
+        "name": "Draconic",
+        "url": "/api/languages/draconic"
+      }
+    ],
+    "language_options": {},
+    "language_desc": "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.",
+    "traits": [
+      {
+        "index": "draconic-ancestry",
+        "name": "Draconic Ancestry",
+        "url": "/api/traits/draconic-ancestry"
+      },
+      {
+        "index": "breath-weapon",
+        "name": "Breath Weapon",
+        "url": "/api/traits/breath-weapon"
+      },
+      {
+        "index": "damage-resistance",
+        "name": "Damage Resistance",
+        "url": "/api/traits/damage-resistance"
+      }
+    ],
+    "trait_options": {
+      "choose": 1,
+      "from": [
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Black)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Blue)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Brass)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Bronze)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Copper)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Gold)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Green)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Red)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (Silver)",
+          "url": "/api/traits/breath-weapon"
+        },
+        {
+          "index": "breath-weapon",
+          "name": "Breath Weapon (White)",
+          "url": "/api/traits/breath-weapon"
+        }
+      ],
+      "type": "trait"
+    },
+    "subraces": [],
+    "url": "/api/races/dragonborn"
+  },
+  {
     "index": "dwarf",
     "name": "Dwarf",
     "speed": 25,
+    "speed_desc": "Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.",
     "ability_bonuses": [
       {
         "index": "con",
@@ -12,10 +130,11 @@
       }
     ],
     "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Constitution score increases by 2.",
     "alignment": "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
     "age": "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
     "size": "Medium",
-    "size_description": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.",
+    "size_desc": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.",
     "starting_proficiencies": [
       {
         "index": "battleaxes",
@@ -113,6 +232,7 @@
     "index": "elf",
     "name": "Elf",
     "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
     "ability_bonuses": [
       {
         "index": "dex",
@@ -122,10 +242,11 @@
       }
     ],
     "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Dexterity score increases by 2.",
     "age": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
     "alignment": "Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others' freedom as well as their own, and they are more often good than not. The drow are an exception; their exile has made them vicious and dangerous. Drow are more often evil than not.",
     "size": "Medium",
-    "size_description": "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.",
+    "size_desc": "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.",
     "starting_proficiencies": [
       {
         "index": "skill-perception",
@@ -175,325 +296,10 @@
     "url": "/api/races/elf"
   },
   {
-    "index": "halfling",
-    "name": "Halfling",
-    "speed": 25,
-    "ability_bonuses": [
-      {
-        "index": "dex",
-        "name": "DEX",
-        "bonus": 2,
-        "url": "/api/ability-scores/dex"
-      }
-    ],
-    "ability_bonus_options": {},
-    "age": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
-    "alignment": "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
-    "size": "Small",
-    "size_description": "Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
-    "starting_proficiencies": [],
-    "starting_proficiency_options": {},
-    "languages": [
-      {
-        "index": "common",
-        "name": "Common",
-        "url": "/api/languages/common"
-      },
-      {
-        "index": "halfling",
-        "name": "Halfling",
-        "url": "/api/languages/halfling"
-      }
-    ],
-    "language_options": {},
-    "language_desc": "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.",
-    "traits": [
-      {
-        "index": "brave",
-        "name": "Brave",
-        "url": "/api/traits/brave"
-      },
-      {
-        "index": "halfling-nimbleness",
-        "name": "Halfling Nimbleness",
-        "url": "/api/traits/halfling-nimbleness"
-      },
-      {
-        "index": "lucky",
-        "name": "Lucky",
-        "url": "/api/traits/lucky"
-      }
-    ],
-    "subraces": [
-      {
-        "index": "lightfoot-halfling",
-        "name": "Lightfoot Halfling",
-        "url": "/api/subraces/lightfoot-halfling"
-      }
-    ],
-    "url": "/api/races/halfling"
-  },
-  {
-    "index": "human",
-    "name": "Human",
-    "speed": 30,
-    "ability_bonuses": [
-      {
-        "index": "str",
-        "name": "STR",
-        "bonus": 1,
-        "url": "/api/ability-scores/str"
-      },
-      {
-        "index": "dex",
-        "name": "DEX",
-        "bonus": 1,
-        "url": "/api/ability-scores/dex"
-      },
-      {
-        "index": "con",
-        "name": "CON",
-        "bonus": 1,
-        "url": "/api/ability-scores/con"
-      },
-      {
-        "index": "int",
-        "name": "INT",
-        "bonus": 1,
-        "url": "/api/ability-scores/int"
-      },
-      {
-        "index": "wis",
-        "name": "WIS",
-        "bonus": 1,
-        "url": "/api/ability-scores/wis"
-      },
-      {
-        "index": "cha",
-        "name": "CHA",
-        "bonus": 1,
-        "url": "/api/ability-scores/cha"
-      }
-    ],
-    "ability_bonus_options": {},
-    "age": "Humans reach adulthood in their late teens and live less than a century.",
-    "alignment": "Humans tend toward no particular alignment. The best and the worst are found among them.",
-    "size": "Medium",
-    "size_description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
-    "starting_proficiencies": [],
-    "starting_proficiency_options": {},
-    "languages": [
-      {
-        "index": "common",
-        "name": "Common",
-        "url": "/api/languages/common"
-      }
-    ],
-    "language_options": {
-      "choose": 1,
-      "type": "languages",
-      "from": [
-        {
-          "index": "dwarvish",
-          "name": "Dwarvish",
-          "url": "/api/languages/dwarvish"
-        },
-        {
-          "index": "elvish",
-          "name": "Elvish",
-          "url": "/api/languages/elvish"
-        },
-        {
-          "index": "giant",
-          "name": "Giant",
-          "url": "/api/languages/giant"
-        },
-        {
-          "index": "gnomish",
-          "name": "Gnomish",
-          "url": "/api/languages/gnomish"
-        },
-        {
-          "index": "goblin",
-          "name": "Goblin",
-          "url": "/api/languages/goblin"
-        },
-        {
-          "index": "halfling",
-          "name": "Halfling",
-          "url": "/api/languages/halfling"
-        },
-        {
-          "index": "orc",
-          "name": "Orc",
-          "url": "/api/languages/orc"
-        },
-        {
-          "index": "abyssal",
-          "name": "Abyssal",
-          "url": "/api/languages/abyssal"
-        },
-        {
-          "index": "celestial",
-          "name": "Celestial",
-          "url": "/api/languages/celestial"
-        },
-        {
-          "index": "draconic",
-          "name": "Draconic",
-          "url": "/api/languages/draconic"
-        },
-        {
-          "index": "deep-speech",
-          "name": "Deep Speech",
-          "url": "/api/languages/deep-speech"
-        },
-        {
-          "index": "infernal",
-          "name": "Infernal",
-          "url": "/api/languages/infernal"
-        },
-        {
-          "index": "primordial",
-          "name": "Primordial",
-          "url": "/api/languages/primordial"
-        },
-        {
-          "index": "sylvan",
-          "name": "Sylvan",
-          "url": "/api/languages/sylvan"
-        },
-        {
-          "index": "undercommon",
-          "name": "Undercommon",
-          "url": "/api/languages/undercommon"
-        }
-      ]
-    },
-    "language_desc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.",
-    "traits": [],
-    "subraces": [],
-    "url": "/api/races/human"
-  },
-  {
-    "index": "dragonborn",
-    "name": "Dragonborn",
-    "speed": 30,
-    "ability_bonuses": [
-      {
-        "index": "str",
-        "name": "STR",
-        "bonus": 2,
-        "url": "/api/ability-scores/str"
-      },
-      {
-        "index": "cha",
-        "name": "CHA",
-        "bonus": 1,
-        "url": "/api/ability-scores/cha"
-      }
-    ],
-    "ability_bonus_options": {},
-    "alignment": " Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil. Most dragonborn are good, but those who side with evil can be terrible villains.",
-    "age": "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
-    "size": "Medium",
-    "size_description": "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
-    "starting_proficiencies": [],
-    "starting_proficiency_options": {},
-    "languages": [
-      {
-        "index": "common",
-        "name": "Common",
-        "url": "/api/languages/common"
-      },
-      {
-        "index": "draconic",
-        "name": "Draconic",
-        "url": "/api/languages/draconic"
-      }
-    ],
-    "language_options": {},
-    "language_desc": "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.",
-    "traits": [
-      {
-        "index": "draconic-ancestry",
-        "name": "Draconic Ancestry",
-        "url": "/api/traits/draconic-ancestry"
-      },
-      {
-        "index": "breath-weapon",
-        "name": "Breath Weapon",
-        "url": "/api/traits/breath-weapon"
-      },
-      {
-        "index": "damage-resistance",
-        "name": "Damage Resistance",
-        "url": "/api/traits/damage-resistance"
-      }
-    ],
-    "trait_options": {
-      "choose": 1,
-      "from": [
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Black)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Blue)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Brass)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Bronze)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Copper)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Gold)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Green)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Red)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (Silver)",
-          "url": "/api/traits/breath-weapon"
-        },
-        {
-          "index": "breath-weapon",
-          "name": "Breath Weapon (White)",
-          "url": "/api/traits/breath-weapon"
-        }
-      ],
-      "type": "trait"
-    },
-    "subraces": [],
-    "url": "/api/races/dragonborn"
-  },
-  {
     "index": "gnome",
     "name": "Gnome",
     "speed": 25,
+    "speed_desc": "Your base walking speed is 25 feet.",
     "ability_bonuses": [
       {
         "index": "int",
@@ -503,10 +309,11 @@
       }
     ],
     "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Intelligence score increases by 2.",
     "alignment": "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.",
     "age": " Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
     "size": "Small",
-    "size_description": "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.",
+    "size_desc": "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.",
     "starting_proficiencies": [],
     "starting_proficiency_options": {},
     "languages": [
@@ -549,6 +356,7 @@
     "index": "half-elf",
     "name": "Half-Elf",
     "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
     "ability_bonuses": [
       {
         "index": "cha",
@@ -593,10 +401,11 @@
         }
       ]
     },
+    "ability_bonus_desc": "Your Charisma score increases by 2, and two other ability scores of your choice increase by 1.",
     "alignment": "Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.",
     "age": "Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.",
     "size": "Medium",
-    "size_description": "Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.",
+    "size_desc": "Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.",
     "starting_proficiencies": [],
     "starting_proficiency_options": {},
     "languages": [
@@ -710,9 +519,71 @@
     "url": "/api/races/half-elf"
   },
   {
+    "index": "halfling",
+    "name": "Halfling",
+    "speed": 25,
+    "speed_desc": "Your base walking speed is 25 feet.",
+    "ability_bonuses": [
+      {
+        "index": "dex",
+        "name": "DEX",
+        "bonus": 2,
+        "url": "/api/ability-scores/dex"
+      }
+    ],
+    "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Dexterity score increases by 2.",
+    "age": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
+    "alignment": "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
+    "size": "Small",
+    "size_desc": "Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
+    "starting_proficiencies": [],
+    "starting_proficiency_options": {},
+    "languages": [
+      {
+        "index": "common",
+        "name": "Common",
+        "url": "/api/languages/common"
+      },
+      {
+        "index": "halfling",
+        "name": "Halfling",
+        "url": "/api/languages/halfling"
+      }
+    ],
+    "language_options": {},
+    "language_desc": "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.",
+    "traits": [
+      {
+        "index": "brave",
+        "name": "Brave",
+        "url": "/api/traits/brave"
+      },
+      {
+        "index": "halfling-nimbleness",
+        "name": "Halfling Nimbleness",
+        "url": "/api/traits/halfling-nimbleness"
+      },
+      {
+        "index": "lucky",
+        "name": "Lucky",
+        "url": "/api/traits/lucky"
+      }
+    ],
+    "subraces": [
+      {
+        "index": "lightfoot-halfling",
+        "name": "Lightfoot Halfling",
+        "url": "/api/subraces/lightfoot-halfling"
+      }
+    ],
+    "url": "/api/races/halfling"
+  },
+  {
     "index": "half-orc",
     "name": "Half-Orc",
     "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
     "ability_bonuses": [
       {
         "index": "str",
@@ -728,10 +599,11 @@
       }
     ],
     "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Strength score increases by 2, and your Constitution score increases by 1.",
     "alignment": " Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
     "age": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
     "size": "Medium",
-    "size_description": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.",
+    "size_desc": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.",
     "starting_proficiencies": [
       {
         "index": "skill-intimidation",
@@ -776,9 +648,154 @@
     "url": "/api/races/half-orc"
   },
   {
+    "index": "human",
+    "name": "Human",
+    "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
+    "ability_bonuses": [
+      {
+        "index": "str",
+        "name": "STR",
+        "bonus": 1,
+        "url": "/api/ability-scores/str"
+      },
+      {
+        "index": "dex",
+        "name": "DEX",
+        "bonus": 1,
+        "url": "/api/ability-scores/dex"
+      },
+      {
+        "index": "con",
+        "name": "CON",
+        "bonus": 1,
+        "url": "/api/ability-scores/con"
+      },
+      {
+        "index": "int",
+        "name": "INT",
+        "bonus": 1,
+        "url": "/api/ability-scores/int"
+      },
+      {
+        "index": "wis",
+        "name": "WIS",
+        "bonus": 1,
+        "url": "/api/ability-scores/wis"
+      },
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 1,
+        "url": "/api/ability-scores/cha"
+      }
+    ],
+    "ability_bonus_options": {},
+    "ability_bonus_desc": "Your ability scores each increase by 1.",
+    "age": "Humans reach adulthood in their late teens and live less than a century.",
+    "alignment": "Humans tend toward no particular alignment. The best and the worst are found among them.",
+    "size": "Medium",
+    "size_desc": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+    "starting_proficiencies": [],
+    "starting_proficiency_options": {},
+    "languages": [
+      {
+        "index": "common",
+        "name": "Common",
+        "url": "/api/languages/common"
+      }
+    ],
+    "language_options": {
+      "choose": 1,
+      "type": "languages",
+      "from": [
+        {
+          "index": "dwarvish",
+          "name": "Dwarvish",
+          "url": "/api/languages/dwarvish"
+        },
+        {
+          "index": "elvish",
+          "name": "Elvish",
+          "url": "/api/languages/elvish"
+        },
+        {
+          "index": "giant",
+          "name": "Giant",
+          "url": "/api/languages/giant"
+        },
+        {
+          "index": "gnomish",
+          "name": "Gnomish",
+          "url": "/api/languages/gnomish"
+        },
+        {
+          "index": "goblin",
+          "name": "Goblin",
+          "url": "/api/languages/goblin"
+        },
+        {
+          "index": "halfling",
+          "name": "Halfling",
+          "url": "/api/languages/halfling"
+        },
+        {
+          "index": "orc",
+          "name": "Orc",
+          "url": "/api/languages/orc"
+        },
+        {
+          "index": "abyssal",
+          "name": "Abyssal",
+          "url": "/api/languages/abyssal"
+        },
+        {
+          "index": "celestial",
+          "name": "Celestial",
+          "url": "/api/languages/celestial"
+        },
+        {
+          "index": "draconic",
+          "name": "Draconic",
+          "url": "/api/languages/draconic"
+        },
+        {
+          "index": "deep-speech",
+          "name": "Deep Speech",
+          "url": "/api/languages/deep-speech"
+        },
+        {
+          "index": "infernal",
+          "name": "Infernal",
+          "url": "/api/languages/infernal"
+        },
+        {
+          "index": "primordial",
+          "name": "Primordial",
+          "url": "/api/languages/primordial"
+        },
+        {
+          "index": "sylvan",
+          "name": "Sylvan",
+          "url": "/api/languages/sylvan"
+        },
+        {
+          "index": "undercommon",
+          "name": "Undercommon",
+          "url": "/api/languages/undercommon"
+        }
+      ]
+    },
+    "language_desc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.",
+    "traits": [],
+    "subraces": [],
+    "url": "/api/races/human"
+  },
+  {
     "index": "tiefling",
     "name": "Tiefling",
     "speed": 30,
+    "speed_desc": "Your base walking speed is 30 feet.",
     "ability_bonuses": [
       {
         "index": "int",
@@ -794,10 +811,11 @@
       }
     ],
     "ability_bonus_options": {},
+    "ability_bonus_desc": "Your Intelligence score increases by 1, and your Charisma score increases by 2.",
     "alignment": "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment.",
     "age": "Tieflings mature at the same rate as humans but live a few years longer.",
     "size": "Medium",
-    "size_description": "Tieflings are about the same size and build as humans. Your size is Medium.",
+    "size_desc": "Tieflings are about the same size and build as humans. Your size is Medium.",
     "starting_proficiencies": [],
     "starting_proficiency_options": {},
     "languages": [

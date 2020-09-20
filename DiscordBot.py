@@ -19,7 +19,6 @@ reference = ReferenceHandler(api)
 token = os.getenv("TOKEN")
 
 
-
 code_dictionary = {"h": 0,
                    "r": 1,
                    "pr": 2,
@@ -93,7 +92,6 @@ async def on_message(message):
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
             # Handles all errors
-            raise e
             await message.channel.send(str(e))
 
 
