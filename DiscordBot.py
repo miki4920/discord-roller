@@ -93,6 +93,7 @@ async def on_message(message):
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
             # Handles all errors
+            raise e
             await message.channel.send(str(e))
 
 

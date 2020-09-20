@@ -3,8 +3,10 @@ from os import path, mkdir
 import json
 
 
-def read_json(api, item):
-    data = json.loads(api + item)
+def read_json(api, item_type, item):
+    file_path = api + item_type + ".json"
+    data = json.load(file_path)
+    print(data[item])
     return data
 
 
