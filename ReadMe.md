@@ -9,6 +9,9 @@ To install the bot, just click: https://discord.com/oauth2/authorize?client_id=7
 Then select the server you want to use.
 Congratulations, you are ready to go!
 
+## Terms Used
+* DM - A person with one of the following ranks: "DM", "GM", "Game Master", "Dungeon Master".
+
 ## How to Use
 Each command starts with the "!" prefix.
 Dice Commands (All dice in format xdy):

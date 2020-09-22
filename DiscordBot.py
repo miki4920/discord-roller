@@ -21,12 +21,11 @@ test_server_id = 740700782323826799
 
 code_dictionary = {("help", "h"): 0,
                    ("roll", "r"): 1,
-                   ("proll", "pr"): 2,
-                   ("gmroll", "gr"): 3,
-                   ("wild", "w"): 4,
-                   ("spell", "s"): 5,
-                   ("monster", "m"): 6,
-                   ("race", "r"): 7}
+                   ("gmroll", "gr"): 2,
+                   ("wild", "w"): 3,
+                   ("spell", "s"): 4,
+                   ("monster", "m"): 5,
+                   ("race", "r"): 6}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -76,11 +75,8 @@ async def on_message(message):
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
-                # Private Roll, sends the message to author
-                elif message_code == 2:
-                    await message.author.send(result_message)
                 # DM roll, sends the message to someone with "DM" role
-                elif message_code == 3:
+                elif message_code == 2:
                     server_members = message.guild.members
                     for member in server_members:
                         for role in member.roles:
@@ -94,17 +90,17 @@ async def on_message(message):
                     else:
                         # If no DM in the server, sends an error message
                         raise NoDungeonMaster()
-            if message_code == 4:
+            if message_code == 3:
                 result_roll = roller.roll_dice("1d100")[0]
                 result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
-            if message_code in [5, 6, 7]:
+            if message_code in [4, 5, 6]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
-            # Handles all errors    
+            # Handles all errors
             await message.channel.send(str(e))
 
 
