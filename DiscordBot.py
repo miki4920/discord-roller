@@ -104,7 +104,7 @@ async def on_message(message):
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
-            # Handles all errors
+            # Handles all errors    
             await message.channel.send(str(e))
 
 

@@ -11,15 +11,15 @@ Congratulations, you are ready to go!
 
 ## How to Use
 Each command starts with the "!" prefix.
-Bot uses dice in format XdY where X is a number of dice you want to roll, and Y is a die. For example, 3d6 means 3 six-sided dice.
-At the current moment, bot is able to conduct following commands:
-* r - Standard Roll. Rolls Dice and sends a message to the current Channel.
-* pr - Private Roll. Rolls Dice and sends a message to the author of the command.
-* gr - Game Master Roll. Rolls Dice and sends a message to the Game Master (A person with "DM" role).
-* h - Returns a Link to this ReadMe.
-* w - Rolls a random wild magic effect.
-* dt - Used for scheduling.
-
+Dice Commands (All dice in format xdy):
+* !roll|r [ROLL] - Rolls Dice in xdy format and sends to the server
+* !gmroll|r [ROLL] - Same as the previous one, but sends to the roll to the DM and person who sent it.
+Wild Magic:
+* !w - Rolls a random wild magic effect.
+Reference:
+* !spell|s [SPELL_NAME] - Sends a spell card to the server chat.
+* !monster|m [MONSTER_NAME] - Sends a monster card to the server chat.
+* !race|r [RACE_NAME] - sends a race card to the server chat.
 
 ## Mathematical Operations
 You can do math-only rolls by adding a math expression after the roll command.
