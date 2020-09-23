@@ -25,7 +25,6 @@ def get_subraces(race_json):
     return subraces
 
 
-
 def race_reference(race_json):
     messages = []
     name = race_json.get("name") + "\n"

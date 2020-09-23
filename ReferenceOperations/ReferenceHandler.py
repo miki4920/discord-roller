@@ -12,7 +12,8 @@ class ReferenceHandler(object):
         self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
         self.abbreviations_dictionary = {"s": "spell",
                                          "m": "monster",
-                                         "r": "race"}
+                                         "r": "race",
+                                         "c": "class"}
         self.item_list_dictionary = {"spell": (self.spell_list, spell_reference, 0.3),
                                      "monster": (self.monster_list, monster_reference, 0.3),
                                      "race": (self.race_list, race_reference, 0.7)}

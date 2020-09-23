@@ -25,9 +25,11 @@ code_dictionary = {("help", "h"): 0,
                    ("wild", "w"): 3,
                    ("spell", "s"): 4,
                    ("monster", "m"): 5,
-                   ("race", "r"): 6}
+                   ("race", "r"): 6,
+                   ("class", "c"): 7}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
+
 
 @client.event
 async def on_ready():
