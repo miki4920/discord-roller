@@ -3426,22 +3426,7 @@
         "index": "ki",
         "name": "Ki",
         "url": "/api/features/ki"
-      },
-      {
-        "index": "flurry-of-blows",
-        "name": "Flurry of Blows",
-        "url": "/api/features/flurry-of-blows"
-      },
-      {
-        "index": "patient-defense",
-        "name": "Patient Defense",
-        "url": "/api/features/patient-defense"
-      },
-      {
-        "index": "step-of-the-wind",
-        "name": "Step of the Wind",
-        "url": "/api/features/step-of-the-wind"
-      },
+      },	
       {
         "index": "unarmored-movement-1",
         "name": "Unarmored Movement 1",
@@ -4107,16 +4092,6 @@
         "index": "sacred-oath",
         "name": "Sacred Oath",
         "url": "/api/features/sacred-oath"
-      },
-      {
-        "index": "oath-spells",
-        "name": "Oath Spells",
-        "url": "/api/features/oath-spells"
-      },
-      {
-        "index": "channel-divinity",
-        "name": "Channel Divinity",
-        "url": "/api/features/channel-divinity"
       }
     ],
     "spellcasting": {
@@ -5896,16 +5871,6 @@
         "index": "font-of-magic",
         "name": "Font of Magic",
         "url": "/api/features/font-of-magic"
-      },
-      {
-        "index": "flexible-casting-creating-spell-slots",
-        "name": "Flexible Casting: Creating Spell Slots",
-        "url": "/api/features/flexible-casting-creating-spell-slots"
-      },
-      {
-        "index": "flexible-casting-converting-spell-slot",
-        "name": "Flexible Casting: Converting Spell Slot",
-        "url": "/api/features/flexible-casting-converting-spell-slot"
       }
     ],
     "spellcasting": {

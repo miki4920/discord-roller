@@ -3,6 +3,7 @@ from Levenshtein import distance
 from ReferenceOperations.SpellReference import spell_reference
 from ReferenceOperations.MonsterReference import monster_reference
 from ReferenceOperations.RaceReference import race_reference
+from ReferenceOperations.ClassReference import class_reference
 
 
 class ReferenceHandler(object):
@@ -10,13 +11,15 @@ class ReferenceHandler(object):
         self.spell_list = "FileStorage/ReferenceLists/SpellList.pickle"
         self.monster_list = "FileStorage/ReferenceLists/MonsterList.pickle"
         self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
+        self.class_list = "FileStorage/ReferenceLists/ClassList.pickle"
         self.abbreviations_dictionary = {"s": "spell",
                                          "m": "monster",
                                          "r": "race",
                                          "c": "class"}
         self.item_list_dictionary = {"spell": (self.spell_list, spell_reference, 0.3),
                                      "monster": (self.monster_list, monster_reference, 0.3),
-                                     "race": (self.race_list, race_reference, 0.7)}
+                                     "race": (self.race_list, race_reference, 0.7),
+                                     "class": (self.class_list, class_reference, 0.1)}
 
     @staticmethod
     def get_item_name(message, item_list, cutout_point):
@@ -27,7 +30,7 @@ class ReferenceHandler(object):
             if distance(item_name, item) / max(len(item_name),
                                                len(item)) < cutout_point or item_name in item or item in item_name:
                 return item
-        return False
+        return ""
 
     @staticmethod
     def get_item_index(item_name):

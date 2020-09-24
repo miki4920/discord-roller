@@ -96,13 +96,15 @@ async def on_message(message):
                 result_roll = roller.roll_dice("1d100")[0]
                 result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
-            if message_code in [4, 5, 6]:
+            if message_code in [4, 5, 6, 7]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
         except Exception as e:
             # Handles all errors
+            if test_mode:
+                raise e
             await message.channel.send(str(e))
 
 
