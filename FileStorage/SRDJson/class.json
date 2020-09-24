@@ -6,7 +6,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "animal-handling",
@@ -38,23 +38,28 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "medium-armor",
-        "name": "Medium armor"
+        "name": "Medium armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "martial-weapons",
-        "name": "Martial weapons"
+        "name": "Martial weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -81,7 +86,7 @@
     "proficiency_choices": [
       {
         "choose": 3,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "acrobatics",
@@ -159,47 +164,11 @@
       },
       {
         "choose": 3,
-        "type": "proficiencies",
+        "type": "tools",
         "from": [
           {
-            "index": "bagpipes",
-            "name": "Bagpipes"
-          },
-          {
-            "index": "drum",
-            "name": "Drum"
-          },
-          {
-            "index": "dulcimer",
-            "name": "Dulcimer"
-          },
-          {
-            "index": "flute",
-            "name": "Flute"
-          },
-          {
-            "index": "lute",
-            "name": "Lute"
-          },
-          {
-            "index": "lyre",
-            "name": "Lyre"
-          },
-          {
-            "index": "horn",
-            "name": "Horn"
-          },
-          {
-            "index": "pan-flute",
-            "name": "Pan flute"
-          },
-          {
-            "index": "shawm",
-            "name": "Shawm"
-          },
-          {
-            "index": "viol",
-            "name": "Viol"
+            "index": "musical-instruments",
+            "name": "Musical Instruments"
           }
         ]
       }
@@ -207,27 +176,33 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "longswords",
-        "name": "Longswords"
+        "name": "Longswords",
+        "type": "weapon"
       },
       {
         "index": "rapiers",
-        "name": "Rapiers"
+        "name": "Rapiers",
+        "type": "weapon"
       },
       {
         "index": "shortswords",
-        "name": "Shortswords"
+        "name": "Shortswords",
+        "type": "weapon"
       },
       {
         "index": "crossbows-hand",
-        "name": "Hand Crossbows"
+        "name": "Hand Crossbows",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -254,7 +229,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "history",
@@ -282,19 +257,23 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "medium-armor",
-        "name": "Medium armor"
+        "name": "Medium armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -321,7 +300,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "animal-handling",
@@ -361,55 +340,68 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "medium-armor",
-        "name": "Medium armor"
+        "name": "Medium armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "clubs",
-        "name": "Clubs"
+        "name": "Clubs",
+        "type": "weapon"
       },
       {
         "index": "daggers",
-        "name": "Daggers"
+        "name": "Daggers",
+        "type": "weapon"
       },
       {
         "index": "javelins",
-        "name": "Javelins"
+        "name": "Javelins",
+        "type": "weapon"
       },
       {
         "index": "maces",
-        "name": "Maces"
+        "name": "Maces",
+        "type": "weapon"
       },
       {
         "index": "quarterstaffs",
-        "name": "Quarterstaffs"
+        "name": "Quarterstaffs",
+        "type": "weapon"
       },
       {
         "index": "sickles",
-        "name": "Sickles"
+        "name": "Sickles",
+        "type": "weapon"
       },
       {
         "index": "spears",
-        "name": "Spears"
+        "name": "Spears",
+        "type": "weapon"
       },
       {
         "index": "darts",
-        "name": "Darts"
+        "name": "Darts",
+        "type": "weapon"
       },
       {
         "index": "slings",
-        "name": "Slings"
+        "name": "Slings",
+        "type": "weapon"
       },
       {
         "index": "scimitars",
-        "name": "Scimitars"
+        "name": "Scimitars",
+        "type": "weapon"
       },
       {
         "index": "herbalism-kit",
@@ -426,16 +418,12 @@
         "name": "WIS"
       }
     ],
-    "starting_equipment": "/api/starting-equipment/druid",
-    "class_levels": "/api/classes/druid/levels",
     "subclasses": [
       {
         "index": "land",
         "name": "Land"
       }
-    ],
-    "spellcasting": "/api/spellcasting/druid",
-    "spells": "/api/classes/druid/spells"
+    ]
   },
   {
     "index": "fighter",
@@ -444,7 +432,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "acrobatics",
@@ -484,19 +472,23 @@
     "proficiencies": [
       {
         "index": "all-armor",
-        "name": "All armor"
+        "name": "All armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "martial-weapons",
-        "name": "Martial weapons"
+        "name": "Martial weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -509,8 +501,6 @@
         "name": "CON"
       }
     ],
-    "starting_equipment": "/api/starting-equipment/fighter",
-    "class_levels": "/api/classes/fighter/levels",
     "subclasses": [
       {
         "index": "champion",
@@ -525,63 +515,21 @@
     "proficiency_choices": [
       {
         "choose": 1,
-        "type": "proficiencies",
+        "type": "tools",
         "from": [
           {
-            "index": "all-tools-instruments",
-            "name": "Choose one type of artisan’s tools or one musical instrument"
-          }
-        ]
-      },
-      {
-        "choose": 1,
-        "type": "proficiencies",
-        "from": [
-          {
-            "index": "bagpipes",
-            "name": "Bagpipes"
+            "index": "tools",
+            "name": "Tools"
           },
           {
-            "index": "drum",
-            "name": "Drum"
-          },
-          {
-            "index": "dulcimer",
-            "name": "Dulcimer"
-          },
-          {
-            "index": "flute",
-            "name": "Flute"
-          },
-          {
-            "index": "lute",
-            "name": "Lute"
-          },
-          {
-            "index": "lyre",
-            "name": "Lyre"
-          },
-          {
-            "index": "horn",
-            "name": "Horn"
-          },
-          {
-            "index": "pan-flute",
-            "name": "Pan flute"
-          },
-          {
-            "index": "shawm",
-            "name": "Shawm"
-          },
-          {
-            "index": "viol",
-            "name": "Viol"
+            "index": "musical-instruments",
+            "name": "Musical Instruments"
           }
         ]
       },
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "acrobatics",
@@ -613,11 +561,13 @@
     "proficiencies": [
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "shortswords",
-        "name": "Shortswords"
+        "name": "Shortswords",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -644,7 +594,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "athletics",
@@ -676,19 +626,23 @@
     "proficiencies": [
       {
         "index": "all-armor",
-        "name": "All armor"
+        "name": "All armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "martial-weapons",
-        "name": "Martial weapons"
+        "name": "Martial weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -715,7 +669,7 @@
     "proficiency_choices": [
       {
         "choose": 3,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "animal-handling",
@@ -755,23 +709,28 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "medium-armor",
-        "name": "Medium armor"
+        "name": "Medium armor",
+        "type": "armor"
       },
       {
         "index": "shields",
-        "name": "Shields"
+        "name": "Shields",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "martial-weapons",
-        "name": "Martial weapons"
+        "name": "Martial weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -798,7 +757,7 @@
     "proficiency_choices": [
       {
         "choose": 4,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "acrobatics",
@@ -850,31 +809,38 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       },
       {
         "index": "longswords",
-        "name": "Longswords"
+        "name": "Longswords",
+        "type": "weapon"
       },
       {
         "index": "rapiers",
-        "name": "Rapiers"
+        "name": "Rapiers",
+        "type": "weapon"
       },
       {
         "index": "shortswords",
-        "name": "Shortswords"
+        "name": "Shortswords",
+        "type": "weapon"
       },
       {
         "index": "crossbows-hand",
-        "name": "Hand Crossbows"
+        "name": "Hand Crossbows",
+        "type": "weapon"
       },
       {
         "index": "thieves-tools",
-        "name": "Thieves' Tools"
+        "name": "Thieves' Tools",
+        "type": "tool"
       }
     ],
     "saving_throws": [
@@ -887,8 +853,6 @@
         "name": "INT"
       }
     ],
-    "starting_equipment": "/api/starting-equipment/rogue",
-    "class_levels": "/api/classes/rogue/levels",
     "subclasses": [
       {
         "index": "thief",
@@ -903,7 +867,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "arcana",
@@ -935,19 +899,23 @@
     "proficiencies": [
       {
         "index": "daggers",
-        "name": "Daggers"
+        "name": "Daggers",
+        "type": "weapon"
       },
       {
         "index": "quarterstaffs",
-        "name": "Quarterstaffs"
+        "name": "Quarterstaffs",
+        "type": "weapon"
       },
       {
         "index": "darts",
-        "name": "Darts"
+        "name": "Darts",
+        "type": "weapon"
       },
       {
         "index": "slings",
-        "name": "Slings"
+        "name": "Slings",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
@@ -974,7 +942,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "arcana",
@@ -1010,7 +978,8 @@
     "proficiencies": [
       {
         "index": "light-armor",
-        "name": "Light armor"
+        "name": "Light armor",
+        "type": "armor"
       },
       {
         "index": "simple-weapons",
@@ -1027,8 +996,6 @@
         "name": "CHA"
       }
     ],
-    "starting_equipment": "/api/starting-equipment/warlock",
-    "class_levels": "/api/classes/warlock/levels",
     "subclasses": [
       {
         "index": "fiend",
@@ -1043,7 +1010,7 @@
     "proficiency_choices": [
       {
         "choose": 2,
-        "type": "proficiencies",
+        "type": "skills",
         "from": [
           {
             "index": "arcana",
@@ -1075,19 +1042,23 @@
     "proficiencies": [
       {
         "index": "daggers",
-        "name": "Daggers"
+        "name": "Daggers",
+        "type": "weapon"
       },
       {
         "index": "quarterstaffs",
-        "name": "Quarterstaffs"
+        "name": "Quarterstaffs",
+        "type": "weapon"
       },
       {
         "index": "darts",
-        "name": "Darts"
+        "name": "Darts",
+        "type": "weapon"
       },
       {
         "index": "slings",
-        "name": "Slings"
+        "name": "Slings",
+        "type": "weapon"
       }
     ],
     "saving_throws": [

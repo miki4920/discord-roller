@@ -31,27 +31,63 @@ def get_hit_points(class_json):
     return hit_point_block + "\n"
 
 
-def get_martial_proficiencies(proficiencies):
-    armor = []
-    weapons = []
-    for proficiency in proficiencies:
-        if "armor" in proficiency["index"] or proficiency["index"] == "shields":
-            armor.append(proficiency["name"])
-        else:
-            weapons.append(proficiency["name"])
+def get_proficiencies(class_json, proficiency_type):
+    proficiencies = ""
+    for proficiency in class_json.get("proficiencies"):
+        if proficiency["type"] == proficiency_type:
+            proficiencies += proficiency["name"] + ", "
+    return proficiencies
+
+
+def get_proficiency_choices(class_json, proficiency_type):
+    proficiency_choice = class_json.get("proficiency_choices")
+    proficiencies = ""
+    for proficiency_from in proficiency_choice:
+        if proficiency_from["type"] == proficiency_type:
+            proficiencies = f"Choose {proficiency_from['choose']} from: "
+            for proficiency in proficiency_from["from"]:
+                proficiencies += proficiency["name"] + ", "
+    return proficiencies
+
+
+def get_armor(armor):
     if not armor:
-        armor.append("None")
-    armor = ", ".join(armor)
-    weapons = ", ".join(weapons)
-    return armor + "\n", weapons + "\n"
+        armor = "None"
+    return armor
 
 
-def get_proficiencies(class_json):
-    proficiencies = class_json.get("proficiencies")
-    armor, weapons = get_martial_proficiencies(proficiencies)
-    proficiencies_block = f"\n**Armor: **{armor}" \
-                          f"**Weapons: **{weapons}"
-    return proficiencies_block
+def get_tools(tools):
+    if not tools:
+        tools = "None"
+    return tools
+
+
+def get_saving_throws(class_json):
+    saving_throw_names = ""
+    saving_throws = class_json.get("saving_throws")
+    for saving_throw in saving_throws:
+        saving_throw_names += saving_throw["name"] + ", "
+    return saving_throw_names
+
+
+def get_proficiencies_block(class_json):
+    proficiencies = {"armor": "", "weapon": "", "tool": ""}
+    proficiencies_choices = {"skills": "", "tools": ""}
+    for proficiency in proficiencies:
+        proficiencies[proficiency] = get_proficiencies(class_json, proficiency)
+    for proficiency in proficiencies_choices:
+        proficiencies_choices[proficiency] = get_proficiency_choices(class_json, proficiency)
+    armor = get_armor(proficiencies["armor"]) + "\n"
+    weapons = proficiencies["weapon"] + "\n"
+    tools = get_tools(proficiencies["tool"] + proficiencies_choices["tools"]) + "\n"
+    saving_throws = get_saving_throws(class_json) + "\n"
+    skills = proficiencies_choices["skills"] + "\n"
+    proficiency_block = f"**Armor: ** {armor}" \
+                        f"**Weapons: ** {weapons}" \
+                        f"**Tools: ** {tools}" \
+                        f"**Saving Throws: ** {saving_throws}" \
+                        f"**Skills: ** {skills}"
+    return proficiency_block
 
 
 def class_reference(class_json):
@@ -59,7 +95,7 @@ def class_reference(class_json):
     name = class_json.get("name")
     levels = get_formatted_level_features(class_json)
     hit_points = get_hit_points(class_json)
-    proficiencies = get_proficiencies(class_json)
+    proficiencies = get_proficiencies_block(class_json)
     class_block = f"{levels}" \
                   f"**Hit Points** {hit_points}" \
                   f"**Proficiencies** {proficiencies}"
