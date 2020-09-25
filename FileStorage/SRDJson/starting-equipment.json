@@ -3,24 +3,15 @@
     "index": "barbarian",
     "class": {
       "index": "barbarian",
-      "name": "Barbarian",
-      "url": "/api/classes/barbarian"
+      "name": "Barbarian"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "explorers-pack",
-          "name": "Explorer's Pack",
-          "url": "/api/equipment/explorers-pack"
-        },
+        "name": "Explorer's Pack",
         "quantity": 1
       },
       {
-        "equipment": {
-          "index": "javelin",
-          "name": "Javelin",
-          "url": "/api/equipment/javelin"
-        },
+        "name": "Javelin",
         "quantity": 4
       }
     ],
@@ -30,11 +21,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "greataxe",
-              "name": "Greataxe",
-              "url": "/api/equipment/greataxe"
-            },
+            "name": "Greataxe",
             "quantity": 1
           },
           {
@@ -44,8 +31,7 @@
               "from": {
                 "equipment_category": {
                   "index": "martial-melee-weapons",
-                  "name": "Martial Melee Weapons",
-                  "url": "/api/equipment-categories/martial-melee-weapons"
+                  "name": "Martial Melee Weapons"
                 }
               }
             }
@@ -57,11 +43,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "handaxe",
-              "name": "Handaxe",
-              "url": "/api/equipment/handaxe"
-            },
+            "name": "Handaxe",
             "quantity": 2
           },
           {
@@ -71,39 +53,28 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/barbarian"
+    ]
   },
   {
     "index": "bard",
     "class": {
       "index": "bard",
-      "name": "Bard",
-      "url": "/api/classes/bard"
+      "name": "Bard"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "leather",
-          "name": "Leather",
-          "url": "/api/equipment/leather"
-        },
+        "name": "Leather Armor",
         "quantity": 1
       },
       {
-        "equipment": {
-          "index": "dagger",
-          "name": "Dagger",
-          "url": "/api/equipment/dagger"
-        },
+        "name": "dagger",
         "quantity": 1
       }
     ],
@@ -113,19 +84,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "rapier",
-              "name": "Rapier",
-              "url": "/api/equipment/rapier"
-            },
+            "name": "Rapier",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "longsword",
-              "name": "Longsword",
-              "url": "/api/equipment/longsword"
-            },
+            "name": "Longsword",
             "quantity": 1
           },
           {
@@ -135,8 +98,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -148,19 +110,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "diplomats-pack",
-              "name": "Diplomat's Pack",
-              "url": "/api/equipment/diplomats-pack"
-            },
+            "name": "Diplomat's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "entertainers-pack",
-              "name": "Entertainer's Pack",
-              "url": "/api/equipment/entertainers-pack"
-            },
+            "name": "Entertainer's Pack",
             "quantity": 1
           }
         ]
@@ -170,11 +124,8 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "lute",
-              "name": "Lute",
-              "url": "/api/equipment/lute"
-            }
+            "name": "Lute",
+            "quantity": 1
           },
           {
             "equipment_option": {
@@ -183,31 +134,24 @@
               "from": {
                 "equipment_category": {
                   "index": "musical-instruments",
-                  "name": "Musical Instruments",
-                  "url": "/api/equipment-categories/musical-instruments"
+                  "name": "Musical Instruments"
                 }
               }
             }
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/bard"
+    ]
   },
   {
     "index": "cleric",
     "class": {
       "index": "cleric",
-      "name": "Cleric",
-      "url": "/api/classes/cleric"
+      "name": "Cleric"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "shield",
-          "name": "Shield",
-          "url": "/api/equipment/shield"
-        },
+        "name": "Shield",
         "quantity": 1
       }
     ],
@@ -217,30 +161,12 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "mace",
-              "name": "Mace",
-              "url": "/api/equipment/mace"
-            },
+            "name": "Mace",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "warhammer",
-              "name": "Warhammer",
-              "url": "/api/equipment/warhammer"
-            },
-            "quantity": 1,
-            "prerequisites": [
-              {
-                "type": "proficiency",
-                "proficiency": {
-                  "index": "warhammers",
-                  "name": "Warhammers",
-                  "url": "/api/proficiencies/warhammers"
-                }
-              }
-            ]
+            "name": "Warhammer",
+            "quantity": 1
           }
         ]
       },
@@ -249,38 +175,16 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "scale-mail",
-              "name": "Scale Mail",
-              "url": "/api/equipment/scale-mail"
-            },
+            "name": "Scale Mail",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "leather",
-              "name": "Leather",
-              "url": "/api/equipment/leather"
-            },
+            "name": "Leather Armor",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "chain-mail",
-              "name": "Chain Mail",
-              "url": "/api/equipment/chain-mail"
-            },
-            "quantity": 1,
-            "prerequisites": [
-              {
-                "type": "proficiency",
-                "proficiency": {
-                  "index": "chain-mail",
-                  "name": "Chain Mail",
-                  "url": "/api/proficiencies/chain-mail"
-                }
-              }
-            ]
+            "name": "Chain Mail",
+            "quantity": 1
           }
         ]
       },
@@ -290,19 +194,11 @@
         "from": [
           [
             {
-              "equipment": {
-                "index": "crossbow-light",
-                "name": "Crossbow, light",
-                "url": "/api/equipment/crossbow-light"
-              },
+              "name": "Light Crossbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "crossbow-bolt",
-                "name": "Crossbow bolt",
-                "url": "/api/equipment/crossbow-bolt"
-              },
+              "name": "Crossbow bolt",
               "quantity": 20
             }
           ],
@@ -313,8 +209,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -326,19 +221,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "priests-pack",
-              "name": "Priest's Pack",
-              "url": "/api/equipment/priests-pack"
-            },
+            "name": "Priest's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
@@ -349,36 +236,25 @@
         "from": {
           "equipment_category": {
             "index": "holy-symbols",
-            "name": "Holy Symbols",
-            "url": "/api/equipment-categories/holy-symbols"
+            "name": "Holy Symbols"
           }
         }
       }
-    ],
-    "url": "/api/starting-equipment/cleric"
+    ]
   },
   {
     "index": "druid",
     "class": {
       "index": "druid",
-      "name": "Druid",
-      "url": "/api/classes/druid"
+      "name": "Druid"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "leather",
-          "name": "Leather",
-          "url": "/api/equipment/leather"
-        },
+        "name": "Leather Armor",
         "quantity": 1
       },
       {
-        "equipment": {
-          "index": "explorers-pack",
-          "name": "Explorer's Pack",
-          "url": "/api/equipment/explorers-pack"
-        },
+        "name": "Explorer's Pack",
         "quantity": 1
       }
     ],
@@ -388,11 +264,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "shield",
-              "name": "Shield",
-              "url": "/api/equipment/shield"
-            },
+            "name": "Shield",
             "quantity": 1
           },
           {
@@ -402,8 +274,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -415,11 +286,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "scimitar",
-              "name": "Scimitar",
-              "url": "/api/equipment/scimitar"
-            },
+            "name": "Scimitar",
             "quantity": 1
           },
           {
@@ -429,8 +296,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -443,20 +309,17 @@
         "from": {
           "equipment_category": {
             "index": "druidic-foci",
-            "name": "Druidic Foci",
-            "url": "/api/equipment-categories/druidic-foci"
+            "name": "Druidic Foci"
           }
         }
       }
-    ],
-    "url": "/api/starting-equipment/druid"
+    ]
   },
   {
     "index": "fighter",
     "class": {
       "index": "fighter",
-      "name": "Fighter",
-      "url": "/api/classes/fighter"
+      "name": "Fighter"
     },
     "starting_equipment": [],
     "starting_equipment_options": [
@@ -465,36 +328,20 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "chain-mail",
-              "name": "Chain Mail",
-              "url": "/api/equipment/chain-mail"
-            },
+            "name": "Chain Mail",
             "quantity": 1
           },
           [
             {
-              "equipment": {
-                "index": "leather",
-                "name": "Leather",
-                "url": "/api/equipment/leather"
-              },
+              "name": "Leather",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "longbow",
-                "name": "Longbow",
-                "url": "/api/equipment/longbow"
-              },
+              "name": "Longbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "arrow",
-                "name": "Arrow",
-                "url": "/api/equipment/arrow"
-              },
+              "name": "Arrow",
               "quantity": 20
             }
           ]
@@ -506,11 +353,7 @@
         "from": [
           [
             {
-              "equipment": {
-                "index": "shield",
-                "name": "Shield",
-                "url": "/api/equipment/shield"
-              },
+              "name": "Shield",
               "quantity": 1
             },
             {
@@ -520,8 +363,7 @@
                 "from": {
                   "equipment_category": {
                     "index": "martial-weapons",
-                    "name": "Martial Weapons",
-                    "url": "/api/equipment-categories/martial-weapons"
+                    "name": "Martial Weapons"
                   }
                 }
               }
@@ -534,8 +376,7 @@
               "from": {
                 "equipment_category": {
                   "index": "martial-weapons",
-                  "name": "Martial Weapons",
-                  "url": "/api/equipment-categories/martial-weapons"
+                  "name": "Martial Weapons"
                 }
               }
             }
@@ -547,28 +388,16 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "handaxe",
-              "name": "Handaxe",
-              "url": "/api/equipment/handaxe"
-            },
+            "name": "Handaxe",
             "quantity": 2
           },
           [
             {
-              "equipment": {
-                "index": "crossbow-light",
-                "name": "Crossbow, light",
-                "url": "/api/equipment/crossbow-light"
-              },
+              "name": "Light Crossbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "crossbow-bolt",
-                "name": "Crossbow bolt",
-                "url": "/api/equipment/crossbow-bolt"
-              },
+              "name": "Crossbow Bolt",
               "quantity": 20
             }
           ]
@@ -579,40 +408,26 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/fighter"
+    ]
   },
   {
     "index": "monk",
     "class": {
       "index": "monk",
-      "name": "Monk",
-      "url": "/api/classes/monk"
+      "name": "Monk"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "dart",
-          "name": "Dart",
-          "url": "/api/equipment/dart"
-        },
+        "name": "Dart",
         "quantity": 10
       }
     ],
@@ -622,11 +437,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "shortsword",
-              "name": "Shortsword",
-              "url": "/api/equipment/shortsword"
-            },
+            "name": "Shortsword",
             "quantity": 1
           },
           {
@@ -636,8 +447,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -649,40 +459,26 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/monk"
+    ]
   },
   {
     "index": "paladin",
     "class": {
       "index": "paladin",
-      "name": "Paladin",
-      "url": "/api/classes/paladin"
+      "name": "Paladin"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "chain-mail",
-          "name": "Chain Mail",
-          "url": "/api/equipment/chain-mail"
-        },
+        "name": "Chain Mail",
         "quantity": 1
       }
     ],
@@ -693,11 +489,7 @@
         "from": [
           [
             {
-              "equipment": {
-                "index": "shield",
-                "name": "Shield",
-                "url": "/api/equipment/shield"
-              },
+              "name": "Shield",
               "quantity": 1
             },
             {
@@ -707,8 +499,7 @@
                 "from": {
                   "equipment_category": {
                     "name": "Martial Weapons",
-                    "index": "martial-weapons",
-                    "url": "/api/equipment-categories/martial-weapons"
+                    "index": "martial-weapons"
                   }
                 }
               }
@@ -721,8 +512,7 @@
               "from": {
                 "equipment_category": {
                   "index": "martial-weapons",
-                  "name": "Martial Weapons",
-                  "url": "/api/equipment-categories/martial-weapons"
+                  "name": "Martial Weapons"
                 }
               }
             }
@@ -734,11 +524,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "javelin",
-              "name": "Javelin",
-              "url": "/api/equipment/javelin"
-            },
+            "name": "Javelin",
             "quantity": 5
           },
           {
@@ -746,9 +532,10 @@
               "choose": 1,
               "type": "equipment",
               "from": {
-                "index": "simple-weapons",
-                "name": "Simple Weapons",
-                "url": "/api/equipment-categories/simple-weapons"
+                "equipment_category": {
+                  "index": "simple-weapons",
+                  "name": "Simple Weapons"
+                }
               }
             }
           }
@@ -759,19 +546,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "priests-pack",
-              "name": "Priest's Pack",
-              "url": "/api/equipment/priests-pack"
-            },
+            "name": "Priest's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
@@ -782,36 +561,25 @@
         "from": {
           "equipment_category": {
             "index": "holy-symbols",
-            "name": "Holy Symbols",
-            "url": "/api/equipment-categories/holy-symbols"
+            "name": "Holy Symbols"
           }
         }
       }
-    ],
-    "url": "/api/starting-equipment/paladin"
+    ]
   },
   {
     "index": "ranger",
     "class": {
       "index": "ranger",
-      "name": "Ranger",
-      "url": "/api/classes/ranger"
+      "name": "Ranger"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "longbow",
-          "name": "Longbow",
-          "url": "/api/equipment/longbow"
-        },
+        "name": "Longbow",
         "quantity": 1
       },
       {
-        "equipment": {
-          "index": "arrow",
-          "name": "Arrow",
-          "url": "/api/equipment/arrow"
-        },
+        "name": "Arrow",
         "quantity": 20
       }
     ],
@@ -821,19 +589,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "scale-mail",
-              "name": "Scale Mail",
-              "url": "/api/equipment/scale-mail"
-            },
+            "name": "Scale Mail",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "leather",
-              "name": "Leather",
-              "url": "/api/equipment/leather"
-            },
+            "name": "Leather Armor",
             "quantity": 1
           }
         ]
@@ -843,11 +603,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "shortsword",
-              "name": "Shortsword",
-              "url": "/api/equipment/shortsword"
-            },
+            "name": "Shortsword",
             "quantity": 2
           },
           {
@@ -857,8 +613,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-melee-weapons",
-                  "name": "Simple Melee Weapons",
-                  "url": "/api/equipment-categories/simple-melee-weapons"
+                  "name": "Simple Melee Weapons"
                 }
               }
             }
@@ -870,56 +625,34 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/ranger"
+    ]
   },
   {
     "index": "rogue",
     "class": {
       "index": "rogue",
-      "name": "Rogue",
-      "url": "/api/classes/rogue"
+      "name": "Rogue"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "leather",
-          "name": "Leather",
-          "url": "/api/equipment/leather"
-        },
+        "name": "Leather Armor",
         "quantity": 1
       },
       {
-        "equipment": {
-          "index": "dagger",
-          "name": "Dagger",
-          "url": "/api/equipment/dagger"
-        },
+        "name": "Dagger",
         "quantity": 2
       },
       {
-        "equipment": {
-          "index": "thieves-tools",
-          "name": "Thieves' tools",
-          "url": "/api/equipment/thieves-tools"
-        },
+        "name": "Thieves' tools",
         "quantity": 1
       }
     ],
@@ -929,19 +662,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "rapier",
-              "name": "Rapier",
-              "url": "/api/equipment/rapier"
-            },
+            "name": "Rapier",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "shortsword",
-              "name": "Shortsword",
-              "url": "/api/equipment/shortsword"
-            },
+            "name": "Shortsword",
             "quantity": 1
           }
         ]
@@ -951,28 +676,16 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "shortsword",
-              "name": "Shortsword",
-              "url": "/api/equipment/shortsword"
-            },
+            "name": "Shortsword",
             "quantity": 1
           },
           [
             {
-              "equipment": {
-                "index": "shortbow",
-                "name": "Shortbow",
-                "url": "/api/equipment/shortbow"
-              },
+              "name": "Shortbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "arrow",
-                "name": "Arrow",
-                "url": "/api/equipment/arrow"
-              },
+              "name": "Arrow",
               "quantity": 20
             }
           ]
@@ -983,48 +696,30 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "burglars-pack",
-              "name": "Burglar's Pack",
-              "url": "/api/equipment/burglars-pack"
-            },
+            "name": "Burglar's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/rogue"
+    ]
   },
   {
     "index": "sorcerer",
     "class": {
       "index": "sorcerer",
-      "name": "Sorcerer",
-      "url": "/api/classes/sorcerer"
+      "name": "Sorcerer"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "dagger",
-          "name": "Dagger",
-          "url": "/api/equipment/dagger"
-        },
+        "name": "Dagger",
         "quantity": 2
       }
     ],
@@ -1035,19 +730,11 @@
         "from": [
           [
             {
-              "equipment": {
-                "index": "crossbow-light",
-                "name": "Crossbow, light",
-                "url": "/api/equipment/crossbow-light"
-              },
+              "name": "Light Crossbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "crossbow-bolt",
-                "name": "Crossbow bolt",
-                "url": "/api/equipment/crossbow-bolt"
-              },
+              "name": "Crossbow bolt",
               "quantity": 20
             }
           ],
@@ -1058,8 +745,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -1071,11 +757,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "component-pouch",
-              "name": "Component pouch",
-              "url": "/api/equipment/component-pouch"
-            },
+            "name": "Component pouch",
             "quantity": 1
           },
           {
@@ -1085,8 +767,7 @@
               "from": {
                 "equipment_category": {
                   "index": "arcane-foci",
-                  "name": "Arcane Foci",
-                  "url": "/api/equipment-categories/arcane-foci"
+                  "name": "Arcane Foci"
                 }
               }
             }
@@ -1098,48 +779,30 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "explorers-pack",
-              "name": "Explorer's Pack",
-              "url": "/api/equipment/explorers-pack"
-            },
+            "name": "Explorer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/sorcerer"
+    ]
   },
   {
     "index": "warlock",
     "class": {
       "index": "warlock",
-      "name": "Warlock",
-      "url": "/api/classes/warlock"
+      "name": "Warlock"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "dagger",
-          "name": "Dagger",
-          "url": "/api/equipment/dagger"
-        },
+        "name": "Dagger",
         "quantity": 2
       },
       {
-        "equipment": {
-          "index": "leather",
-          "name": "Leather",
-          "url": "/api/equipment/leather"
-        },
+        "name": "Leather Armor",
         "quantity": 1
       }
     ],
@@ -1150,19 +813,11 @@
         "from": [
           [
             {
-              "equipment": {
-                "index": "crossbow-light",
-                "name": "Crossbow, light",
-                "url": "/api/equipment/crossbow-light"
-              },
+              "name": "Light Crossbow",
               "quantity": 1
             },
             {
-              "equipment": {
-                "index": "crossbow-bolt",
-                "name": "Crossbow bolt",
-                "url": "/api/equipment/crossbow-bolt"
-              },
+              "name": "Crossbow bolt",
               "quantity": 20
             }
           ],
@@ -1173,8 +828,7 @@
               "from": {
                 "equipment_category": {
                   "index": "simple-weapons",
-                  "name": "Simple Weapons",
-                  "url": "/api/equipment-categories/simple-weapons"
+                  "name": "Simple Weapons"
                 }
               }
             }
@@ -1186,11 +840,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "component-pouch",
-              "name": "Component pouch",
-              "url": "/api/equipment/component-pouch"
-            },
+            "name": "Component pouch",
             "quantity": 1
           },
           {
@@ -1200,8 +850,7 @@
               "from": {
                 "equipment_category": {
                   "index": "arcane-foci",
-                  "name": "Arcane foci",
-                  "url": "/api/equipment-categories/arcane-foci"
+                  "name": "Arcane foci"
                 }
               }
             }
@@ -1213,19 +862,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "scholars-pack",
-              "name": "Scholar's Pack",
-              "url": "/api/equipment/scholars-pack"
-            },
+            "name": "Scholar's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           }
         ]
@@ -1236,28 +877,21 @@
         "from": {
           "equipment_category": {
             "index": "simple-weapons",
-            "name": "Simple Weapons",
-            "url": "/api/equipment-categories/simple-weapons"
+            "name": "Simple Weapons"
           }
         }
       }
-    ],
-    "url": "/api/starting-equipment/warlock"
+    ]
   },
   {
     "index": "wizard",
     "class": {
       "index": "wizard",
-      "name": "Wizard",
-      "url": "/api/classes/wizard"
+      "name": "Wizard"
     },
     "starting_equipment": [
       {
-        "equipment": {
-          "index": "spellbook",
-          "name": "Spellbook",
-          "url": "/api/equipment/spellbook"
-        },
+        "name": "Spellbook",
         "quantity": 1
       }
     ],
@@ -1267,19 +901,11 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "dagger",
-              "name": "Dagger",
-              "url": "/api/equipment/dagger"
-            },
+            "name": "Dagger",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "quarterstaff",
-              "name": "Quarterstaff",
-              "url": "/api/equipment/quarterstaff"
-            },
+            "name": "Quarterstaff",
             "quantity": 1
           }
         ]
@@ -1289,11 +915,7 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "component-pouch",
-              "name": "Component pouch",
-              "url": "/api/equipment/component-pouch"
-            },
+            "name": "Component pouch",
             "quantity": 1
           },
           {
@@ -1303,8 +925,7 @@
               "from": {
                 "equipment_category": {
                   "index": "arcane-foci",
-                  "name": "Arcane Foci",
-                  "url": "/api/equipment-categories/arcane-foci"
+                  "name": "Arcane Foci"
                 }
               }
             }
@@ -1316,24 +937,15 @@
         "type": "equipment",
         "from": [
           {
-            "equipment": {
-              "index": "scholars-pack",
-              "name": "Scholar's Pack",
-              "url": "/api/equipment/scholars-pack"
-            },
+            "name": "Scholar's Pack",
             "quantity": 1
           },
           {
-            "equipment": {
-              "index": "dungeoneers-pack",
-              "name": "Dungeoneer's Pack",
-              "url": "/api/equipment/dungeoneers-pack"
-            },
+            "name": "Dungeoneer's Pack",
             "quantity": 1
           }
         ]
       }
-    ],
-    "url": "/api/starting-equipment/wizard"
+    ]
   }
 ]

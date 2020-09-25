@@ -81,7 +81,7 @@ def get_proficiencies_block(class_json):
     weapons = proficiencies["weapon"] + "\n"
     tools = get_tools(proficiencies["tool"] + proficiencies_choices["tools"]) + "\n"
     saving_throws = get_saving_throws(class_json) + "\n"
-    skills = proficiencies_choices["skills"] + "\n"
+    skills = proficiencies_choices["skills"] + "\n\n"
     proficiency_block = f"**Armor: ** {armor}" \
                         f"**Weapons: ** {weapons}" \
                         f"**Tools: ** {tools}" \
@@ -90,14 +90,63 @@ def get_proficiencies_block(class_json):
     return proficiency_block
 
 
+def get_equipment_choices(equipment):
+    equipment_choice_block = "\n"
+    for item in equipment:
+        item = item["from"]
+        item_string = "- "
+        if type(item) == dict:
+            item_string += f"One of {item['equipment_category']['name']}\n"
+            equipment_choice_block += item_string
+        else:
+            for choice in item:
+                if type(choice) == list:
+                    for sub_choice in choice:
+                        if sub_choice.get("quantity"):
+                            item_string += f"{sub_choice['quantity']} {sub_choice['name']} and "
+                        else:
+                            sub_choice = sub_choice['equipment_option']
+                            item_string += f"{sub_choice['choose']} of {sub_choice['from']['equipment_category']['name']} and "
+                    item_string = item_string[:-4] + "or "
+                elif choice.get("name"):
+                    item_string += f"{choice['quantity']} {choice['name']} or "
+                elif choice.get("equipment_option"):
+                    choice = choice['equipment_option']
+                    item_string += f"{choice['choose']} of {choice['from']['equipment_category']['name']} or "
+            item_string = item_string[:-3]
+            equipment_choice_block += item_string + "\n"
+    return equipment_choice_block
+
+
+def get_starting_equipment(equipment):
+    equipment_string = "- "
+    for item in equipment:
+        equipment_string += f"{item['quantity']} {item['name']}, "
+    if equipment_string != "- ":
+        return equipment_string[:-2] + "\n"
+    return ""
+
+
+def get_equipment_block(class_json):
+    index = class_json.get("index")
+    equipment = read_json("starting-equipment", index)
+    starting_equipment = get_starting_equipment(equipment.get("starting_equipment"))
+    equipment_choices = get_equipment_choices(equipment.get("starting_equipment_options"))
+    equipment_block = f"{equipment_choices}" \
+                      f"{starting_equipment}"
+    return equipment_block
+
+
 def class_reference(class_json):
     messages = []
     name = class_json.get("name")
     levels = get_formatted_level_features(class_json)
     hit_points = get_hit_points(class_json)
     proficiencies = get_proficiencies_block(class_json)
+    equipment = get_equipment_block(class_json)
     class_block = f"{levels}" \
                   f"**Hit Points** {hit_points}" \
-                  f"**Proficiencies** {proficiencies}"
+                  f"**Proficiencies** {proficiencies}" \
+                  f"**Equipment** {equipment}"
     messages.append((name, class_block))
     return messages

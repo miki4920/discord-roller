@@ -405,7 +405,8 @@
       },
       {
         "index": "herbalism-kit",
-        "name": "Herbalism Kit"
+        "name": "Herbalism Kit",
+        "type": "tool"
       }
     ],
     "saving_throws": [
@@ -983,7 +984,8 @@
       },
       {
         "index": "simple-weapons",
-        "name": "Simple weapons"
+        "name": "Simple weapons",
+        "type": "weapon"
       }
     ],
     "saving_throws": [
