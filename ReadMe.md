@@ -23,6 +23,7 @@ Reference:
 * !spell|s [SPELL_NAME] - Sends a spell card to the server chat.
 * !monster|m [MONSTER_NAME] - Sends a monster card to the server chat.
 * !race|r [RACE_NAME] - sends a race card to the server chat.
+* !class|c [CLASS_NAME] - sends a class card to the server chat.
 
 ## Mathematical Operations
 You can do math-only rolls by adding a math expression after the roll command.
