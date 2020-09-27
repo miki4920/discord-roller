@@ -64,9 +64,7 @@ async def on_message(message):
             if message_code == 0:
                 await message.author.send(f"The instruction manual is located here: {link}")
             # Part for dice handling
-            if message_code in [1, 2, 3]:
-                if message_code in [2, 3]:
-                    await message.delete()
+            if message_code in [1, 2]:
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
                 roll_message = " ".join(message.content.split(" ")[1:])
                 result, dice_rolls = roller.roll_dice(roll_message)
