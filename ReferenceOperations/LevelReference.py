@@ -15,8 +15,21 @@ def get_name(level_json):
     return name
 
 
+def get_features(level_json):
+    features = level_json.get("features")
+    if not features:
+        return ""
+    features = [feature["name"] for feature in features]
+    for feature in features:
+        pass
+    features = "\n".join(features)
+    return features
+
+
 def level_reference(level_json):
     messages = []
     name = get_name(level_json)
-    messages.append((name, level_json.get("index")))
+    features = get_features(level_json)
+    level_block = f"{features}"
+    messages.append((name, level_block))
     return messages
