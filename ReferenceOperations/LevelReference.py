@@ -15,6 +15,16 @@ def get_name(level_json):
     return name
 
 
+def get_class_specific(level_json):
+    class_specific_dictionary = {"barbarian": ["rage_count", "rage_damage"],
+                                 "bard": [],
+                                 "cleric": [],
+                                 "druid": [],
+                                 "fighter": [],
+                                 "monk": []
+                                 }
+
+
 def get_features(level_json):
     features = level_json.get("features")
     if not features:
@@ -29,6 +39,7 @@ def get_features(level_json):
 def level_reference(level_json):
     messages = []
     name = get_name(level_json)
+    class_specific = get_class_speficic(level_json)
     features = get_features(level_json)
     level_block = f"{features}"
     messages.append((name, level_block))

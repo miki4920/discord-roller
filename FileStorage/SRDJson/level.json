@@ -18,7 +18,7 @@
     ],
     "class_specific": {
       "rage_count": 2,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-1",
@@ -49,7 +49,7 @@
     ],
     "class_specific": {
       "rage_count": 2,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-2",
@@ -75,7 +75,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-3",
@@ -101,7 +101,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-4",
@@ -132,7 +132,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-5",
@@ -153,7 +153,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-6",
@@ -180,7 +180,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-7",
@@ -207,7 +207,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 2,
+      "rage_damage": 2,
       "brutal_critical_dice": 0
     },
     "index": "barbarian-8",
@@ -234,7 +234,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 1
     },
     "index": "barbarian-9",
@@ -255,7 +255,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 1
     },
     "index": "barbarian-10",
@@ -282,7 +282,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 1
     },
     "index": "barbarian-11",
@@ -308,7 +308,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 1
     },
     "index": "barbarian-12",
@@ -334,7 +334,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 2
     },
     "index": "barbarian-13",
@@ -354,7 +354,7 @@
     "features": [],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 2
     },
     "index": "barbarian-14",
@@ -380,7 +380,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage_bonus": 3,
+      "rage_damage": 3,
       "brutal_critical_dice": 2
     },
     "index": "barbarian-15",
@@ -406,7 +406,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage_bonus": 4,
+      "rage_damage": 4,
       "brutal_critical_dice": 2
     },
     "index": "barbarian-16",
@@ -432,7 +432,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage_bonus": 4,
+      "rage_damage": 4,
       "brutal_critical_dice": 3
     },
     "index": "barbarian-17",
@@ -458,7 +458,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage_bonus": 4,
+      "rage_damage": 4,
       "brutal_critical_dice": 3
     },
     "index": "barbarian-18",
@@ -484,7 +484,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage_bonus": 4,
+      "rage_damage": 4,
       "brutal_critical_dice": 3
     },
     "index": "barbarian-19",
@@ -509,8 +509,8 @@
       }
     ],
     "class_specific": {
-      "rage_count": 9999,
-      "rage_damage_bonus": 4,
+      "rage_count": "Unlimited",
+      "rage_damage": 4,
       "brutal_critical_dice": 3
     },
     "index": "barbarian-20",
@@ -1398,7 +1398,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 0,
+      "channel_divinity_uses": 0,
       "destroy_undead_cr": 0
     },
     "index": "cleric-1",
@@ -1441,7 +1441,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 1,
+      "channel_divinity_uses": 1,
       "destroy_undead_cr": 0
     },
     "index": "cleric-2",
@@ -1479,7 +1479,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 1,
+      "channel_divinity_uses": 1,
       "destroy_undead_cr": 0
     },
     "index": "cleric-3",
@@ -1517,7 +1517,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 1,
+      "channel_divinity_uses": 1,
       "destroy_undead_cr": 0
     },
     "index": "cleric-4",
@@ -1560,7 +1560,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 1,
+      "channel_divinity_uses": 1,
       "destroy_undead_cr": 0.5
     },
     "index": "cleric-5",
@@ -1598,7 +1598,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 0.5
     },
     "index": "cleric-6",
@@ -1636,7 +1636,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 0.5
     },
     "index": "cleric-7",
@@ -1679,7 +1679,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 1
     },
     "index": "cleric-8",
@@ -1717,7 +1717,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 1
     },
     "index": "cleric-9",
@@ -1755,7 +1755,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 1
     },
     "index": "cleric-10",
@@ -1793,7 +1793,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 2
     },
     "index": "cleric-11",
@@ -1831,7 +1831,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 2
     },
     "index": "cleric-12",
@@ -1863,7 +1863,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 2
     },
     "index": "cleric-13",
@@ -1901,7 +1901,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 3
     },
     "index": "cleric-14",
@@ -1933,7 +1933,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 3
     },
     "index": "cleric-15",
@@ -1971,7 +1971,7 @@
       "spell_slots_level_9": 0
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 3
     },
     "index": "cleric-16",
@@ -2009,7 +2009,7 @@
       "spell_slots_level_9": 1
     },
     "class_specific": {
-      "channel_divinity_charges": 2,
+      "channel_divinity_uses": 2,
       "destroy_undead_cr": 4
     },
     "index": "cleric-17",
@@ -2047,7 +2047,7 @@
       "spell_slots_level_9": 1
     },
     "class_specific": {
-      "channel_divinity_charges": 3,
+      "channel_divinity_uses": 3,
       "destroy_undead_cr": 4
     },
     "index": "cleric-18",
@@ -2085,7 +2085,7 @@
       "spell_slots_level_9": 1
     },
     "class_specific": {
-      "channel_divinity_charges": 3,
+      "channel_divinity_uses": 3,
       "destroy_undead_cr": 4
     },
     "index": "cleric-19",
@@ -2123,7 +2123,7 @@
       "spell_slots_level_9": 1
     },
     "class_specific": {
-      "channel_divinity_charges": 3,
+      "channel_divinity_uses": 3,
       "destroy_undead_cr": 4
     },
     "index": "cleric-20",
