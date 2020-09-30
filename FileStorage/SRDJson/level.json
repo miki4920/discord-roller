@@ -18,8 +18,7 @@
     ],
     "class_specific": {
       "rage_count": 2,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-1",
     "class": {
@@ -49,8 +48,7 @@
     ],
     "class_specific": {
       "rage_count": 2,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-2",
     "class": {
@@ -75,8 +73,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-3",
     "class": {
@@ -101,8 +98,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-4",
     "class": {
@@ -132,8 +128,7 @@
     ],
     "class_specific": {
       "rage_count": 3,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-5",
     "class": {
@@ -153,8 +148,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-6",
     "class": {
@@ -180,8 +174,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-7",
     "class": {
@@ -207,8 +200,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 2,
-      "brutal_critical_dice": 0
+      "rage_damage": 2
     },
     "index": "barbarian-8",
     "class": {
@@ -234,8 +226,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 3,
-      "brutal_critical_dice": 1
+      "rage_damage": 3
     },
     "index": "barbarian-9",
     "class": {
@@ -255,8 +246,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 3,
-      "brutal_critical_dice": 1
+      "rage_damage": 3
     },
     "index": "barbarian-10",
     "class": {
@@ -282,8 +272,7 @@
     "spellcasting": {},
     "class_specific": {
       "rage_count": 4,
-      "rage_damage": 3,
-      "brutal_critical_dice": 1
+      "rage_damage": 3
     },
     "index": "barbarian-11",
     "class": {
@@ -308,8 +297,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage": 3,
-      "brutal_critical_dice": 1
+      "rage_damage": 3
     },
     "index": "barbarian-12",
     "class": {
@@ -334,8 +322,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage": 3,
-      "brutal_critical_dice": 2
+      "rage_damage": 3
     },
     "index": "barbarian-13",
     "class": {
@@ -354,8 +341,7 @@
     "features": [],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage": 3,
-      "brutal_critical_dice": 2
+      "rage_damage": 3
     },
     "index": "barbarian-14",
     "class": {
@@ -380,8 +366,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage": 3,
-      "brutal_critical_dice": 2
+      "rage_damage": 3
     },
     "index": "barbarian-15",
     "class": {
@@ -406,8 +391,7 @@
     ],
     "class_specific": {
       "rage_count": 5,
-      "rage_damage": 4,
-      "brutal_critical_dice": 2
+      "rage_damage": 4
     },
     "index": "barbarian-16",
     "class": {
@@ -432,8 +416,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage": 4,
-      "brutal_critical_dice": 3
+      "rage_damage": 4
     },
     "index": "barbarian-17",
     "class": {
@@ -458,8 +441,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage": 4,
-      "brutal_critical_dice": 3
+      "rage_damage": 4
     },
     "index": "barbarian-18",
     "class": {
@@ -484,8 +466,7 @@
     ],
     "class_specific": {
       "rage_count": 6,
-      "rage_damage": 4,
-      "brutal_critical_dice": 3
+      "rage_damage": 4
     },
     "index": "barbarian-19",
     "class": {
@@ -510,8 +491,7 @@
     ],
     "class_specific": {
       "rage_count": "Unlimited",
-      "rage_damage": 4,
-      "brutal_critical_dice": 3
+      "rage_damage": 4
     },
     "index": "barbarian-20",
     "class": {
@@ -3426,7 +3406,7 @@
         "index": "ki",
         "name": "Ki",
         "url": "/api/features/ki"
-      },	
+      },
       {
         "index": "unarmored-movement-1",
         "name": "Unarmored Movement 1",
