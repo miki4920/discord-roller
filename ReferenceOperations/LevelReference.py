@@ -1,5 +1,4 @@
 def level_check(reference_type, message):
-    print(reference_type, message.split(" ")[2])
     if reference_type == "class":
         message = message.split(" ")
         if len(message) == 3 and message[2].isdigit():
@@ -16,13 +15,19 @@ def get_name(level_json):
 
 
 def get_class_specific(level_json):
-    class_specific_dictionary = {"barbarian": ["rage_count", "rage_damage"],
-                                 "bard": [],
-                                 "cleric": [],
-                                 "druid": [],
-                                 "fighter": [],
-                                 "monk": []
-                                 }
+    class_specific_block = ""
+    class_specific = level_json.get("class_specific")
+    if class_specific:
+        for feature in class_specific:
+            text_feature = feature.capitalize().replace("_", " ")
+            class_specific_block += f"{text_feature}: {class_specific[feature]}\n"
+    if class_specific_block:
+        class_specific_block = "\n" + class_specific_block + "\n"
+    return class_specific_block
+
+
+def get_spell_slots(level_json):
+    pass
 
 
 def get_features(level_json):
@@ -39,8 +44,10 @@ def get_features(level_json):
 def level_reference(level_json):
     messages = []
     name = get_name(level_json)
-    class_specific = get_class_speficic(level_json)
+    class_specific = get_class_specific(level_json)
     features = get_features(level_json)
-    level_block = f"{features}"
+    level_block = f"**Class Specific Features** {class_specific}" \
+                  f"{features}" \
+                  f""
     messages.append((name, level_block))
     return messages
