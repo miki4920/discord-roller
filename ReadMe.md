@@ -5,7 +5,7 @@ It also has additional features such as an ability to roll wild magic for d&d 5t
 
 ## Installing / Getting started
 
-To install the bot, just click: https://discord.com/oauth2/authorize?client_id=713734351648587776&permissions=206848&scope=bot
+To install the bot, just click: https://discord.com/oauth2/authorize?client_id=713734351648587776&permissions=2048&scope=bot
 Then select the server you want to use.
 Congratulations, you are ready to go!
 
@@ -23,7 +23,7 @@ Reference:
 * !spell|s [SPELL_NAME] - Sends a spell card to the server chat.
 * !monster|m [MONSTER_NAME] - Sends a monster card to the server chat.
 * !race|r [RACE_NAME] - sends a race card to the server chat.
-* !class|c [CLASS_NAME] - sends a class card to the server chat.
+* !class|c [CLASS_NAME] [CLASS_LEVEL] - sends a class card to the server chat, if level is included, it sends specific features a class gets on that level.
 
 ## Mathematical Operations
 You can do math-only rolls by adding a math expression after the roll command.
