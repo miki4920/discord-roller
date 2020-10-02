@@ -5,6 +5,7 @@ from ReferenceOperations.MonsterReference import monster_reference
 from ReferenceOperations.RaceReference import race_reference
 from ReferenceOperations.ClassReference import class_reference
 from ReferenceOperations.LevelReference import level_check, level_reference
+from ReferenceOperations.ConditionReference import condition_reference
 
 
 class ReferenceHandler(object):
@@ -13,6 +14,7 @@ class ReferenceHandler(object):
         self.monster_list = "FileStorage/ReferenceLists/MonsterList.pickle"
         self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
         self.class_list = "FileStorage/ReferenceLists/ClassList.pickle"
+        self.condition_list = "FileStorage/ReferenceLists/ConditionList.pickle"
         self.abbreviations_dictionary = {"s": "spell",
                                          "m": "monster",
                                          "r": "race",
@@ -21,7 +23,8 @@ class ReferenceHandler(object):
                                      "monster": (monster_reference, self.monster_list, 0.3),
                                      "race": (race_reference, self.race_list, 0.7),
                                      "class": (class_reference, self.class_list, 0.1),
-                                     "level": (level_reference, self.class_list, 0.1)}
+                                     "level": (level_reference, self.class_list, 0.1),
+                                     "condition": (condition_reference, self.condition_list, 0.5)}
 
     @staticmethod
     def get_item_name(message, item_list, cutout_point):
