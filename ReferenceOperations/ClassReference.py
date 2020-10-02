@@ -16,7 +16,10 @@ def get_formatted_level_features(class_json):
     formatted_level_features = ""
     levels = get_levels(class_json)
     for level in levels:
-        formatted_level_features += f"`{level}` {', '.join(levels[level])}\n"
+        level_features = ', '.join(levels[level])
+        if level < 10:
+            level = str(level) + " "
+        formatted_level_features += f"`{level}` {level_features}\n"
     return formatted_level_features + "\n"
 
 

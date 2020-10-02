@@ -520,7 +520,7 @@
       }
     ],
     "spellcasting": {
-      "cantrips_known": 2,
+      "cantrips": 2,
       "spells_known": 4,
       "level_1": 2
     },
@@ -3617,7 +3617,6 @@
     ],
     "spellcasting": {},
     "class_specific": {
-      "aura_range": 0
     },
     "index": "paladin-1",
     "class": {
@@ -3655,7 +3654,6 @@
       "level_1": 2
     },
     "class_specific": {
-      "aura_range": 0
     },
     "index": "paladin-2",
     "class": {
@@ -3697,7 +3695,6 @@
       "level_1": 3
     },
     "class_specific": {
-      "aura_range": 0
     },
     "index": "paladin-3",
     "class": {
@@ -3724,7 +3721,7 @@
       "level_1": 3
     },
     "class_specific": {
-      "aura_range": 0
+      
     },
     "index": "paladin-4",
     "class": {
@@ -3752,7 +3749,7 @@
       "level_2": 2
     },
     "class_specific": {
-      "aura_range": 0
+      
     },
     "index": "paladin-5",
     "class": {
@@ -3780,7 +3777,7 @@
       "level_2": 2
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-6",
     "class": {
@@ -3802,7 +3799,7 @@
       "level_2": 3
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-7",
     "class": {
@@ -3830,7 +3827,7 @@
       "level_2": 3
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-8",
     "class": {
@@ -3853,7 +3850,7 @@
       "level_3": 2
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-9",
     "class": {
@@ -3882,7 +3879,7 @@
       "level_3": 2
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-10",
     "class": {
@@ -3911,7 +3908,7 @@
       "level_3": 3
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-11",
     "class": {
@@ -3940,7 +3937,7 @@
       "level_3": 3
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-12",
     "class": {
@@ -3964,7 +3961,7 @@
       "level_4": 1
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-13",
     "class": {
@@ -3994,7 +3991,7 @@
       "level_4": 1
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-14",
     "class": {
@@ -4018,7 +4015,7 @@
       "level_4": 2
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-15",
     "class": {
@@ -4048,7 +4045,7 @@
       "level_4": 2
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-16",
     "class": {
@@ -4073,7 +4070,7 @@
       "level_5": 1
     },
     "class_specific": {
-      "aura_range": 10
+      
     },
     "index": "paladin-17",
     "class": {
@@ -4104,7 +4101,7 @@
       "level_5": 1
     },
     "class_specific": {
-      "aura_range": 30
+      
     },
     "index": "paladin-18",
     "class": {
@@ -4135,7 +4132,7 @@
       "level_5": 2
     },
     "class_specific": {
-      "aura_range": 30
+      
     },
     "index": "paladin-19",
     "class": {
@@ -4160,7 +4157,7 @@
       "level_5": 2
     },
     "class_specific": {
-      "aura_range": 30
+      
     },
     "index": "paladin-20",
     "class": {
@@ -6534,6 +6531,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 3,
+      "spells_known": 6,
       "level_1": 2
     },
     "class_specific": {
@@ -6562,6 +6560,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 3,
+      "spells_known": 8,
       "level_1": 3
     },
     "class_specific": {
@@ -6584,6 +6583,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 3,
+      "spells_known": 10,
       "level_1": 4,
       "level_2": 2
     },
@@ -6613,6 +6613,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 12,
       "level_1": 4,
       "level_2": 3
     },
@@ -6636,6 +6637,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 14,
       "level_1": 4,
       "level_2": 3,
       "level_3": 2
@@ -6660,6 +6662,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 16,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3
@@ -6684,6 +6687,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 18,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6715,6 +6719,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 20,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6740,6 +6745,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 4,
+      "spells_known": 22,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6766,6 +6772,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 24,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6792,6 +6799,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 26,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6825,6 +6833,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 28,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6852,6 +6861,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 30,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6880,6 +6890,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 32,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6908,6 +6919,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 34,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6943,6 +6955,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 36,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -6972,6 +6985,7 @@
     "features": [],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 38,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -7008,6 +7022,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 40,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -7044,6 +7059,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 42,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -7080,6 +7096,7 @@
     ],
     "spellcasting": {
       "cantrips_known": 5,
+      "spells_known": 44,
       "level_1": 4,
       "level_2": 3,
       "level_3": 3,
@@ -7781,7 +7798,7 @@
     ],
     "spellcasting": {},
     "subclass_specific": {
-      "aura_range": 10
+      
     },
     "class": {
       "index": "paladin",
@@ -7808,7 +7825,7 @@
     ],
     "spellcasting": {},
     "subclass_specific": {
-      "aura_range": 10
+      
     },
     "class": {
       "index": "paladin",
@@ -7829,7 +7846,7 @@
     "features": [],
     "spellcasting": {},
     "subclass_specific": {
-      "aura_range": 30
+      
     },
     "class": {
       "index": "paladin",
@@ -7856,7 +7873,7 @@
     ],
     "spellcasting": {},
     "subclass_specific": {
-      "aura_range": 30
+      
     },
     "class": {
       "index": "paladin",
