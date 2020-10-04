@@ -94,11 +94,12 @@ async def on_message(message):
                         raise NoDungeonMaster()
             if message_code == 3:
                 result_roll = roller.roll_dice("1d100")[0]
-                result_message = f"Your wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
+                result_message = f"{message.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
                 await message.channel.send(result_message)
             if message_code in [4, 5, 6, 7, 8]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
+                    return_message[0] = message.author.mention + "\n" + return_message[0]
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
             if message_code == 9:
@@ -112,7 +113,7 @@ async def on_message(message):
                     return_message += f"{roll_message} {dice_rolls}: {result}\n"
                     total += result
                 return_message += f"Total: {total}"
-                return_message = "Randomly Generated Statistics:\n" + "```" + return_message + "```"
+                return_message = message.author.mention + "\nRandomly Generated Statistics:\n" + "```" + return_message + "```"
                 if len(return_message) >= 1900:
                     raise TooManyDice(message.content)
                 await message.channel.send(return_message)
