@@ -63,6 +63,16 @@ class RollIsZero(Exception):
         return f"{self.message} Details: {self.roll}"
 
 
+class TooHighLevel(Exception):
+    def __init__(self, level, message="You are trying to reference a level outside of 1-20 range. Please try again.\n"):
+        self.level = level
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"{self.message} Referenced Level: {self.level}"
+
+
 class TooManyDice(Exception):
     def __init__(self, roll, message="You have used too many dice.\nThis bot has a limit of 2000 characters.\nThat is "
                                      "approximately 400d20."):
