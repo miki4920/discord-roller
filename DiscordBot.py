@@ -99,8 +99,8 @@ async def on_message(message):
             if message_code in [4, 5, 6, 7, 8]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
-                    return_message[0] = message.author.mention + "\n" + return_message[0]
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
+                    embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
                     await message.channel.send(embed=embedded_message)
             if message_code == 9:
                 roll_message = " ".join(message.content.split(" ")[1:])
