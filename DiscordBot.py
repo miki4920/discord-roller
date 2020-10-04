@@ -27,7 +27,8 @@ code_dictionary = {("help", "h"): 0,
                    ("monster", "m"): 5,
                    ("race", "r"): 6,
                    ("class", "c"): 7,
-                   ("condition",): 8}
+                   ("condition",): 8,
+                   ("randstats",): 9}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -100,6 +101,21 @@ async def on_message(message):
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     await message.channel.send(embed=embedded_message)
+            if message_code == 9:
+                roll_message = " ".join(message.content.split(" ")[1:])
+                if roll_message == "":
+                    roll_message = "4d6kh3"
+                return_message = ""
+                total = 0
+                for _ in range(0, 6):
+                    result, dice_rolls = roller.roll_dice(roll_message)
+                    return_message += f"{roll_message} {dice_rolls}: {result}\n"
+                    total += result
+                return_message += f"Total: {total}"
+                return_message = "Randomly Generated Statistics:\n" + "```" + return_message + "```"
+                if len(return_message) >= 1900:
+                    raise TooManyDice(message.content)
+                await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
             if test_mode:

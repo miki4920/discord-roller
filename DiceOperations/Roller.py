@@ -12,7 +12,7 @@ def handle_dice(roll):
     roll = roll.roll
     # Check if roll is negative then separates roll into modifiers
     negative = roll[0] == "-"
-    roll = re.findall("f|kl|dh|d|k|!p|!!|!|\d+", roll)
+    roll = re.findall("f|kl|dh|dl|d|k|!p|!!|!|kh|\d+", roll)
     # Check if there are any additional modifiers on a die, if not, then
     roll_modifiers = roll[3:] if len(roll) > 3 else []
     # Allows to roll dice in format "dX" where x is the die
@@ -37,9 +37,12 @@ def handle_dice(roll):
     for modifier in roll_modifiers:
         if "!" in modifier:
             result = exploding_roll(result, roll, modifier)
-        if "d" in modifier or "k" in modifier:
-            modifier_number = int(roll_modifiers[roll_modifiers.index(modifier) + 1])
-            result = drop_keep(result, modifier, modifier_number)
+        try:
+            if "d" in modifier or "k" in modifier:
+                modifier_number = int(roll_modifiers[roll_modifiers.index(modifier) + 1])
+                result = drop_keep(result, modifier, modifier_number)
+        except IndexError:
+            raise WrongCommandFormat(roll_original)
     # Makes die negative if that was intended
     return [i*(1-(2*negative)) for i in result]
 
