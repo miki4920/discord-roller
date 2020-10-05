@@ -19,6 +19,7 @@ token = os.getenv("TOKEN")
 test_mode = False
 test_server_id = 740700782323826799
 
+# Update Help and Documentation
 code_dictionary = {("help", "h"): 0,
                    ("roll", "r"): 1,
                    ("gmroll", "gr"): 2,
