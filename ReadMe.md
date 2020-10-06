@@ -1,7 +1,6 @@
 # Discord-Roller
 
-Discord-Roller is a bot which allows you to roll dice through simple commands. As the name suggests, the bot is dedicated for Discord.
-It also has additional features such as an ability to roll wild magic for d&d 5th edition or booking solo-sessions.
+Discord-Roller is a bot which allows you to roll dice and reference SRD. As the name suggests, the bot is dedicated for Discord.
 
 ## Installing / Getting started
 
@@ -22,8 +21,10 @@ Wild Magic:
 Reference:
 * !spell|s [SPELL_NAME] - Sends a spell card to the server chat.
 * !monster|m [MONSTER_NAME] - Sends a monster card to the server chat.
-* !race|r [RACE_NAME] - sends a race card to the server chat.
-* !class|c [CLASS_NAME] [CLASS_LEVEL] - sends a class card to the server chat, if level is included, it sends specific features a class gets on that level.
+* !race|r [RACE_NAME] - Sends a race card to the server chat.
+* !class|c [CLASS_NAME] [CLASS_LEVEL] - Sends a class card to the server chat, if level is included, it sends specific features a class gets on that level.
+* !condition [CONDITION_NAME] - Sends a condition card to the server chat.
+* !randstats [OPTIONAL_ROLL] - Rolls random ability scores for D&D using 4d6 drop lowest. If optional roll provided, it would use that instead.
 
 ## Mathematical Operations
 You can do math-only rolls by adding a math expression after the roll command.
