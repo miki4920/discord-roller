@@ -1,10 +1,10 @@
-# Discord-Roller
+# Marduk
 
-Discord-Roller is a bot which allows you to roll dice and reference SRD. As the name suggests, the bot is dedicated for Discord.
+Marduk is a bot which allows you to roll dice and reference SRD in D&D 5E.
 
 ## Installing / Getting started
 
-To install the bot, just click: https://discord.com/oauth2/authorize?client_id=713734351648587776&permissions=2048&scope=bot
+To install the bot, just click: https://discord.com/oauth2/authorize?client_id=713734351648587776&scope=bot&permissions=3072
 Then select the server you want to use.
 Congratulations, you are ready to go!
 
