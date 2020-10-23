@@ -1,6 +1,6 @@
 import discord
 import os
-
+from GetHelp import get_help_messages
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from DiceOperations.Roller import DiceRoll
 from WildMagicHandler import WildMagic
@@ -63,7 +63,11 @@ async def on_message(message):
                 raise CommandNotExisting(message.content)
             # Sends Manual
             if message_code == 0:
-                await message.author.send(f"The instruction manual is located here: {link}")
+                result_message = get_help_messages()
+                for return_message in result_message:
+                    embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
+                    embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
+                    await message.author.send(embed=embedded_message)
             # Part for dice handling
             if message_code in [1, 2]:
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
