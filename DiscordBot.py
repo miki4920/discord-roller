@@ -3,7 +3,6 @@ import os
 
 from ErrorHandler import CommandNotExisting, NoDungeonMaster, TooManyDice
 from DiceOperations.Roller import DiceRoll
-from DowntimeHandler import DowntimeScheduler
 from WildMagicHandler import WildMagic
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
@@ -12,7 +11,6 @@ from ReferenceOperations.ReferenceHandler import ReferenceHandler
 link = "https://github.com/miki4920/discord-roller/blob/master/ReadMe.md"
 client = discord.Client()
 roller = DiceRoll()
-downtime = DowntimeScheduler()
 wildmagic = WildMagic()
 reference = ReferenceHandler()
 token = os.getenv("TOKEN")
