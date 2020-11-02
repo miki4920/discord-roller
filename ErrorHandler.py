@@ -41,17 +41,6 @@ class DropKeepModifierTooHigh(Exception):
         return f"{self.message} Number of Dice: {self.dice_number}, Number you want to drop/keep: {self.modifer}"
 
 
-class NoDungeonMaster(Exception):
-    def __init__(self, message="There is no person on your server with any of those ranks: GM, DM, Game Master, "
-                               "Dungeon Master.\nPlease refer to !h for more "
-                               "information."):
-        self.message = message
-        super().__init__(self.message)
-
-    def __str__(self):
-        return f"{self.message}"
-
-
 class RollIsZero(Exception):
     def __init__(self, roll, message="You cannot roll a d0.\nPlease refer to !h for more "
                                      "information."):
@@ -104,3 +93,15 @@ class WrongCommandFormat(Exception):
 
     def __str__(self):
         return f"{self.message} Details: {self.command}"
+
+
+# class UnexpectedError(Exception):
+#     def __init__(self, command, message="Marduk has encountered a problem even he cannot solve. You must now travel "
+#                                         "to the support server and bless them with a message below."):
+#         self.command = command
+#         self.message = message
+#         self.error_message = str(Exception)
+#         super().__init__(self.message)
+#
+#     def __str__(self):
+#         return f"{self.message}\n{self.error_message}\n{self.command}"
