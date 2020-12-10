@@ -73,7 +73,7 @@ async def on_message(message):
                     embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
                     await message.author.send(embed=embedded_message)
             # Part for dice handling
-            if message_code in [1, 2]:
+            if message_code == 1:
                 # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
                 roll_message = " ".join(message.content.split(" ")[1:])
                 result, dice_rolls = roller.roll_dice(roll_message)
