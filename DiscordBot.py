@@ -1,7 +1,7 @@
 import discord
 import os
 from GetHelp import get_help_messages
-from ErrorHandler import command_not_existing, too_many_dice, RollerException
+from ErrorHandler import command_not_existing, unexpected_error, too_many_dice, RollerException
 from DiceOperations.Roller import DiceRoll
 from WildMagicHandler import WildMagic
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
@@ -15,6 +15,9 @@ reference = ReferenceHandler()
 token = os.getenv("TOKEN")
 test_mode = False
 test_server_id = 740700782323826799
+
+if not test_mode:
+    print("Warning: Test Mode Disabled")
 
 # Update Help and Documentation
 code_dictionary = {("help", "h"): 0,
@@ -112,11 +115,10 @@ async def on_message(message):
                 await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
-            if isinstance(e, RollerException):
-                e.command = original_message
-                await message.channel.send(str(e))
-            else:
-                await message.channel.send(str(e))
+            if not isinstance(e, RollerException):
+                e = unexpected_error(str(e))
+            e.command = original_message
+            await message.channel.send(str(e))
             if test_mode:
                 raise e
 

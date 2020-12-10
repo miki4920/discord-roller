@@ -32,6 +32,13 @@ def roll_is_zero():
     return RollerException("", message)
 
 
+def unexpected_error(error):
+    message = "A Marduk has encountered an unexpected error: " + error + "\nPlease copy this whole message and send it " \
+                                                                         "to our support server so we may improve " \
+                                                                         "this bot. "
+    return RollerException("", message)
+
+
 def too_high_level():
     message = "You are trying to reference a level outside of 1-20 range."
     return RollerException("", message)
