@@ -1,6 +1,6 @@
 from DiceOperations.ShuntingYard import shunting_yard_algorithm, tokenizer
 import re
-from ErrorHandler import WrongCommandFormat, RollIsZero
+from ErrorHandler import wrong_command_format, roll_is_zero
 from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
 from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
 from DiceOperations.RollFunctions.DropKeepDice import drop_keep
@@ -8,7 +8,6 @@ from DiceOperations.RollClass import Roll
 
 
 def handle_dice(roll):
-    roll_original = roll.roll
     roll = roll.roll
     # Check if roll is negative then separates roll into modifiers
     negative = roll[0] == "-"
@@ -22,16 +21,16 @@ def handle_dice(roll):
     try:
         roll = [roll[0], 1, roll[2]]
     except IndexError:
-        raise WrongCommandFormat(roll_original)
+        raise wrong_command_format()
     # Checks if a die is a fate die
     if roll[2] == "f":
         roll = [roll[0], -1, 1]
     try:
         roll = list(map(int, roll))
     except ValueError:
-        raise WrongCommandFormat(" ".join(roll_original))
+        raise wrong_command_format()
     if any([die == 0 for die in roll]):
-        raise RollIsZero(roll_original)
+        raise roll_is_zero()
     # Rolls dice and applies modifiers
     result = multi_die_roll(roll)
     for modifier in roll_modifiers:
@@ -42,7 +41,7 @@ def handle_dice(roll):
                 modifier_number = int(roll_modifiers[roll_modifiers.index(modifier) + 1])
                 result = drop_keep(result, modifier, modifier_number)
         except IndexError:
-            raise WrongCommandFormat(roll_original)
+            raise wrong_command_format()
     # Makes die negative if that was intended
     return [i*(1-(2*negative)) for i in result]
 

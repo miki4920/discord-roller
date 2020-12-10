@@ -1,5 +1,5 @@
 from DiceOperations.Operators import *
-from ErrorHandler import TooManyOperators, WrongCommandFormat
+from ErrorHandler import too_many_operators, wrong_command_format
 import re
 
 
@@ -18,7 +18,7 @@ def greater_precedence(op1, op2):
     return precedences[op1] > precedences[op2]
 
 
-def apply_operator(operants, values, tokenized_expression):
+def apply_operator(operants, values):
     operators = {">": bigger_than,
                  "<": smaller_than,
                  ">=": bigger_equal_than,
@@ -34,11 +34,11 @@ def apply_operator(operants, values, tokenized_expression):
         right = values.pop()
         left = values.pop()
     except (IndexError, KeyError) as e:
-        raise TooManyOperators(tokenized_expression)
+        raise too_many_operators()
     try:
         values.append(operation(left, right))
     except ValueError:
-        raise WrongCommandFormat(tokenized_expression)
+        raise wrong_command_format()
 
 
 def tokenizer(expression):
@@ -56,7 +56,7 @@ def tokenizer(expression):
         elif operator_before and token == "-":
             operator_string += token
         elif operator_before and token not in ("(", ")", "-"):
-            raise TooManyOperators("".join(expression))
+            raise too_many_operators()
         elif not is_number(token) and token not in ("(", ")"):
             tokens.append(token)
             operator_before = True
@@ -77,22 +77,22 @@ def shunting_yard_algorithm(tokenized_expression):
         elif token == ')':
             top = peek(operators)
             while top is not None and top != '(':
-                apply_operator(operators, values, tokenized_expression)
+                apply_operator(operators, values)
                 top = peek(operators)
             try:
                 operators.pop()
             except IndexError:
-                raise TooManyOperators(tokenized_expression)
+                raise too_many_operators()
 
         else:
             top = peek(operators)
             while top is not None and top not in "()" and greater_precedence(top, token):
-                apply_operator(operators, values, tokenized_expression)
+                apply_operator(operators, values)
                 top = peek(operators)
             operators.append(token)
     while peek(operators) is not None:
-        apply_operator(operators, values, tokenized_expression)
+        apply_operator(operators, values)
     try:
         return int(values[0]) if values[0].is_integer() else float(values[0])
     except AttributeError:
-        raise WrongCommandFormat("".join(map(str, tokenized_expression)))
+        raise wrong_command_format()

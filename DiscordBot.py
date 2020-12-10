@@ -1,7 +1,7 @@
 import discord
 import os
 from GetHelp import get_help_messages
-from ErrorHandler import CommandNotExisting, TooManyDice
+from ErrorHandler import command_not_existing, too_many_dice, RollerException
 from DiceOperations.Roller import DiceRoll
 from WildMagicHandler import WildMagic
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
@@ -44,6 +44,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    original_message = message.content
     # Prevents Bot's Recursion
     if message.author == client.user:
         return
@@ -63,7 +64,7 @@ async def on_message(message):
             else:
                 message_code = None
             if message_code is None:
-                raise CommandNotExisting(message.content)
+                raise command_not_existing()
             # Sends Manual
             if message_code == 0:
                 result_message = get_help_messages()
@@ -78,7 +79,7 @@ async def on_message(message):
                 roll_message = " ".join(message.content.split(" ")[1:])
                 result, dice_rolls = roller.roll_dice(roll_message)
                 if len(str(result) + dice_rolls) >= 1900:
-                    raise TooManyDice(message.content)
+                    raise too_many_dice()
                 # Determines the message to be sent, cuts out the command
                 result_message = f"{message.author.mention}\n**Roll**: {roll_message}\n**Total: **{result}\n**Results**: {dice_rolls}"
                 # Normal Roll
@@ -107,13 +108,17 @@ async def on_message(message):
                 return_message += f"Total: {total}"
                 return_message = message.author.mention + "\nRandomly Generated Statistics:\n" + "```" + return_message + "```"
                 if len(return_message) >= 1900:
-                    raise TooManyDice(message.content)
+                    raise too_many_dice()
                 await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
             if test_mode:
                 raise e
-            await message.channel.send(str(e))
+            if isinstance(e, RollerException):
+                e.command = original_message
+                await message.channel.send(str(e))
+            else:
+                await message.channel.send(str(e))
 
 
 client.run(token)

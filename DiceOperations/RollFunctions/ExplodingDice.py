@@ -1,5 +1,5 @@
 from DiceOperations.RollFunctions.StandardRoll import single_die_roll
-from ErrorHandler import DieTooLowForExplosion
+from ErrorHandler import die_too_low_for_explosion
 
 
 def recursive_roll(die, roll):
@@ -42,7 +42,7 @@ def exploding_roll(result, roll, modifier):
     upper_bound = roll[2]
     # Checks if the die difference is bigger than 1 (Prevents infinite explosion)
     if upper_bound-lower_bound <= 0:
-        raise DieTooLowForExplosion(roll[1])
+        raise die_too_low_for_explosion()
     results = []
     # Contains all exploding functions, easily expandable
     function_dictionary = {"!": recursive_roll,

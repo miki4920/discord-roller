@@ -1,5 +1,5 @@
 from UtilityHandler import read_json
-from ErrorHandler import TooHighLevel
+from ErrorHandler import too_high_level
 
 
 def level_check(reference_type, message):
@@ -7,7 +7,7 @@ def level_check(reference_type, message):
         message = message.split(" ")
         if len(message) == 3 and message[2].lstrip("-").isdigit():
             if int(message[2]) > 20 or int(message[2]) < 1:
-                raise TooHighLevel(message[2])
+                raise too_high_level()
             return True
     return False
 

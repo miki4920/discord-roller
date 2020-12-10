@@ -1,4 +1,4 @@
-from ErrorHandler import DivisionByZeroError
+from ErrorHandler import division_by_zero_error
 
 
 def add(value_one, value_two):
@@ -17,14 +17,14 @@ def true_div(value_one, value_two):
     try:
         return float(value_one) / float(value_two)
     except ZeroDivisionError:
-        raise DivisionByZeroError(f"{value_one}/{value_two}")
+        raise division_by_zero_error()
 
 
 def floor_div(value_one, value_two):
     try:
         return float(value_one) // float(value_two)
     except ZeroDivisionError:
-        raise DivisionByZeroError(f"{value_one}//{value_two}")
+        raise division_by_zero_error()
 
 
 def mod(value_one, value_two):
