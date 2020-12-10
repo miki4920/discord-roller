@@ -33,7 +33,7 @@ def apply_operator(operants, values):
         operation = operators[operants.pop()]
         right = values.pop()
         left = values.pop()
-    except (IndexError, KeyError) as e:
+    except (IndexError, KeyError):
         raise too_many_operators()
     try:
         values.append(operation(left, right))

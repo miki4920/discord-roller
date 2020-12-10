@@ -112,13 +112,13 @@ async def on_message(message):
                 await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
-            if test_mode:
-                raise e
             if isinstance(e, RollerException):
                 e.command = original_message
                 await message.channel.send(str(e))
             else:
                 await message.channel.send(str(e))
+            if test_mode:
+                raise e
 
 
 client.run(token)

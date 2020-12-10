@@ -66,10 +66,9 @@ class DiceRoll(object):
         return " ".join(map(str, tokenized_expression))
 
     def roll_dice(self, roll):
-        # Tokenizes expression and then resolves all mathematical operations
+        # Converts expression into tokens and then resolves all mathematical operations
         tokenized_expression = tokenizer(roll)
         tokenized_expression = self.dice_to_classes(tokenized_expression)
         resulting_roll = shunting_yard_algorithm(tokenized_expression)
         string_roll = self.dice_to_string(tokenized_expression)
         return resulting_roll, string_roll
-
