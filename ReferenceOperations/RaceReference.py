@@ -1,4 +1,4 @@
-from UtilityHandler import read_json
+from Utility.UtilityHandler import read_json
 
 
 def get_traits(race_json):

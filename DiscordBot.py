@@ -1,13 +1,12 @@
 import discord
 import os
-from GetHelp import get_help_messages
-from ErrorHandler import command_not_existing, unexpected_error, too_many_dice, RollerException
+from Utility.GetHelp import get_help_messages
+from Utility.ErrorHandler import command_not_existing, unexpected_error, too_many_dice, RollerException
 from DiceOperations.Roller import DiceRoll
 from WildMagicHandler import WildMagic
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
 
 
-# Instruction/Manual
 client = discord.Client()
 roller = DiceRoll()
 wildmagic = WildMagic()
@@ -16,10 +15,8 @@ token = os.getenv("TOKEN")
 test_mode = False
 test_server_id = 740700782323826799
 
-if not test_mode:
-    print("Warning: Test Mode Disabled")
+print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 
-# Update Help and Documentation
 code_dictionary = {("help", "h"): 0,
                    ("roll", "r"): 1,
                    ("wild", "w"): 2,
@@ -40,7 +37,6 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
     print("Number of Servers the bot is in: ", len(list(client.guilds)))
     await client.change_presence(activity=discord.Game(name='D&D | !help'))
 

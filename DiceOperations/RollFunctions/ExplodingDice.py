@@ -1,5 +1,5 @@
 from DiceOperations.RollFunctions.StandardRoll import single_die_roll
-from ErrorHandler import die_too_low_for_explosion
+from Utility.ErrorHandler import die_too_low_for_explosion
 
 
 def recursive_roll(die, roll):

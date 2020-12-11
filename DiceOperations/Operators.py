@@ -1,4 +1,4 @@
-from ErrorHandler import division_by_zero_error
+from Utility.ErrorHandler import division_by_zero_error
 
 
 def add(value_one, value_two):

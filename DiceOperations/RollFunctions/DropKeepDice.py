@@ -1,4 +1,4 @@
-from ErrorHandler import drop_keep_modifier_too_high
+from Utility.ErrorHandler import drop_keep_modifier_too_high
 
 
 def drop(result, modifier_number, function):

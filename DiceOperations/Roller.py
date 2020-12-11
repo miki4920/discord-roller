@@ -1,6 +1,6 @@
 from DiceOperations.ShuntingYard import shunting_yard_algorithm, tokenizer
 import re
-from ErrorHandler import wrong_command_format, roll_is_zero
+from Utility.ErrorHandler import wrong_command_format, roll_is_zero
 from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
 from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
 from DiceOperations.RollFunctions.DropKeepDice import drop_keep

@@ -1,5 +1,5 @@
 from math import floor
-from UtilityHandler import read_pickle
+from Utility.UtilityHandler import read_pickle
 
 
 def ability_conversion(ability_score):

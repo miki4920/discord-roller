@@ -1,5 +1,5 @@
-from UtilityHandler import read_json
-from ErrorHandler import too_high_level
+from Utility.UtilityHandler import read_json
+from Utility.ErrorHandler import too_high_level
 
 
 def level_check(reference_type, message):

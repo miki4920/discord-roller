@@ -1,5 +1,5 @@
 from DiceOperations.Operators import *
-from ErrorHandler import too_many_operators, wrong_command_format
+from Utility.ErrorHandler import too_many_operators, wrong_command_format
 import re
 
 

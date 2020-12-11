@@ -1,4 +1,4 @@
-from UtilityHandler import read_json, read_pickle
+from Utility.UtilityHandler import read_json, read_pickle
 from Levenshtein import distance
 from ReferenceOperations.SpellReference import spell_reference
 from ReferenceOperations.MonsterReference import monster_reference

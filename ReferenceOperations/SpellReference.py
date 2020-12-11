@@ -1,4 +1,4 @@
-from UtilityHandler import make_ordinal
+from Utility.UtilityHandler import make_ordinal
 
 
 def get_spell_meta(spell_json):
