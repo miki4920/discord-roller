@@ -25,7 +25,8 @@ code_dictionary = {("help", "h"): 0,
                    ("race", "r"): 5,
                    ("class", "c"): 6,
                    ("condition",): 7,
-                   ("randstats",): 8}
+                   ("randstats",): 8,
+                   ("chaos",): 9}
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -38,6 +39,8 @@ async def on_guild_join(guild):
 @client.event
 async def on_ready():
     print("Number of Servers the bot is in: ", len(list(client.guilds)))
+    for guild in (list(client.guilds)):
+        print(guild)
     await client.change_presence(activity=discord.Game(name='D&D | !help'))
 
 
@@ -109,6 +112,11 @@ async def on_message(message):
                 if len(return_message) >= 1900:
                     raise too_many_dice()
                 await message.channel.send(return_message)
+            if message_code == 9:
+                result_roll = roller.roll_dice("1d10000")[0]
+                result_message = f"{message.author.mention}\nYour random magical effect is:\n" + wildmagic.determine_surge_magic(
+                    result_roll)
+                await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors
             if not isinstance(e, RollerException):
