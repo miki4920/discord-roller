@@ -17,14 +17,15 @@ Dice Commands (All dice in format xdy):
 * !roll|r [ROLL] - Rolls Dice in xdy format and sends to the server
 * !gmroll|r [ROLL] - Same as the previous one, but sends to the roll to the DM and person who sent it.
 Wild Magic:
-* !w - Rolls a random wild magic effect.
+* !wild|w - Rolls a random wild magic effect.
+* !chaos - Rolls a random magical effect from 10000 (https://centralia.aquest.com/downloads/NLRMEv2.pdf)
 Reference:
 * !spell|s [SPELL_NAME] - Sends a spell card to the server chat.
 * !monster|m [MONSTER_NAME] - Sends a monster card to the server chat.
 * !race|r [RACE_NAME] - Sends a race card to the server chat.
 * !class|c [CLASS_NAME] [CLASS_LEVEL] - Sends a class card to the server chat, if level is included, it sends specific features a class gets on that level.
 * !condition [CONDITION_NAME] - Sends a condition card to the server chat.
-* !randstats [OPTIONAL_ROLL] - Rolls random ability scores for D&D using 4d6 drop lowest. If optional roll provided, it would use that instead.
+* !randstats|randstat [OPTIONAL_ROLL] - Rolls random ability scores for D&D using 4d6 drop lowest. If optional roll provided, it would use that instead.
 
 ## Mathematical Operations
 Marduk supports both dice operations and math-only operations.

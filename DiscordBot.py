@@ -20,13 +20,14 @@ print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 code_dictionary = {("help", "h"): 0,
                    ("roll", "r"): 1,
                    ("wild", "w"): 2,
-                   ("spell", "s"): 3,
-                   ("monster", "m"): 4,
-                   ("race", "r"): 5,
-                   ("class", "c"): 6,
-                   ("condition",): 7,
-                   ("randstats",): 8,
-                   ("chaos",): 9}
+                   ("chaos",): 3,
+                   ("spell", "s"): 4,
+                   ("monster", "m"): 5,
+                   ("race", "r"): 6,
+                   ("class", "c"): 7,
+                   ("condition",): 8,
+                   ("randstats", "randstat"): 9,
+                   }
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
@@ -87,17 +88,22 @@ async def on_message(message):
                 # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
-            if message_code == 2:
-                result_roll = roller.roll_dice("1d100")[0]
-                result_message = f"{message.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
+            if message_code in [2, 3]:
+                if message_code == 2:
+                    result_roll = roller.roll_dice("1d100")[0]
+                    result_message = f"{message.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
+                else:
+                    result_roll = roller.roll_dice("1d10000")[0]
+                    result_message = f"{message.author.mention}\nYour random magical effect is:\n" + wildmagic.determine_surge_magic(
+                        result_roll)
                 await message.channel.send(result_message)
-            if message_code in [3, 4, 5, 6, 7]:
+            if message_code in [4, 5, 6, 7, 8]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
                     embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
                     await message.channel.send(embed=embedded_message)
-            if message_code == 8:
+            if message_code == 9:
                 roll_message = " ".join(message.content.split(" ")[1:])
                 if roll_message == "":
                     roll_message = "4d6kh3"
@@ -112,11 +118,6 @@ async def on_message(message):
                 if len(return_message) >= 1900:
                     raise too_many_dice()
                 await message.channel.send(return_message)
-            if message_code == 9:
-                result_roll = roller.roll_dice("1d10000")[0]
-                result_message = f"{message.author.mention}\nYour random magical effect is:\n" + wildmagic.determine_surge_magic(
-                    result_roll)
-                await message.channel.send(result_message)
         except Exception as e:
             # Handles all errors
             if not isinstance(e, RollerException):
