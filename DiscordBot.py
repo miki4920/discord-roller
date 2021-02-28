@@ -12,7 +12,7 @@ roller = DiceRoll()
 wildmagic = WildMagic()
 reference = ReferenceHandler()
 token = os.getenv("TOKEN")
-test_mode = False
+test_mode = True
 test_server_id = 740700782323826799
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
@@ -39,9 +39,6 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_ready():
-    print("Number of Servers the bot is in: ", len(list(client.guilds)))
-    for guild in (list(client.guilds)):
-        print(guild)
     await client.change_presence(activity=discord.Game(name='D&D | !help'))
 
 
@@ -66,8 +63,6 @@ async def on_message(message):
                     break
             else:
                 message_code = None
-            if message_code is None:
-                raise command_not_existing()
             # Sends Manual
             if message_code == 0:
                 result_message = get_help_messages()
