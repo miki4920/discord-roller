@@ -12,7 +12,7 @@ roller = DiceRoll()
 wildmagic = WildMagic()
 reference = ReferenceHandler()
 token = os.getenv("TOKEN")
-test_mode = True
+test_mode = False
 test_server_id = 740700782323826799
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
