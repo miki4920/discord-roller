@@ -14,6 +14,7 @@ reference = ReferenceHandler()
 token = os.getenv("TOKEN")
 test_mode = False
 test_server_id = 740700782323826799
+test_user_id = 254954838855516164
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 
@@ -45,14 +46,16 @@ async def on_ready():
 @client.event
 async def on_message(message):
     original_message = message.content
-    # Prevents Bot's Recursion
     if message.author == client.user:
         return
     if message.content.startswith('!'):
         message.content = message.content.lower()
-        if test_mode and message.guild.id != 740700782323826799:
-            return
-        elif not test_mode and message.guild.id == 740700782323826799:
+        if test_mode:
+            if message.guild and message.guild.id != test_server_id:
+                return
+            elif not message.guild and message.author.id != test_user_id:
+                return
+        elif not test_mode and message.guild and message.guild.id == test_server_id:
             return
         try:
             # Checks the code dictionary for the role type
@@ -64,26 +67,22 @@ async def on_message(message):
             else:
                 message_code = None
             # Sends Manual
+            author = message.author.nick if hasattr(message.author, 'nick') else message.author.name
             if message_code == 0:
                 result_message = get_help_messages()
-                await message.channel.send("I have delivered secrets of taming me to your PMs.")
+                if message.guild:
+                    await message.channel.send("I have delivered secrets of taming me to your PMs.")
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
-                    embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
+                    embedded_message.set_author(name=author, icon_url=message.author.avatar_url)
                     await message.author.send(embed=embedded_message)
-            # Part for dice handling
-            if message_code == 1:
-                # Gets the dice roll from the roller then checks whether the message doesn't exceed the maximum capacity
+            elif message_code == 1:
                 roll_message = " ".join(message.content.split(" ")[1:])
                 result, dice_rolls = roller.roll_dice(roll_message)
-                if len(str(result) + dice_rolls) >= 1900:
-                    raise too_many_dice()
-                # Determines the message to be sent, cuts out the command
                 result_message = f"{message.author.mention}\n**Roll**: {roll_message}\n**Total: **{result}\n**Results**: {dice_rolls}"
-                # Normal Roll
                 if message_code == 1:
                     await message.channel.send(result_message)
-            if message_code in [2, 3]:
+            elif message_code in [2, 3]:
                 if message_code == 2:
                     result_roll = roller.roll_dice("1d100")[0]
                     result_message = f"{message.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(result_roll)
@@ -92,13 +91,13 @@ async def on_message(message):
                     result_message = f"{message.author.mention}\nYour random magical effect is:\n" + wildmagic.determine_surge_magic(
                         result_roll)
                 await message.channel.send(result_message)
-            if message_code in [4, 5, 6, 7, 8]:
+            elif message_code in [4, 5, 6, 7, 8]:
                 result_message = reference.reference_item(message.content)
                 for return_message in result_message:
                     embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
-                    embedded_message.set_author(name=message.author.nick, icon_url=message.author.avatar_url)
+                    embedded_message.set_author(name=author, icon_url=message.author.avatar_url)
                     await message.channel.send(embed=embedded_message)
-            if message_code == 9:
+            elif message_code == 9:
                 roll_message = " ".join(message.content.split(" ")[1:])
                 if roll_message == "":
                     roll_message = "4d6kh3"
@@ -110,8 +109,6 @@ async def on_message(message):
                     total += result
                 return_message += f"Total: {total}"
                 return_message = message.author.mention + "\nRandomly Generated Statistics:\n" + "```" + return_message + "```"
-                if len(return_message) >= 1900:
-                    raise too_many_dice()
                 await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
