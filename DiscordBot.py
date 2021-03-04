@@ -18,7 +18,7 @@ test_user_id = 254954838855516164
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 
-code_dictionary = {("help", "h"): 0,
+code_dictionary = {("help-me", "h"): 0,
                    ("roll", "r"): 1,
                    ("wild", "w"): 2,
                    ("chaos",): 3,
@@ -35,12 +35,12 @@ dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
 @client.event
 async def on_guild_join(guild):
-    await guild.system_channel.send("Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **!help**")
+    await guild.system_channel.send("Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **!help-me**")
 
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name='D&D | !help'))
+    await client.change_presence(activity=discord.Game(name='D&D | !help-me'))
 
 
 @client.event
