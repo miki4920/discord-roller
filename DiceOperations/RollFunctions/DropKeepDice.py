@@ -2,9 +2,11 @@ from Utility.ErrorHandler import drop_keep_modifier_too_high
 
 
 def drop(result, modifier_number, function):
+    discarded_result = []
     for _ in range(0, modifier_number):
+        discarded_result.append(function(result))
         result.remove(function(result))
-    return result
+    return result, discarded_result
 
 
 def keep(result, modifier_number, function):
@@ -12,7 +14,8 @@ def keep(result, modifier_number, function):
     for _ in range(0, modifier_number):
         kept_result.append(function(result))
         result.remove(function(result))
-    return kept_result
+    discarded_roll = result
+    return kept_result, discarded_roll
 
 
 def drop_keep(result, modifier, modifier_number):

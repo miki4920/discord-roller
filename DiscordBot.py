@@ -108,7 +108,7 @@ async def on_message(message):
                     return_message += f"{roll_message} {dice_rolls}: {result}\n"
                     total += result
                 return_message += f"Total: {total}"
-                return_message = message.author.mention + "\nRandomly Generated Statistics:\n" + "```" + return_message + "```"
+                return_message = message.author.mention + "```" + "\nRandomly Generated Statistics:\n" + return_message + "```"
                 await message.channel.send(return_message)
         except Exception as e:
             # Handles all errors
