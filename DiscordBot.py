@@ -9,20 +9,17 @@ from Utility.ErrorHandler import unexpected_error, too_few_arguments, RollerExce
 from Utility.GetHelp import get_help_messages
 from WildMagicHandler import WildMagic
 
-client = discord.Client()
+
 bot = commands.Bot(command_prefix="!")
 roller = DiceRoll()
 wildmagic = WildMagic()
 reference_handler = ReferenceHandler()
 token = os.getenv("TOKEN")
-test_mode = False
+test_mode = True
 test_server_id = 740700782323826799
 test_user_id = 254954838855516164
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
-
-
-dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
 
 @bot.event
