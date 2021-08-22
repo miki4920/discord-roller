@@ -15,7 +15,7 @@ roller = DiceRoll()
 wildmagic = WildMagic()
 reference_handler = ReferenceHandler()
 token = os.getenv("TOKEN")
-test_mode = True
+test_mode = False
 test_server_id = 740700782323826799
 test_user_id = 254954838855516164
 
