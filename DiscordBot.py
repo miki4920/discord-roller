@@ -21,13 +21,6 @@ test_user_id = 254954838855516164
 
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 
-code_dictionary = {("spell",): 4,
-                   ("monster",): 5,
-                   ("race",): 6,
-                   ("class",): 7,
-                   ("condition",): 8,
-                   ("randstats", "randstat"): 9,
-                   }
 
 dm_roles = ["dm", "gm", "game master", "dungeon master"]
 
