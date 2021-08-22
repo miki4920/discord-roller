@@ -5,8 +5,8 @@ from Utility.ErrorHandler import too_high_level
 def level_check(reference_type, message):
     if reference_type == "class":
         message = message.split(" ")
-        if len(message) == 3 and message[2].lstrip("-").isdigit():
-            if int(message[2]) > 20 or int(message[2]) < 1:
+        if len(message) == 2 and message[1].lstrip("-").isdigit():
+            if int(message[1]) > 20 or int(message[1]) < 1:
                 raise too_high_level()
             return True
     return False
