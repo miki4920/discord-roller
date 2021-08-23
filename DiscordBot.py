@@ -126,8 +126,11 @@ async def help_me_slash(context):
     messages = help_me(context)
     if context.guild:
         await context.send("I have delivered secrets of taming me to your PMs.")
-    for message in messages:
-        await context.author.send(embed=message)
+        for message in messages:
+            await context.author.send(embed=message)
+    else:
+        for message in messages:
+            await context.send(embed=message)
 
 
 def roll(context, args):
