@@ -1,4 +1,4 @@
-from Utility.ErrorHandler import drop_keep_modifier_too_high
+from Utility.ErrorHandler import DropKeepModifierTooHigh
 
 
 def drop(result, modifier_number, function):
@@ -20,7 +20,7 @@ def keep(result, modifier_number, function):
 
 def drop_keep(result, modifier, modifier_number):
     if modifier_number > len(result):
-        raise drop_keep_modifier_too_high()
+        raise DropKeepModifierTooHigh()
     function_dictionary = {"d": (drop, min),
                            "dl": (drop, min),
                            "dh": (drop, max),

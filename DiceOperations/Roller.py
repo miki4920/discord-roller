@@ -1,6 +1,6 @@
 from DiceOperations.RollClass import Roll
 from DiceOperations.ShuntingYard import shunting_yard_algorithm, tokenizer
-from Utility.ErrorHandler import too_many_dice
+from Utility.ErrorHandler import TooManyDice
 
 
 class DiceRoll(object):
@@ -28,5 +28,5 @@ class DiceRoll(object):
         resulting_roll = shunting_yard_algorithm(tokenized_expression)
         string_roll = self.dice_to_string(tokenized_expression)
         if len(str(resulting_roll) + string_roll) >= 1900:
-            raise too_many_dice()
+            raise TooManyDice()
         return resulting_roll, string_roll

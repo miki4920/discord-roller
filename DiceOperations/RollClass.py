@@ -1,6 +1,6 @@
 import re
 import random
-from Utility.ErrorHandler import wrong_command_format, roll_is_zero
+from Utility.ErrorHandler import WrongCommandFormat, RollZero
 from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
 from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
 from DiceOperations.RollFunctions.DropKeepDice import drop_keep
@@ -42,16 +42,16 @@ class Roll(object):
         try:
             self.roll = [self.roll[0], 1, self.roll[2]]
         except IndexError:
-            raise wrong_command_format()
+            raise WrongCommandFormat()
         # Checks if a die is a fate die
         if self.roll[2] == "f":
             self.roll = [self.roll[0], -1, 1]
         try:
             self.roll = list(map(int, self.roll))
         except ValueError:
-            raise wrong_command_format()
+            raise WrongCommandFormat()
         if any([die == 0 for die in self.roll]):
-            raise roll_is_zero()
+            raise RollZero()
         # Rolls dice and applies modifiers
         result = multi_die_roll(self.roll)
         discarded_result = []
@@ -63,7 +63,7 @@ class Roll(object):
                     modifier_number = int(roll_modifiers[roll_modifiers.index(modifier) + 1])
                     result, discarded_result = drop_keep(result, modifier, modifier_number)
             except IndexError:
-                raise wrong_command_format()
+                raise WrongCommandFormat()
         # Makes die negative if that was intended
         self.roll = [i * (1 - (2 * self.negative)) for i in result]
         self.discarded_roll = [i * (1 - (2 * self.negative)) for i in discarded_result]

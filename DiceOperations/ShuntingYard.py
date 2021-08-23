@@ -1,5 +1,5 @@
 from DiceOperations.Operators import *
-from Utility.ErrorHandler import too_many_operators, wrong_command_format
+from Utility.ErrorHandler import TooManyOperators, WrongCommandFormat
 import re
 
 
@@ -34,11 +34,11 @@ def apply_operator(operants, values):
         right = values.pop()
         left = values.pop()
     except (IndexError, KeyError):
-        raise too_many_operators()
+        raise TooManyOperators()
     try:
         values.append(operation(left, right))
     except ValueError:
-        raise wrong_command_format()
+        raise WrongCommandFormat()
 
 
 def tokenizer(expression):
@@ -56,7 +56,7 @@ def tokenizer(expression):
         elif operator_before and token == "-":
             operator_string += token
         elif operator_before and token not in ("(", ")", "-"):
-            raise too_many_operators()
+            raise TooManyOperators()
         elif not is_number(token) and token not in ("(", ")"):
             tokens.append(token)
             operator_before = True
@@ -82,7 +82,7 @@ def shunting_yard_algorithm(tokenized_expression):
             try:
                 operators.pop()
             except IndexError:
-                raise too_many_operators()
+                raise TooManyOperators()
 
         else:
             top = peek(operators)
@@ -95,4 +95,4 @@ def shunting_yard_algorithm(tokenized_expression):
     try:
         return int(values[0]) if values[0].is_integer() else float(values[0])
     except AttributeError:
-        raise wrong_command_format()
+        raise WrongCommandFormat()
