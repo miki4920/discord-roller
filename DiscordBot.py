@@ -1,14 +1,15 @@
-import inspect
 import os
 
 import discord
+
+from discord import Guild
 from discord.ext import commands
 from discord.ext.commands import Context
 from functools import wraps
 from discord_slash import SlashCommand
 from discord_slash.model import SlashCommandOptionType
 from discord_slash.utils.manage_commands import create_option
-from typing import Tuple, Callable
+from typing import Tuple, Callable, Coroutine, Union
 
 from DiceOperations.Roller import DiceRoll
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
@@ -30,13 +31,9 @@ test_user_id = 254954838855516164
 print(f"Bot running in the {'Test Mode' if test_mode else 'Production Mode'}")
 
 
-def has_valid_arguments(args: Tuple[str]) -> bool:
-    if len(args) == 0:
-        raise TooFewArguments()
-    return True
-
-
 def is_production(context: Context) -> bool:
+    """Checks if bot is currently in testing environment or production environment.
+    Prevents double posting when bot is being developed."""
     if test_mode:
         if context.guild and context.guild.id != test_server_id:
             return False
@@ -47,16 +44,17 @@ def is_production(context: Context) -> bool:
     return True
 
 
-def message_handler(coro: Callable):
+def error_handler(coro: Callable):
+    """A decorator used handling errors.
+    :param coro: A Discord Command or Discord Slash Command function.
+    :return: Function wrapped with argument and error handling.
+    """
     @wraps(coro)
-    async def wrapper(*args, **kwargs):
+    async def wrapper(*args, **kwargs) -> Union[Coroutine, None]:
         context = args[0]
-        signature = inspect.signature(coro).parameters
         if not is_production(context):
-            return
+            return None
         try:
-            if signature.get("args") and not signature.get("default"):
-                has_valid_arguments(args[1:])
             return await coro(*args, **kwargs)
         except RollerException as error:
             await context.send(str(error))
@@ -66,18 +64,38 @@ def message_handler(coro: Callable):
             else:
                 error = UnexpectedError(str(error))
                 await context.send(error)
+    return wrapper
 
+
+def has_valid_arguments(args: Tuple[str]) -> bool:
+    """Checks if tuple of strings contains at least one item.
+    Raises TooFewArguments if tuple is empty.
+    """
+    if len(args) == 0:
+        raise TooFewArguments()
+    return True
+
+
+def argument_handler(coro: Callable):
+    """A decorator used for checking if a function has received at least one argument.
+    Raises TooFewArguments if no arguments were received."""
+    @wraps(coro)
+    async def wrapper(*args, **kwargs) -> Coroutine:
+        has_valid_arguments(args[1:])
+        return await coro(*args, **kwargs)
     return wrapper
 
 
 @bot.event
-async def on_guild_join(guild):
+async def on_guild_join(guild: Guild) -> None:
+    """Sends a welcome message on guild join."""
     await guild.system_channel.send(
-        "Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **!help-me**")
+        "Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **!help-me** or **/help-me**")
 
 
 @bot.event
-async def on_ready():
+async def on_ready() -> None:
+    """Shows activity in discord server when bot is ready to be used."""
     await bot.change_presence(activity=discord.Game(name='D&D | !help-me'))
 
 
@@ -93,7 +111,7 @@ def help_me(context):
 
 
 @bot.command(name="help-me")
-@message_handler
+@error_handler
 async def help_me_command(context):
     messages = help_me(context)
     if context.guild:
@@ -103,7 +121,7 @@ async def help_me_command(context):
 
 
 @slash.slash(name="help-me", description="Sends you a PM with all commands.")
-@message_handler
+@error_handler
 async def help_me_slash(context):
     messages = help_me(context)
     if context.guild:
@@ -119,7 +137,8 @@ def roll(context, args):
 
 
 @bot.command(name="roll", aliases=("r",))
-@message_handler
+@error_handler
+@argument_handler
 async def roll_command(context, *args):
     args = " ".join(args)
     result_message = roll(context, args)
@@ -137,7 +156,7 @@ async def roll_command(context, *args):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def roll_slash(context, dice=""):
     result_message = roll(context, dice)
     await context.send(result_message)
@@ -151,14 +170,14 @@ def wild(context):
 
 
 @bot.command(name="wild")
-@message_handler
+@error_handler
 async def wild_command(context):
     result_message = wild(context)
     await context.send(result_message)
 
 
 @slash.slash(name="wild", description="Rolls a random wild magic effect.")
-@message_handler
+@error_handler
 async def wild_command(context):
     result_message = wild(context)
     await context.send(result_message)
@@ -172,14 +191,14 @@ def chaos(context):
 
 
 @bot.command(name="chaos")
-@message_handler
+@error_handler
 async def chaos_command(context):
     result_message = chaos(context)
     await context.send(result_message)
 
 
 @slash.slash(name="chaos", description="Rolls a random 1d10000 wild magic effect.")
-@message_handler
+@error_handler
 async def chaos_slash(context):
     result_message = chaos(context)
     await context.send(result_message)
@@ -195,7 +214,8 @@ async def reference(context, item_type, args):
 
 
 @bot.command(name="spell")
-@message_handler
+@error_handler
+@argument_handler
 async def spell_command(context, *args):
     args = " ".join(args)
     await reference(context, "spell", args)
@@ -211,13 +231,14 @@ async def spell_command(context, *args):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def spell_slash(context, name):
     await reference(context, "spell", name)
 
 
 @bot.command(name="monster")
-@message_handler
+@error_handler
+@argument_handler
 async def monster_command(context, *args):
     args = " ".join(args)
     await reference(context, "monster", args)
@@ -233,13 +254,14 @@ async def monster_command(context, *args):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def monster_slash(context, name):
     await reference(context, "monster", name)
 
 
 @bot.command(name="class")
-@message_handler
+@error_handler
+@argument_handler
 async def dnd_class_command(context, *args):
     args = " ".join(args)
     await reference(context, "class", args)
@@ -261,7 +283,7 @@ async def dnd_class_command(context, *args):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def dnd_class_slash(context, name, level=""):
     if level:
         name = name + " " + level
@@ -269,7 +291,8 @@ async def dnd_class_slash(context, name, level=""):
 
 
 @bot.command()
-@message_handler
+@error_handler
+@argument_handler
 async def condition_command(context, *args):
     args = " ".join(args)
     await reference(context, "condition", args)
@@ -285,7 +308,7 @@ async def condition_command(context, *args):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def condition_slash(context, name):
     await reference(context, "condition", name)
 
@@ -305,7 +328,7 @@ def randstat(context, args, default):
 
 
 @bot.command(name="randstat", aliases=("randstats",))
-@message_handler
+@error_handler
 async def randstat_command(context, *args, default="4d6kh3"):
     if len(args) > 0:
         args = " ".join(args)
@@ -324,7 +347,7 @@ async def randstat_command(context, *args, default="4d6kh3"):
                  )
              ]
              )
-@message_handler
+@error_handler
 async def randstat_slash(context, dice="", default="4d6kh3"):
     return_message = randstat(context, dice, default)
     await context.send(return_message)
