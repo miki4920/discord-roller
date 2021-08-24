@@ -100,6 +100,7 @@ async def on_ready() -> None:
 
 
 def help_me(context):
+    """Returns a message containing all current bot commands."""
     author = context.author.nick if hasattr(context.author, 'nick') else context.author.name
     result_message = get_help_messages()
     embed_list = []
@@ -113,6 +114,7 @@ def help_me(context):
 @bot.command(name="help-me")
 @error_handler
 async def help_me_command(context):
+    """Sends message through discord.py command system when user types !help-me. Gets message from help-me."""
     messages = help_me(context)
     if context.guild:
         await context.send("I have delivered secrets of taming me to your PMs.")
@@ -123,6 +125,7 @@ async def help_me_command(context):
 @slash.slash(name="help-me", description="Sends you a PM with all commands.")
 @error_handler
 async def help_me_slash(context):
+    """Sends message through discord-slash system when user types /help-me. Gets message from help-me."""
     messages = help_me(context)
     if context.guild:
         await context.send("I have delivered secrets of taming me to your PMs.")
@@ -134,6 +137,7 @@ async def help_me_slash(context):
 
 
 def roll(context, args):
+    """Takes a rollable string such as 1d20+5 and returns its result after evaluating all the dice."""
     result, dice_rolls = roller.roll_dice(args)
     result_message = f"{context.author.mention}\n**Roll**: {args}\n**Total: **{result}\n**Results**: {dice_rolls}"
     return result_message
@@ -143,6 +147,7 @@ def roll(context, args):
 @error_handler
 @argument_handler
 async def roll_command(context, *args):
+    """Sends message through discord.py command system when user types !roll. Requires valid dice roll as input."""
     args = " ".join(args)
     result_message = roll(context, args)
     await context.send(result_message)
@@ -161,11 +166,13 @@ async def roll_command(context, *args):
              )
 @error_handler
 async def roll_slash(context, dice=""):
+    """Sends message through discord-slash system when user types /roll. Requires valid dice roll as input."""
     result_message = roll(context, dice)
     await context.send(result_message)
 
 
 def wild(context):
+    """Returns a random value from the wild magic effects table. Internally, it uses 1d100 to determine the effect."""
     result_roll = roller.roll_dice("1d100")[0]
     result_message = f"{context.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(
         result_roll)
@@ -175,6 +182,7 @@ def wild(context):
 @bot.command(name="wild")
 @error_handler
 async def wild_command(context):
+    """Sends message through discord.py command system when user types !wild."""
     result_message = wild(context)
     await context.send(result_message)
 
@@ -182,11 +190,14 @@ async def wild_command(context):
 @slash.slash(name="wild", description="Rolls a random wild magic effect.")
 @error_handler
 async def wild_command(context):
+    """Sends message through discord-slash system when user types /wild."""
     result_message = wild(context)
     await context.send(result_message)
 
 
 def chaos(context):
+    """Returns a random value from the chaos magic effects table.
+    Internally, it uses 1d10000 to determine the effect."""
     result_roll = roller.roll_dice("1d10000")[0]
     result_message = f"{context.author.mention}\nYour random magical effect is:\n" + wildmagic.determine_surge_magic(
         result_roll)
@@ -196,6 +207,7 @@ def chaos(context):
 @bot.command(name="chaos")
 @error_handler
 async def chaos_command(context):
+    """Sends message through discord.py command system when user types !chaos."""
     result_message = chaos(context)
     await context.send(result_message)
 
@@ -203,6 +215,7 @@ async def chaos_command(context):
 @slash.slash(name="chaos", description="Rolls a random 1d10000 wild magic effect.")
 @error_handler
 async def chaos_slash(context):
+    """Sends message through discord-slash system when user types /chaos."""
     result_message = chaos(context)
     await context.send(result_message)
 
