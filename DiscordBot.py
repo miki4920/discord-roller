@@ -172,8 +172,8 @@ async def roll_slash(context, dice=""):
 
 
 def wild(context):
-    """Returns a random value from the wild magic effects table. Internally, it uses 1d100 to determine the effect."""
-    result_roll = roller.roll_dice("1d100")[0]
+    """Returns a random value from the wild magic effects table. Internally, it uses 1d50 to determine the effect."""
+    result_roll = roller.roll_dice("1d50")[0]
     result_message = f"{context.author.mention}\nYour wild magic surge is:\n" + wildmagic.determine_wild_magic(
         result_roll)
     return result_message

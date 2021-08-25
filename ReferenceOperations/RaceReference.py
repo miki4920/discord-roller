@@ -1,11 +1,11 @@
-from Utility.UtilityHandler import read_json
+from Utility.UtilityHandler import read_json_api
 
 
 def get_traits(race_json):
     formatted_traits = ""
     traits = race_json.get("traits")
     for trait in traits:
-        trait = read_json("trait", trait["index"])
+        trait = read_json_api("trait", trait["index"])
         formatted_traits += f"**{trait['name']}. **"
         formatted_traits += trait["desc"][0] + "\n\n"
     return formatted_traits
@@ -15,7 +15,7 @@ def get_subraces(race_json):
     subraces = []
     race_json = race_json.get("subraces")
     for subrace in race_json:
-        subrace_json = read_json("subrace", subrace["index"])
+        subrace_json = read_json_api("subrace", subrace["index"])
         name = subrace_json.get("name")
         ability_score_increase = subrace_json.get("ability_bonus_desc") + "\n\n"
         traits = get_traits(subrace_json)

@@ -1,4 +1,4 @@
-from Utility.UtilityHandler import read_json
+from Utility.UtilityHandler import read_json_api
 from Utility.ErrorHandler import TooHighLevel
 
 
@@ -55,7 +55,7 @@ def get_features(level_json):
     features_block = ""
     if features:
         for feature in features:
-            feature_json = read_json("feature", feature["index"])
+            feature_json = read_json_api("feature", feature["index"])
             features_block += f"**{feature['name']}**\n{feature_json['desc'][0]}\n"
     return features_block
 

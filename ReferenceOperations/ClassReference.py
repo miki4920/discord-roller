@@ -1,4 +1,4 @@
-from Utility.UtilityHandler import read_json
+from Utility.UtilityHandler import read_json_api
 from math import ceil
 
 
@@ -6,7 +6,7 @@ def get_levels(class_json):
     class_index = class_json.get("index")
     level_features = dict((key, []) for key in range(1, 21))
     for level in range(1, 21):
-        level_feature = read_json("level", f"{class_index}-{level}")["features"]
+        level_feature = read_json_api("level", f"{class_index}-{level}")["features"]
         for feature in level_feature:
             level_features[level].append(feature["name"])
     return level_features
@@ -132,7 +132,7 @@ def get_starting_equipment(equipment):
 
 def get_equipment_block(class_json):
     index = class_json.get("index")
-    equipment = read_json("starting-equipment", index)
+    equipment = read_json_api("starting-equipment", index)
     starting_equipment = get_starting_equipment(equipment.get("starting_equipment"))
     equipment_choices = get_equipment_choices(equipment.get("starting_equipment_options"))
     equipment_block = f"{equipment_choices}" \

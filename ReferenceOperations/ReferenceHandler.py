@@ -1,4 +1,4 @@
-from Utility.UtilityHandler import read_json, read_pickle
+from Utility.UtilityHandler import read_json_api, read_json
 from Levenshtein import distance
 from ReferenceOperations.SpellReference import spell_reference
 from ReferenceOperations.MonsterReference import monster_reference
@@ -10,11 +10,11 @@ from ReferenceOperations.ConditionReference import condition_reference
 
 class ReferenceHandler(object):
     def __init__(self):
-        self.spell_list = "FileStorage/ReferenceLists/SpellList.pickle"
-        self.monster_list = "FileStorage/ReferenceLists/MonsterList.pickle"
-        self.race_list = "FileStorage/ReferenceLists/RaceList.pickle"
-        self.class_list = "FileStorage/ReferenceLists/ClassList.pickle"
-        self.condition_list = "FileStorage/ReferenceLists/ConditionList.pickle"
+        self.spell_list = "FileStorage/ReferenceLists/SpellList.json"
+        self.monster_list = "FileStorage/ReferenceLists/MonsterList.json"
+        self.race_list = "FileStorage/ReferenceLists/RaceList.json"
+        self.class_list = "FileStorage/ReferenceLists/ClassList.json"
+        self.condition_list = "FileStorage/ReferenceLists/ConditionList.json"
         self.item_list_dictionary = {"spell": (spell_reference, self.spell_list, 0.1),
                                      "monster": (monster_reference, self.monster_list, 0.1),
                                      "race": (race_reference, self.race_list, 0.1),
@@ -24,7 +24,7 @@ class ReferenceHandler(object):
 
     @staticmethod
     def get_item_name(item_name, item_list, cutout_point):
-        item_list = read_pickle(item_list)
+        item_list = read_json(item_list)
         item_name = item_name.title()
         for item in item_list:
             if distance(item_name, item) / max(len(item_name),
@@ -47,5 +47,5 @@ class ReferenceHandler(object):
             valid_item_index += "-" + item_name.split(" ")[1]
         if not valid_item_index:
             return [("Error", f"The {item_name.capitalize()} Does Not Exist in SRD.")]
-        item_json = read_json(item_type, valid_item_index)
+        item_json = read_json_api(item_type, valid_item_index)
         return item_tuple[0](item_json)

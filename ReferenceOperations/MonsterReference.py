@@ -1,5 +1,5 @@
 from math import floor
-from Utility.UtilityHandler import read_pickle
+from Utility.UtilityHandler import read_json
 
 
 def ability_conversion(ability_score):
@@ -86,7 +86,7 @@ def get_languages(languages):
 
 
 def get_xp(challenge_rating):
-    xp = read_pickle("FileStorage/ReferenceLists/XPList.pickle").get(str(challenge_rating))
+    xp = read_json("FileStorage/ReferenceLists/XPList.json").get(str(challenge_rating))
     if not xp:
         xp = 0
     return f"**CR**: {challenge_rating} ({xp} XP)" + "\n\n"
