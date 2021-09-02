@@ -306,7 +306,7 @@ async def dnd_class_slash(context, name, level=""):
     await reference(context, "class", name)
 
 
-@bot.command()
+@bot.command(name="condition")
 @error_handler
 @argument_handler
 async def condition_command(context, *args):
