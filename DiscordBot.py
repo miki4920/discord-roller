@@ -111,7 +111,7 @@ def help_me(context):
     return embed_list
 
 
-@bot.command(name="help-me")
+@bot.command(name="help-me", case_insensitive=True)
 @error_handler
 async def help_me_command(context):
     """Sends message through discord.py command system when user types !help-me. Gets message from help-me."""
@@ -143,7 +143,7 @@ def roll(context, args):
     return result_message
 
 
-@bot.command(name="roll", aliases=("r",))
+@bot.command(name="roll", aliases=("r",), case_insensitive=True)
 @error_handler
 @argument_handler
 async def roll_command(context, *args):
@@ -179,7 +179,7 @@ def wild(context):
     return result_message
 
 
-@bot.command(name="wild")
+@bot.command(name="wild", case_insensitive=True)
 @error_handler
 async def wild_command(context):
     """Sends message through discord.py command system when user types !wild."""
@@ -204,7 +204,7 @@ def chaos(context):
     return result_message
 
 
-@bot.command(name="chaos")
+@bot.command(name="chaos", case_insensitive=True)
 @error_handler
 async def chaos_command(context):
     """Sends message through discord.py command system when user types !chaos."""
@@ -229,7 +229,7 @@ async def reference(context, item_type, args):
         await context.send(embed=embedded_message)
 
 
-@bot.command(name="spell")
+@bot.command(name="spell", case_insensitive=True)
 @error_handler
 @argument_handler
 async def spell_command(context, *args):
@@ -252,7 +252,7 @@ async def spell_slash(context, name):
     await reference(context, "spell", name)
 
 
-@bot.command(name="monster")
+@bot.command(name="monster", case_insensitive=True)
 @error_handler
 @argument_handler
 async def monster_command(context, *args):
@@ -275,7 +275,7 @@ async def monster_slash(context, name):
     await reference(context, "monster", name)
 
 
-@bot.command(name="class")
+@bot.command(name="class", case_insensitive=True)
 @error_handler
 @argument_handler
 async def dnd_class_command(context, *args):
@@ -306,7 +306,7 @@ async def dnd_class_slash(context, name, level=""):
     await reference(context, "class", name)
 
 
-@bot.command(name="condition")
+@bot.command(name="condition", case_insensitive=True)
 @error_handler
 @argument_handler
 async def condition_command(context, *args):
@@ -343,7 +343,7 @@ def randstat(context, args, default):
     return return_message
 
 
-@bot.command(name="randstat", aliases=("randstats",))
+@bot.command(name="randstat", aliases=("randstats",), case_insensitive=True)
 @error_handler
 async def randstat_command(context, *args, default="4d6kh3"):
     if len(args) > 0:
