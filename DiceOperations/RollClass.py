@@ -7,8 +7,9 @@ from DiceOperations.RollFunctions.DropKeepDice import drop_keep
 
 
 class Roll(object):
-    def __init__(self, roll):
+    def __init__(self, roll, inside_codeblock):
         self.roll = roll
+        self.inside_codeblock = inside_codeblock
         self.discarded_roll = []
         self.negative = self.roll[0] == "-"
         self.handle_dice()
@@ -24,7 +25,10 @@ class Roll(object):
         for number in self.roll:
             roll_list.append(str(number))
         for number in self.discarded_roll:
-            roll_list.append("".join(u'\u0336' + i for i in str(number)))
+            if self.inside_codeblock:
+                roll_list.append("".join(u'\u0336' + i for i in str(number)))
+            else:
+                roll_list.append("~~" + str(number) + "~~")
         random.shuffle(roll_list)
         string = ", ".join(roll_list)
         string = string[1:] if string[0:3] == " - " else string

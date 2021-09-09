@@ -8,11 +8,11 @@ class DiceRoll(object):
         pass
 
     @staticmethod
-    def dice_to_classes(tokenized_expression):
+    def dice_to_classes(tokenized_expression, inside_codeblock):
         # Converts all dice stings into classes of Roll
         for index in range(0, len(tokenized_expression)):
             if "d" in tokenized_expression[index]:
-                roll = Roll(tokenized_expression[index])
+                roll = Roll(tokenized_expression[index], inside_codeblock)
                 tokenized_expression[index] = roll
         return tokenized_expression
 
@@ -21,10 +21,10 @@ class DiceRoll(object):
         # Converts all dice to strings for the final output
         return " ".join(map(str, tokenized_expression))
 
-    def roll_dice(self, roll):
+    def roll_dice(self, roll, inside_codeblock=False):
         # Converts expression into tokens and then resolves all mathematical operations
         tokenized_expression = tokenizer(roll)
-        tokenized_expression = self.dice_to_classes(tokenized_expression)
+        tokenized_expression = self.dice_to_classes(tokenized_expression, inside_codeblock)
         resulting_roll = shunting_yard_algorithm(tokenized_expression)
         string_roll = self.dice_to_string(tokenized_expression)
         if len(str(resulting_roll) + string_roll) >= 1900:

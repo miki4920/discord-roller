@@ -335,7 +335,7 @@ def randstat(context, args, default):
     return_message = ""
     total = 0
     for _ in range(0, 6):
-        result, dice_rolls = roller.roll_dice(args)
+        result, dice_rolls = roller.roll_dice(args, inside_codeblock=True)
         return_message += f"{args} {dice_rolls}: {result}\n"
         total += result
     return_message += f"Total: {total}"
