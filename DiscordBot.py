@@ -17,7 +17,7 @@ from Utility.ErrorHandler import UnexpectedError, TooFewArguments, RollerExcepti
 from Utility.GetHelp import get_help_messages
 from WildMagicHandler import WildMagic
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!", case_insensitive=True)
 bot.help_command = None
 slash = SlashCommand(bot, sync_commands=True)
 roller = DiceRoll()
@@ -111,7 +111,7 @@ def help_me(context):
     return embed_list
 
 
-@bot.command(name="help-me", case_insensitive=True)
+@bot.command(name="help-me")
 @error_handler
 async def help_me_command(context):
     """Sends message through discord.py command system when user types !help-me. Gets message from help-me."""
@@ -143,12 +143,12 @@ def roll(context, args):
     return result_message
 
 
-@bot.command(name="roll", aliases=("r",), case_insensitive=True)
+@bot.command(name="roll", aliases=("r",))
 @error_handler
 @argument_handler
 async def roll_command(context, *args):
     """Sends message through discord.py command system when user types !roll. Requires valid dice roll as input."""
-    args = " ".join(args)
+    args = " ".join(args).lower()
     result_message = roll(context, args)
     await context.send(result_message)
 
@@ -167,6 +167,7 @@ async def roll_command(context, *args):
 @error_handler
 async def roll_slash(context, dice=""):
     """Sends message through discord-slash system when user types /roll. Requires valid dice roll as input."""
+    dice = dice.lower()
     result_message = roll(context, dice)
     await context.send(result_message)
 
@@ -179,7 +180,7 @@ def wild(context):
     return result_message
 
 
-@bot.command(name="wild", case_insensitive=True)
+@bot.command(name="wild")
 @error_handler
 async def wild_command(context):
     """Sends message through discord.py command system when user types !wild."""
@@ -204,7 +205,7 @@ def chaos(context):
     return result_message
 
 
-@bot.command(name="chaos", case_insensitive=True)
+@bot.command(name="chaos")
 @error_handler
 async def chaos_command(context):
     """Sends message through discord.py command system when user types !chaos."""
@@ -222,6 +223,7 @@ async def chaos_slash(context):
 
 async def reference(context, item_type, args):
     author = context.author.nick if hasattr(context.author, 'nick') else context.author.name
+    item_type = item_type.lower()
     result_message = reference_handler.reference_item(item_type, args)
     for return_message in result_message:
         embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
@@ -229,7 +231,7 @@ async def reference(context, item_type, args):
         await context.send(embed=embedded_message)
 
 
-@bot.command(name="spell", case_insensitive=True)
+@bot.command(name="spell")
 @error_handler
 @argument_handler
 async def spell_command(context, *args):
@@ -252,7 +254,7 @@ async def spell_slash(context, name):
     await reference(context, "spell", name)
 
 
-@bot.command(name="monster", case_insensitive=True)
+@bot.command(name="monster")
 @error_handler
 @argument_handler
 async def monster_command(context, *args):
@@ -275,7 +277,7 @@ async def monster_slash(context, name):
     await reference(context, "monster", name)
 
 
-@bot.command(name="class", case_insensitive=True)
+@bot.command(name="class")
 @error_handler
 @argument_handler
 async def dnd_class_command(context, *args):
@@ -306,7 +308,7 @@ async def dnd_class_slash(context, name, level=""):
     await reference(context, "class", name)
 
 
-@bot.command(name="condition", case_insensitive=True)
+@bot.command(name="condition")
 @error_handler
 @argument_handler
 async def condition_command(context, *args):
@@ -343,7 +345,7 @@ def randstat(context, args, default):
     return return_message
 
 
-@bot.command(name="randstat", aliases=("randstats",), case_insensitive=True)
+@bot.command(name="randstat", aliases=("randstats",))
 @error_handler
 async def randstat_command(context, *args, default="4d6kh3"):
     if len(args) > 0:
