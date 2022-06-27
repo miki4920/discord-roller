@@ -171,6 +171,24 @@ async def roll_slash(context, dice=""):
     result_message = roll(context, dice)
     await context.send(result_message)
 
+@slash.slash(name="r",
+             description="Rolls Dice in xdy format. In case of FATE rolls, replace 'y' with 'F'.",
+             options=[
+                 create_option(
+                     name="dice",
+                     description="Dice in xdy format",
+                     option_type=SlashCommandOptionType.STRING,
+                     required=True
+                 )
+             ]
+             )
+@error_handler
+async def roll_slash(context, dice=""):
+    """Sends message through discord-slash system when user types /roll. Requires valid dice roll as input."""
+    dice = dice.lower()
+    result_message = roll(context, dice)
+    await context.send(result_message)
+
 
 def wild(context):
     """Returns a random value from the wild magic effects table. Internally, it uses 1d50 to determine the effect."""
