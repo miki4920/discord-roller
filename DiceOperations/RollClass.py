@@ -5,7 +5,7 @@ from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
 from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
 from DiceOperations.RollFunctions.DropKeepDice import drop_keep
 
-random.seed(5)
+
 class Roll(object):
     def __init__(self, roll, inside_codeblock):
         self.roll = roll
@@ -35,6 +35,7 @@ class Roll(object):
         return "(" + string + ")"
 
     def handle_dice(self):
+        random.seed(5)
         # Check if roll is negative then separates roll into modifiers
         self.roll = re.findall("f|kl|dh|dl|d|k|!p|!!|!|kh|\d+", self.roll)
         # Check if there are any additional modifiers on a die, if not, then
