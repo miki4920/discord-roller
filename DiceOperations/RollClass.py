@@ -5,7 +5,7 @@ from DiceOperations.RollFunctions.ExplodingDice import exploding_roll
 from DiceOperations.RollFunctions.StandardRoll import multi_die_roll
 from DiceOperations.RollFunctions.DropKeepDice import drop_keep
 
-
+random.seed(5)
 class Roll(object):
     def __init__(self, roll, inside_codeblock):
         self.roll = roll
