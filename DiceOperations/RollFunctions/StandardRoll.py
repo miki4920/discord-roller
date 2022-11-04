@@ -2,7 +2,7 @@ from random import randint
 
 
 def single_die_roll(lower_bound, upper_bound):
-    return randint(upper_bound//2, upper_bound)
+    return randint(lower_bound, upper_bound)
 
 
 def multi_die_roll(roll_information):
