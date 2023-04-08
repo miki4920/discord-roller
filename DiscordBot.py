@@ -1,14 +1,10 @@
+import discord
 import os
 
-import discord
-
-from discord import Guild
-from discord.ext import commands
+from discord import Guild, SlashCommandOptionType, Option
 from discord.ext.commands import Context
+from dotenv import load_dotenv
 from functools import wraps
-from discord_slash import SlashCommand
-from discord_slash.model import SlashCommandOptionType
-from discord_slash.utils.manage_commands import create_option
 from typing import Tuple, Callable, Coroutine, Union
 
 from DiceOperations.Roller import DiceRoll
@@ -17,14 +13,12 @@ from Utility.ErrorHandler import UnexpectedError, TooFewArguments, RollerExcepti
 from Utility.GetHelp import get_help_messages
 from WildMagicHandler import WildMagic
 
-bot = commands.Bot(command_prefix="!", case_insensitive=True)
-bot.help_command = None
-slash = SlashCommand(bot, sync_commands=True)
+load_dotenv()
+bot = discord.Bot()
 roller = DiceRoll()
 wildmagic = WildMagic()
 reference_handler = ReferenceHandler()
-token = os.getenv("TOKEN")
-test_mode = False
+test_mode = True
 test_server_id = 740700782323826799
 test_user_id = 254954838855516164
 
@@ -49,6 +43,7 @@ def error_handler(coro: Callable):
     :param coro: A Discord Command or Discord Slash Command function.
     :return: Function wrapped with argument and error handling.
     """
+
     @wraps(coro)
     async def wrapper(*args, **kwargs) -> Union[Coroutine, None]:
         context = args[0]
@@ -64,6 +59,7 @@ def error_handler(coro: Callable):
             else:
                 error = UnexpectedError(str(error))
                 await context.send(error)
+
     return wrapper
 
 
@@ -76,118 +72,56 @@ def has_valid_arguments(args: Tuple[str]) -> bool:
     return True
 
 
-def argument_handler(coro: Callable):
-    """A decorator used for checking if a function has received at least one argument.
-    Raises TooFewArguments if no arguments were received."""
-    @wraps(coro)
-    async def wrapper(*args, **kwargs) -> Coroutine:
-        has_valid_arguments(args[1:])
-        return await coro(*args, **kwargs)
-    return wrapper
-
-
 @bot.event
 async def on_guild_join(guild: Guild) -> None:
     """Sends a welcome message on guild join."""
     await guild.system_channel.send(
-        "Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **!help-me** or **/help-me**")
+        "Hi, I am Marduk. Your personal dragon assistant. To tame me, simply type **/help**")
 
 
 @bot.event
 async def on_ready() -> None:
     """Shows activity in discord server when bot is ready to be used."""
-    await bot.change_presence(activity=discord.Game(name='D&D | !help-me'))
+    await bot.change_presence(activity=discord.Game(name='D&D | /help'))
 
 
-def help_me(context):
+def help_message(context):
     """Returns a message containing all current bot commands."""
-    author = context.author.nick if hasattr(context.author, 'nick') else context.author.name
     result_message = get_help_messages()
-    embed_list = []
-    for return_message in result_message:
-        embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
-        embedded_message.set_author(name=author, icon_url=context.author.avatar_url)
-        embed_list.append(embedded_message)
-    return embed_list
+    embedded_message = discord.Embed(title=result_message[0], description=result_message[1], color=10038562)
+    embedded_message.set_author(name=context.author.display_name, icon_url=context.author.display_avatar)
+    return embedded_message
 
 
-@bot.command(name="help-me")
+@bot.slash_command(name="help", description="Sends you a PM with all commands.", guild_ids=[740700782323826799])
 @error_handler
-async def help_me_command(context):
-    """Sends message through discord.py command system when user types !help-me. Gets message from help-me."""
-    messages = help_me(context)
-    if context.guild:
-        await context.send("I have delivered secrets of taming me to your PMs.")
-    for message in messages:
-        await context.author.send(embed=message)
+async def help_slash(context):
+    """Sends message through discord-slash system when user types /help. Gets message from help."""
+    message = help_message(context)
+    await context.respond(embed=message)
 
 
-@slash.slash(name="help-me", description="Sends you a PM with all commands.")
-@error_handler
-async def help_me_slash(context):
-    """Sends message through discord-slash system when user types /help-me. Gets message from help-me."""
-    messages = help_me(context)
-    if context.guild:
-        await context.send("I have delivered secrets of taming me to your PMs.")
-        for message in messages:
-            await context.author.send(embed=message)
-    else:
-        for message in messages:
-            await context.send(embed=message)
-
-
-def roll(context, args):
+def make_roll(context, args):
     """Takes a rollable string such as 1d20+5 and returns its result after evaluating all the dice."""
     result, dice_rolls = roller.roll_dice(args)
     result_message = f"{context.author.mention}\n**Roll**: {args}\n**Total: **{result}\n**Results**: {dice_rolls}"
     return result_message
 
 
-@bot.command(name="roll", aliases=("r",))
-@error_handler
-@argument_handler
-async def roll_command(context, *args):
-    """Sends message through discord.py command system when user types !roll. Requires valid dice roll as input."""
-    args = " ".join(args).lower()
-    result_message = roll(context, args)
-    await context.send(result_message)
+@bot.slash_command(name="roll", description="Rolls Dice in xdy format. In case of FATE rolls, replace 'y' with 'F'.",
+                   options=[
+                       Option(name="dice",
+                              description="Dice in xdy format",
+                              option_type=SlashCommandOptionType.string,
+                              required=True)
 
-
-@slash.slash(name="roll",
-             description="Rolls Dice in xdy format. In case of FATE rolls, replace 'y' with 'F'.",
-             options=[
-                 create_option(
-                     name="dice",
-                     description="Dice in xdy format",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 )
-             ]
-             )
+                   ])
 @error_handler
-async def roll_slash(context, dice=""):
+async def roll_slash(context, dice):
     """Sends message through discord-slash system when user types /roll. Requires valid dice roll as input."""
     dice = dice.lower()
-    result_message = roll(context, dice)
-    await context.send(result_message)
-
-@slash.slash(name="r",
-             description="Rolls Dice in xdy format. In case of FATE rolls, replace 'y' with 'F'.",
-             options=[
-                 create_option(
-                     name="dice",
-                     description="Dice in xdy format",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 )
-             ]
-             )
-@error_handler
-async def roll_slash(context, dice=""):
-    """Sends message through discord-slash system when user types /roll. Requires valid dice roll as input."""
-    dice = dice.lower()
-    result_message = roll(context, dice)
-    await context.send(result_message)
+    result_message = make_roll(context, dice)
+    await context.respond(result_message)
 
 
 def wild(context):
@@ -198,20 +132,12 @@ def wild(context):
     return result_message
 
 
-@bot.command(name="wild")
-@error_handler
-async def wild_command(context):
-    """Sends message through discord.py command system when user types !wild."""
-    result_message = wild(context)
-    await context.send(result_message)
-
-
-@slash.slash(name="wild", description="Rolls a random wild magic effect.")
+@bot.slash_command(name="wild", description="Rolls a random wild magic effect.", guild_ids=[740700782323826799])
 @error_handler
 async def wild_command(context):
     """Sends message through discord-slash system when user types /wild."""
     result_message = wild(context)
-    await context.send(result_message)
+    await context.respond(result_message)
 
 
 def chaos(context):
@@ -223,135 +149,50 @@ def chaos(context):
     return result_message
 
 
-@bot.command(name="chaos")
-@error_handler
-async def chaos_command(context):
-    """Sends message through discord.py command system when user types !chaos."""
-    result_message = chaos(context)
-    await context.send(result_message)
-
-
-@slash.slash(name="chaos", description="Rolls a random 1d10000 wild magic effect.")
+@bot.slash_command(name="chaos", description="Rolls a random 1d10000 wild magic effect.")
 @error_handler
 async def chaos_slash(context):
     """Sends message through discord-slash system when user types /chaos."""
     result_message = chaos(context)
-    await context.send(result_message)
+    await context.respond(result_message)
 
 
 async def reference(context, item_type, args):
-    author = context.author.nick if hasattr(context.author, 'nick') else context.author.name
     item_type = item_type.lower()
     result_message = reference_handler.reference_item(item_type, args)
     for return_message in result_message:
         embedded_message = discord.Embed(title=return_message[0], description=return_message[1], color=10038562)
-        embedded_message.set_author(name=author, icon_url=context.author.avatar_url)
-        await context.send(embed=embedded_message)
+        embedded_message.set_author(name=context.author.display_name, icon_url=context.author.display_avatar)
+        await context.respond(embed=embedded_message)
 
 
-@bot.command(name="spell")
-@error_handler
-@argument_handler
-async def spell_command(context, *args):
-    args = " ".join(args)
-    await reference(context, "spell", args)
-
-
-@slash.slash(name="spell", description="Looks up spell card.",
-             options=[
-                 create_option(
-                     name="name",
-                     description="Name of the spell.",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 )
-             ]
-             )
+@bot.slash_command(name="spell", description="Looks up spell card.", guild_ids=[740700782323826799])
 @error_handler
 async def spell_slash(context, name):
     await reference(context, "spell", name)
 
 
-@bot.command(name="monster")
-@error_handler
-@argument_handler
-async def monster_command(context, *args):
-    args = " ".join(args)
-    await reference(context, "monster", args)
-
-
-@slash.slash(name="monster", description="Looks up monster card.",
-             options=[
-                 create_option(
-                     name="name",
-                     description="Name of the monster.",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 )
-             ]
-             )
+@bot.slash_command(name="monster", description="Looks up monster card.", guild_ids=[740700782323826799])
 @error_handler
 async def monster_slash(context, name):
     await reference(context, "monster", name)
 
 
-@bot.command(name="class")
+@bot.slash_command(name="class", description="Looks up class card.", guild_ids=[740700782323826799])
 @error_handler
-@argument_handler
-async def dnd_class_command(context, *args):
-    args = " ".join(args)
-    await reference(context, "class", args)
-
-
-@slash.slash(name="class", description="Looks up class card.",
-             options=[
-                 create_option(
-                     name="name",
-                     description="Name of the class.",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 ),
-                 create_option(
-                     name="level",
-                     description="Referenced level",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=False
-                 )
-             ]
-             )
-@error_handler
-async def dnd_class_slash(context, name, level=""):
+async def class_slash(context, name, level=""):
     if level:
         name = name + " " + level
     await reference(context, "class", name)
 
 
-@bot.command(name="condition")
-@error_handler
-@argument_handler
-async def condition_command(context, *args):
-    args = " ".join(args)
-    await reference(context, "condition", args)
-
-
-@slash.slash(name="condition", description="Looks up condition card.",
-             options=[
-                 create_option(
-                     name="name",
-                     description="Name of the condition.",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=True
-                 )
-             ]
-             )
+@bot.slash_command(name="condition", description="Looks up condition card.", guild_ids=[740700782323826799])
 @error_handler
 async def condition_slash(context, name):
     await reference(context, "condition", name)
 
 
-def randstat(context, args, default):
-    if len(args) == 0:
-        args = default
+def randstat(context, args):
     return_message = ""
     total = 0
     for _ in range(0, 6):
@@ -363,30 +204,13 @@ def randstat(context, args, default):
     return return_message
 
 
-@bot.command(name="randstat", aliases=("randstats",))
+@bot.slash_command(name="randstat",
+                   description="Rolls random ability scores for D&D using 4d6 drop lowest. A different roll can be provided.",
+                   guild_ids=[740700782323826799])
 @error_handler
-async def randstat_command(context, *args, default="4d6kh3"):
-    if len(args) > 0:
-        args = " ".join(args)
-    return_message = randstat(context, args, default)
-    await context.send(return_message)
+async def randstat_slash(context, dice="4d6kh3"):
+    return_message = randstat(context, dice)
+    await context.respond(return_message)
 
 
-@slash.slash(name="randstat",
-             description="""Rolls random ability scores for D&D using 4d6 drop lowest. A different roll can be provided.""",
-             options=[
-                 create_option(
-                     name="dice",
-                     description="Dice in xdy format",
-                     option_type=SlashCommandOptionType.STRING,
-                     required=False
-                 )
-             ]
-             )
-@error_handler
-async def randstat_slash(context, dice="", default="4d6kh3"):
-    return_message = randstat(context, dice, default)
-    await context.send(return_message)
-
-
-bot.run(token)
+bot.run(os.getenv("TOKEN"))
