@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 requests = "*"
-discord-py = "*"
 python-levenshtein = "*"
-discord-py-slash-command = "*"
+python-dotenv = "*"
+py-cord = "*"
 
 [dev-packages]
 
