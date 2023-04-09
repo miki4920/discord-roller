@@ -4,9 +4,6 @@ from Utility.ErrorHandler import TooManyDice
 
 
 class DiceRoll(object):
-    def __init__(self):
-        pass
-
     @staticmethod
     def dice_to_classes(tokenized_expression, inside_codeblock):
         # Converts all dice stings into classes of Roll
