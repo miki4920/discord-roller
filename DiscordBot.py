@@ -1,15 +1,15 @@
-import discord
 import os
+from functools import wraps
+from typing import Callable, Coroutine, Union
 
+import discord
 from discord import Guild, SlashCommandOptionType, Option
 from discord.ext.commands import Context
 from dotenv import load_dotenv
-from functools import wraps
-from typing import Tuple, Callable, Coroutine, Union
 
 from DiceOperations.Roller import DiceRoll
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
-from Utility.ErrorHandler import UnexpectedError, TooFewArguments, RollerException
+from Utility.ErrorHandler import UnexpectedError, RollerException
 from Utility.GetHelp import get_help_messages
 from WildMagicHandler import WildMagic
 
@@ -18,7 +18,7 @@ bot = discord.Bot()
 roller = DiceRoll()
 wildmagic = WildMagic()
 reference_handler = ReferenceHandler()
-test_mode = True
+test_mode = False
 test_server_id = 740700782323826799
 test_user_id = 254954838855516164
 
@@ -52,25 +52,15 @@ def error_handler(coro: Callable):
         try:
             return await coro(*args, **kwargs)
         except RollerException as error:
-            await context.send(str(error))
+            await context.respond(str(error))
         except Exception as error:
             if test_mode:
                 raise error
             else:
                 error = UnexpectedError(str(error))
-                await context.send(error)
+                await context.respond(error)
 
     return wrapper
-
-
-def has_valid_arguments(args: Tuple[str]) -> bool:
-    """Checks if tuple of strings contains at least one item.
-    Raises TooFewArguments if tuple is empty.
-    """
-    if len(args) == 0:
-        raise TooFewArguments()
-    return True
-
 
 @bot.event
 async def on_guild_join(guild: Guild) -> None:
@@ -93,7 +83,7 @@ def help_message(context):
     return embedded_message
 
 
-@bot.slash_command(name="help", description="Sends you a PM with all commands.", guild_ids=[740700782323826799])
+@bot.slash_command(name="help", description="Sends you a PM with all commands.")
 @error_handler
 async def help_slash(context):
     """Sends message through discord-slash system when user types /help. Gets message from help."""
@@ -132,7 +122,7 @@ def wild(context):
     return result_message
 
 
-@bot.slash_command(name="wild", description="Rolls a random wild magic effect.", guild_ids=[740700782323826799])
+@bot.slash_command(name="wild", description="Rolls a random wild magic effect.")
 @error_handler
 async def wild_command(context):
     """Sends message through discord-slash system when user types /wild."""
@@ -166,19 +156,44 @@ async def reference(context, item_type, args):
         await context.respond(embed=embedded_message)
 
 
-@bot.slash_command(name="spell", description="Looks up spell card.", guild_ids=[740700782323826799])
+@bot.slash_command(name="spell", description="Looks up spell card.",
+                   options=[
+                       Option(name="name",
+                              description="The name of the spell from SRD you want to look up.",
+                              option_type=SlashCommandOptionType.string,
+                              required=True)
+
+                   ])
 @error_handler
 async def spell_slash(context, name):
     await reference(context, "spell", name)
 
 
-@bot.slash_command(name="monster", description="Looks up monster card.", guild_ids=[740700782323826799])
+@bot.slash_command(name="monster", description="Looks up monster card.",
+                   options=[
+                       Option(name="name",
+                              description="The name of the monster from SRD you want to look up.",
+                              option_type=SlashCommandOptionType.string,
+                              required=True)
+
+                   ])
 @error_handler
 async def monster_slash(context, name):
     await reference(context, "monster", name)
 
 
-@bot.slash_command(name="class", description="Looks up class card.", guild_ids=[740700782323826799])
+@bot.slash_command(name="class", description="Looks up class card. Providing level returns a list of features at that level.",
+                   options=[
+                       Option(name="name",
+                              description="The name of the class you want to look up.",
+                              option_type=SlashCommandOptionType.string,
+                              required=True),
+                       Option(name="level",
+                              description="Level you want to see features at. 1-20.",
+                              option_type=SlashCommandOptionType.string,
+                              required=False)
+
+                   ])
 @error_handler
 async def class_slash(context, name, level=""):
     if level:
@@ -186,7 +201,14 @@ async def class_slash(context, name, level=""):
     await reference(context, "class", name)
 
 
-@bot.slash_command(name="condition", description="Looks up condition card.", guild_ids=[740700782323826799])
+@bot.slash_command(name="condition", description="Looks up condition card.",
+                   options=[
+                       Option(name="name",
+                              description="The name of the condition you want to look up.",
+                              option_type=SlashCommandOptionType.string,
+                              required=True)
+
+                   ])
 @error_handler
 async def condition_slash(context, name):
     await reference(context, "condition", name)
@@ -204,9 +226,14 @@ def randstat(context, args):
     return return_message
 
 
-@bot.slash_command(name="randstat",
-                   description="Rolls random ability scores for D&D using 4d6 drop lowest. A different roll can be provided.",
-                   guild_ids=[740700782323826799])
+@bot.slash_command(name="randstat", description="Rolls random ability scores for D&D using 4d6 drop lowest. A different roll can be provided.",
+                   options=[
+                       Option(name="dice",
+                              description="Dice in xdy format",
+                              option_type=SlashCommandOptionType.string,
+                              required=False)
+
+                   ])
 @error_handler
 async def randstat_slash(context, dice="4d6kh3"):
     return_message = randstat(context, dice)
