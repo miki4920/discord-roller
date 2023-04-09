@@ -11,6 +11,7 @@ from DiceOperations.Roller import DiceRoll
 from ReferenceOperations.ReferenceHandler import ReferenceHandler
 from Utility.ErrorHandler import UnexpectedError, RollerException
 from Utility.GetHelp import get_help_messages
+from Utility.UtilityHandler import escape
 from WildMagicHandler import WildMagic
 
 load_dotenv()
@@ -88,13 +89,13 @@ def help_message(context):
 async def help_slash(context):
     """Sends message through discord-slash system when user types /help. Gets message from help."""
     message = help_message(context)
-    await context.respond(embed=message)
+    await context.respond(embed=message, ephemeral=True)
 
 
 def make_roll(context, args):
     """Takes a rollable string such as 1d20+5 and returns its result after evaluating all the dice."""
     result, dice_rolls = roller.roll_dice(args)
-    result_message = f"{context.author.mention}\n**Roll**: {args}\n**Total: **{result}\n**Results**: {dice_rolls}"
+    result_message = f"{context.author.mention}\n**Roll**: {escape(args)}\n**Total: **{result}\n**Results**: {escape(dice_rolls)}"
     return result_message
 
 
@@ -190,12 +191,13 @@ async def monster_slash(context, name):
                               required=True),
                        Option(name="level",
                               description="Level you want to see features at. 1-20.",
+                              default="",
                               option_type=SlashCommandOptionType.string,
                               required=False)
 
                    ])
 @error_handler
-async def class_slash(context, name, level=""):
+async def class_slash(context, name, level):
     if level:
         name = name + " " + level
     await reference(context, "class", name)
@@ -230,12 +232,13 @@ def randstat(context, args):
                    options=[
                        Option(name="dice",
                               description="Dice in xdy format",
+                              default="4d6kh3",
                               option_type=SlashCommandOptionType.string,
                               required=False)
 
                    ])
 @error_handler
-async def randstat_slash(context, dice="4d6kh3"):
+async def randstat_slash(context, dice):
     return_message = randstat(context, dice)
     await context.respond(return_message)
 
