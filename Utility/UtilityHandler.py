@@ -23,3 +23,9 @@ def make_ordinal(n):
     if 11 <= (n % 100) <= 13:
         suffix = 'th'
     return str(n) + suffix
+
+
+def escape(string):
+    """Escapes formatting characters in the response"""
+    escaped_string = string.replace("*", "\\*")
+    return escaped_string
